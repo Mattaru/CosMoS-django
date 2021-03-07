@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-
-load_dotenv()
+# from dotenv import load_dotenv
+#
+#
+# load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'my_cos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Cosmos',
+        'NAME': 'cosmos',
         'USER': 'narmattaru',
         'PASSWORD': 'Fhntv1c!',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
