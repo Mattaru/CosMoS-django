@@ -1,0 +1,5 @@
+*.pyc
+.git
+my_cos/app/__pycache__
+my_cos/my_cos/__pycache__
+
