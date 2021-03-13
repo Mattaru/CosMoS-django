@@ -19,14 +19,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# from dotenv import load_dotenv
-#
-#
-# load_dotenv()
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,11 +30,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = '+psm(zqp4f%bs+$0uq*m=ui2pb=r_1xzpmsm&_dcli%fz-0(z7'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -52,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'multiselectfield',
 
     'app',
 ]
@@ -72,8 +70,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join('templates'),
-            os.path.join('app/templates')
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -143,6 +140,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFIELDS_DIRS = [
     os.path.join(BASE_DIR, 'static/')

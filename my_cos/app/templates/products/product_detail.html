@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <a href="{% url 'app:product_list' %}">back</a>
+    <p>{{ object.brand }}</p>
+    <p>{{ object.line }}</p>
+    <p>{{ object.name }}</p>
+    <img src="{{ object.img.url }}" alt="{{ object.name }}"><p></p>
+    <p>{{ object.consistency }}</p>
+    {% if object.consistency_img %}
+        <p>{{ object.consistency_img.url }}</p>
+    {% endif %}
+    <p>{{ object.ph }}</p>
+    <p>{{ object.effect_type }}</p>
+    <p>{{ object.skin_type }}</p>
+    <p>{{ object.for_what }}</p>
+    <a href="{{ object.ebay_link }}">buy</a>
+    <a href="{{ object.blog_link }}">read about</a>
+    <a href="{{ object.youtube_link }}">see more</a>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 from multiselectfield import MultiSelectField
 
@@ -12,23 +13,28 @@ class Country(models.Model):
         return self.name
 
 
-class Brend(models.Model):
+class Brand(models.Model):
     name = models.CharField(verbose_name='Brand name', max_length=100)
+    description = models.TextField(verbose_name='Description', blank=True, null=True)
     country = models.ForeignKey('app.Country', verbose_name='Country', null=True, blank=True,
-                                on_delete=models.SET_NULL, related_name='brend_country')
+                                on_delete=models.SET_NULL, related_name='brand_country')
 
     def __str__(self):
         return f'{self.name}({self.country})'
 
+    def get_absolute_url(self):
+        return reverse('app:brand_detail', args=[self.id])
+
 
 class Product(models.Model):
-    brend_name = models.ForeignKey('app.Brend', verbose_name='Brend', null=True, blank=True,
-                              on_delete=models.SET_NULL, related_name='product_brend')
+    brand = models.ForeignKey('app.Brand', verbose_name='Brand', null=True, blank=True,
+                                   on_delete=models.SET_NULL, related_name='product_brand')
+    line = models.CharField(verbose_name='line', max_length=100, blank=True, default=_('No line'))
     name = models.CharField(verbose_name='Product name', max_length=200)
-    img = models.ImageField(verbose_name='Image', upload_to='product_img/', default='unknown.png')
+    img = models.ImageField(verbose_name='Image', upload_to='product_img/', default='unknown.png', )
     consistency = models.TextField(verbose_name='Consistency')
     consistency_img = models.ImageField(verbose_name='Consistency image', upload_to='product_img/consistency/',
-                                        default='unknown.png')
+                                        blank=True, null=True)
 
     class NumberPH(models.TextChoices):
         FORE = '4', _('4')
@@ -43,7 +49,8 @@ class Product(models.Model):
         EIGHT_HALF = '8.5', _('8.5')
         NINE = '9', _('9')
 
-    ph = models.CharField(verbose_name='pH', choices=NumberPH.choices, max_length=3, null=True, blank=True)
+    ph = models.CharField(verbose_name='pH', choices=NumberPH.choices, max_length=3,
+                          null=True, blank=True)
 
     class EffectType(models.TextChoices):
         CALMING = 'calming', _('Calming')
@@ -83,11 +90,15 @@ class Product(models.Model):
 
     for_what = MultiSelectField(verbose_name='For what', choices=ForWhat.choices, max_length=24,
                                 null=True, blank=True)
-    ebay_link = models.CharField(verbose_name='Ebay(link)', max_length=3000)
-    blog_link = models.CharField(verbose_name='Blog(link)', max_length=3000)
-    youtube_link = models.CharField(verbose_name='Youtube(link)', max_length=3000)
+    ebay_link = models.CharField(verbose_name='Ebay(link)', max_length=3000, blank=True, null=True)
+    blog_link = models.CharField(verbose_name='Blog(link)', max_length=3000,
+                                 blank=True, default='https://beauty-granny.com')
+    youtube_link = models.CharField(verbose_name='Youtube(link)', max_length=3000, blank=True, null=True)
     approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.name} -- {self.brend}'
+        return f'{self.name} -- {self.brand}'
+
+    def get_absolute_url(self):
+        return reverse('app:product_detail', args=[self.id])
 
