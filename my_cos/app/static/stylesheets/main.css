@@ -1,0 +1,125 @@
+/* options reset */
+
+/*html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+
+/* main.css */
+/* base */
+
+.grid-wrapper {
+	background: url('/media/background.jpg');
+	margin: 0;
+	display: grid;
+	grid-template-columns: 30% 70%;
+	grid-template-rows: 300vh; 
+}
+.left-nav {
+	background-color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+	-webkit-box-shadow: 3px -1px 12px 6px rgba(0,0,0,0.6); 
+	box-shadow: 3px -1px 12px 6px rgba(0,0,0,0.6);
+}
+
+/* left-nav */
+
+.logo {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	opacity: 1;
+}
+.search-form {
+	background-color: rgba(255, 255, 255, 1);
+	margin: 0 auto;
+	width: 50%;
+	opacity: 1;
+}
+#id_search {
+	background-color: rgba(255, 255, 255, 1);
+	opacity: 1;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+/* Product list */
+
+.list-row {
+	background-color: rgba(255, 255, 255, 0.5);
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 20px 20px;
+	border-radius: 8px;
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}
+.list-item-link {
+	color: rgba(0, 0, 0, 1);
+}
+.list-item-link:hover {
+	text-decoration: none;
+	color: rgba(219, 175, 15, 1);
+	border: 2px solid rgb(219, 175, 15);
+}
+.list-img {
+	width: 150px;
+	height: 100px;
+	border: 3px solid rgba(0, 0, 0, 1);
+	border-top-left-radius: 8px;
+	border-bottom-right-radius: 8px; 
+	-webkit-box-shadow: 0px 0px 12px 10px rgba(0,0,0,0.6); 
+	box-shadow: 0px 0px 12px 10px rgba(0,0,0,0.6);
+}
+.product-simple-info {
+	margin: 15px 30px;
+	vertical-align: center;
+}
+.not-content {
+	background-color: rgba(255, 255, 255, 0.5);
+	margin: 10px 0 0 0;
+	padding: 20px 20px;
+	height: 100px;
+	text-align: center;
+	border-radius: 8px;
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}

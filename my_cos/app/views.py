@@ -6,8 +6,8 @@ from app.models import Product, Country, Brand
 from app.forms import OneRowSearch
 
 
-def starting_page(request):
-    return render(request, 'starting_page.html')
+# def starting_page(request):
+#     return render(request, 'starting_page.html')
 
 
 class ProductList(ListView):
@@ -21,12 +21,12 @@ class ProductList(ListView):
         return context
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(approved=True)
+        queryset = []
         params = self.request.GET.dict()
 
         if params.get('search'):
             data = params.get('search')
+            queryset = Product.objects.filter(approved=True)
             queryset = queryset.filter(
                 Q(name__icontains=data)
                 | Q(line__icontains=data)
