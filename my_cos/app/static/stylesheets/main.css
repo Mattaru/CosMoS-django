@@ -1,6 +1,6 @@
 /* options reset */
 
-/*html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -41,7 +41,17 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}*/
+}
+
+/* main styles for body */
+
+h2 {
+	font-size: 30px;
+	font-weight: bold;
+}
+strong {
+	font-weight: bold;
+}
 
 /* main.css */
 /* base */
@@ -56,12 +66,33 @@ table {
 .left-nav {
 	background-color: rgba(255, 255, 255, 0.5);
 	text-align: center;
-	-webkit-box-shadow: 3px -1px 12px 6px rgba(0,0,0,0.6); 
-	box-shadow: 3px -1px 12px 6px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 5px 0px 12px 0px rgba(0,0,0,0.6); 
+	box-shadow: 5px 0px 12px 0px rgba(0,0,0,0.6);
+}
+.content-block {
+	text-align: center;
+}
+
+/* BTN's */
+
+.btn-block {
+	margin: 70px auto 20px auto;
+}
+.back-btn,
+.social-icon {
+	color: black;
+}
+.social-icon {
+	margin: 0 20px; 
 }
 
 /* left-nav */
 
+.account-container{
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
 .logo {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -70,7 +101,7 @@ table {
 .search-form {
 	background-color: rgba(255, 255, 255, 1);
 	margin: 0 auto;
-	width: 50%;
+	width: 60%;
 	opacity: 1;
 }
 #id_search {
@@ -80,12 +111,36 @@ table {
 	width: 100%;
 	text-align: center;
 }
+.nav-panel {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	margin: 20px auto;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.nav-link {
+	margin: 5px 0 5px 0;
+	text-decoration: none;
+	color: rgba(0, 0, 0, 1);
+}
+.nav-link:hover {
+	color: rgba(186, 7, 7, 1);
+}
+
+/* block content */
+
+.content-container {
+	width: 80%;
+	margin: 10px auto;
+	padding: 20px;
+}
 
 /* Product list */
 
 .list-row {
+	display: flex;
 	background-color: rgba(255, 255, 255, 0.5);
-	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 20px 20px;
 	border-radius: 8px;
@@ -94,6 +149,7 @@ table {
 }
 .list-item-link {
 	color: rgba(0, 0, 0, 1);
+	text-decoration: none;
 }
 .list-item-link:hover {
 	text-decoration: none;
@@ -103,23 +159,80 @@ table {
 .list-img {
 	width: 150px;
 	height: 100px;
-	border: 3px solid rgba(0, 0, 0, 1);
+	border: 5px solid rgba(0, 0, 0, 1);
 	border-top-left-radius: 8px;
 	border-bottom-right-radius: 8px; 
-	-webkit-box-shadow: 0px 0px 12px 10px rgba(0,0,0,0.6); 
-	box-shadow: 0px 0px 12px 10px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 5px 4px 7px 1px rgba(0,0,0,0.55); 
+	box-shadow: 5px 4px 7px 1px rgba(0,0,0,0.55);
 }
 .product-simple-info {
-	margin: 15px 30px;
+	margin: 20px 30px;
 	vertical-align: center;
 }
 .not-content {
 	background-color: rgba(255, 255, 255, 0.5);
-	margin: 10px 0 0 0;
 	padding: 20px 20px;
 	height: 100px;
 	text-align: center;
 	border-radius: 8px;
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}
+
+/* Product detail */
+
+.detail-card {
+	background-color:  rgba(255, 255, 255, 0.5);
+	border-radius: 8px;
+	text-align: center;
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}
+.name-block,
+.info-block,
+.social-block {
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 8px;
+	margin: 10px 10px;
+	padding: 10px 10px;
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}
+.detail-img {
+	width: 80%;
+	margin: 0 auto;
+	border: 5px solid rgba(0, 0, 0, 1);
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}
+.info-block {
+	display: grid;
+	grid-template-columns: 20% 80%;
+	text-align: left;
+	/*grid-template-rows: ; */
+}
+.card-property-name {
+	margin-top: 10px;
+}
+.card-property {
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 8px;
+	margin-bottom: 10px; 
+	padding: 10px 10px;
+	color: 	rgba(255, 255, 255, 1);
+}
+.social-block {
+	display: flex;
+	flex-direction: start;
+	justify-content: center;
+}
+
+/* login */
+
+.login-block {
+	background-color:  rgba(255, 255, 255, 0.5);
+	border-radius: 8px;
+	text-align: center;
 	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
 	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
 }

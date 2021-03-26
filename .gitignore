@@ -3,5 +3,6 @@ my_cos/.env
 my_cos/media/product_img
 .git
 my_cos/app/__pycache__
+my_cos/app/__pycache__
 my_cos/my_cos/__pycache__
 

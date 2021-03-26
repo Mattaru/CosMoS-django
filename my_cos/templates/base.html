@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <title>CosMoS</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'stylesheets/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'stylesheets/bootstrap.min.css' %}"> -->
     {% block additional_style %}{% endblock %}
   </head>
   <body>
-      <div class="grid-wrapper content-container">
+      <div class="grid-wrapper">
       <div class="grid-item left-nav">
-        {% block search %}
-        {% endblock %}
+        {% block account %}{% endblock %}
+        {% block logo %}{% endblock %}
+        {% block search %}{% endblock %}
+        {% block left_nav %}{% endblock %}
       </div>
-      <div class="grid-item">
+      <div class="grid-item content-blcok">
         {% block content %}{% endblock %}
       </div>   
     </div>  
