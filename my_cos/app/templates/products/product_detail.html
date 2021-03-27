@@ -8,12 +8,12 @@
 {% block account %}
   <div class="account-container">
     {% if user.username %}
-      <p>{{ user.username }}</p>
+      <p class="nav-link">{{ user.username }}</p>
+      <p class="nav-link">|</p>
+      <a class="nav-link" href="{% url 'acc:logout' %}">logout</a>
     {% else %}
       <a class="nav-link" href="{% url 'acc:login' %}">login</a>
     {% endif %}
-    <p>|</p>
-    <a class="nav-link" href="{% url 'acc:logout' %}">logout</a>
   </div>
 {% endblock %}
 

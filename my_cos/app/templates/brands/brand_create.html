@@ -24,42 +24,20 @@
 	</svg>
 {% endblock %}
 
-{% block search %}
-	<form class="search-form" action="{% url 'app:product_list' %}">
-		{{ search_form }}
-		<button class="search-btn">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-			  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-			</svg>
-		</button>
-	</form>
-{% endblock %}
-
 {% block left_nav %}
 	<div class="nav-panel">
-		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
-		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
+		<a class="nav-link" href="{% url 'app:product_list' %}">search</a>
+		<a class="nav-link" href="">About us</a>
 	</div>
 {% endblock %}
 
 {% block content %}
-<div class="content-container">
-	{% if object_list %}
-	{% for product in object_list %}
-	<a class="list-item-link" href="{{ product.get_absolute_url }}">
-		<div class="list-row">		
-			<img class="list-img" src="{{ product.img.url }}" alt="{{ product.name }}">
-			<div class="product-simple-info">
-				<h2>{{ product.name }}</h4>
-				<p> {{ product.brand }} - {{ product.line }}</p>
-			</div>					
-		</div>
-	</a>
-	{% endfor %}
-	{% else %}
-		<div class="not-content">
-			<p>Please enter data for search...</p>
-		</div>
-	{% endif %}
-</div>
+	<div class="content-container create-block">
+		<a href="{% url 'app:country_create' %}">add country</a>
+		<form enctype="multipart/form-data" method="post">
+			{% csrf_token %}
+			{{ form.as_ul }}
+			<button type="submit">create</button>
+		</form>
+	</div>
 {% endblock %}

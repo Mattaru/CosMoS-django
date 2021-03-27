@@ -1,13 +1,29 @@
 from django.db.models import Q
 from django.shortcuts import get_list_or_404, render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic.base import TemplateView
+from django.urls import reverse_lazy
 
 from app.models import Product, Country, Brand
-from app.forms import OneRowSearch
+from app.forms import BrandForm, CountryForm, OneRowSearch, ProductForm
 
 
-# def starting_page(request):
-#     return render(request, 'starting_page.html')
+class AboutUsView(TemplateView):
+    template_name = 'about_us.html'
+
+
+class BrandCreate(CreateView):
+    model = Brand
+    form_class = BrandForm
+    template_name = 'brands/brand_create.html'
+    success_url = reverse_lazy('app:product_create')
+
+
+class CountryCreate(CreateView):
+    model = Country
+    form_class = CountryForm
+    template_name = 'countries/country_create.html'
+    success_url = reverse_lazy('app:brand_create')
 
 
 class ProductList(ListView):
@@ -40,3 +56,19 @@ class ProductDetail(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
 
+
+class ProductCreate(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/product_create.html'
+    success_url = reverse_lazy('app:success')
+
+
+
+
+
+
+
+
+class SuccessView(TemplateView):
+    template_name = 'success.html'
