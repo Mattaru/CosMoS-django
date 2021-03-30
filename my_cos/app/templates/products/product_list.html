@@ -50,8 +50,13 @@
 		<div class="list-row">		
 			<img class="list-img" src="{{ product.img.url }}" alt="{{ product.name }}">
 			<div class="product-simple-info">
-				<h2>{{ product.name }}</h4>
-				<p> {{ product.brand }} - {{ product.line }}</p>
+				<h2>{{ product.name }}</h4> 
+				{% if product.line %} 
+					<p>{{ product.brand }} - {{ product.line }}</p>
+				{% else %}
+					<p>{{ product.brand }}</p>
+				{% endif %}
+				<img src="/media/flags-svg/{{ product.brand.country.flag_img_name }}" width="16" height="16">
 			</div>					
 		</div>
 	</a>

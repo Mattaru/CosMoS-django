@@ -6,21 +6,31 @@ from multiselectfield import MultiSelectField
 
 
 class Country(models.Model):
-    name = models.CharField(verbose_name='Country name', max_length=100)
-    flag_img = models.ImageField(verbose_name='Image', upload_to='flag_img/', default='unknown.png')
+    name = models.CharField(verbose_name='Country name', max_length=100, unique=True)
+    flag_img_name = models.CharField(verbose_name='Flag image name', max_length=50,
+                                     blank=True, null=True)
 
     def __str__(self):
         return self.name
 
+    def make_flag_image_name(self):
+        self.flag_img_name = f"{'-'.join(self.name.split(' ')).lower()}.svg"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.name:
+            self.make_flag_image_name()
+            return super().save(*args, **kwargs)
+
 
 class Brand(models.Model):
-    name = models.CharField(verbose_name='Brand name', max_length=100)
+    name = models.CharField(verbose_name='Brand name', max_length=100, unique=True)
     description = models.TextField(verbose_name='Description', blank=True, null=True)
     country = models.ForeignKey('app.Country', verbose_name='Country', null=True, blank=True,
                                 on_delete=models.SET_NULL, related_name='brand_country')
 
     def __str__(self):
-        return f'{self.name}({self.country})'
+        return self.name
 
     def get_absolute_url(self):
         return reverse('app:brand_detail', args=[self.id])
@@ -29,11 +39,11 @@ class Brand(models.Model):
 class Product(models.Model):
     brand = models.ForeignKey('app.Brand', verbose_name='Brand', null=True, blank=True,
                                    on_delete=models.SET_NULL, related_name='product_brand')
-    line = models.CharField(verbose_name='line', max_length=100, blank=True, default=_('No line'))
-    name = models.CharField(verbose_name='Product name', max_length=200)
+    line = models.CharField(verbose_name='line', max_length=100, blank=True, null=True)
+    name = models.CharField(verbose_name='Product name', max_length=200, unique=True)
     img = models.ImageField(verbose_name='Image', upload_to='product_img/', default='unknown.png', )
-    consistency = models.TextField(verbose_name='Consistency')
-    consistency_img = models.ImageField(verbose_name='Consistency image', upload_to='product_img/consistency/',
+    ingredients = models.TextField(verbose_name='Ingredients')
+    ingredients_img = models.ImageField(verbose_name='Ingredients image', upload_to='product_img/consistency/',
                                         blank=True, null=True)
 
     class NumberPH(models.TextChoices):
@@ -101,4 +111,6 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('app:product_detail', args=[self.id])
+
+
 

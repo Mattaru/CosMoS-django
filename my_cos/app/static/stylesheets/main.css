@@ -153,7 +153,7 @@ strong {
 	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
 }
 .list-item-link {
-	color: rgba(0, 0, 0, 1);
+	color: rgba(219, 175, 15, 1);
 	text-decoration: none;
 }
 .list-item-link:hover {
@@ -171,7 +171,11 @@ strong {
 	box-shadow: 5px 4px 7px 1px rgba(0,0,0,0.55);
 }
 .product-simple-info {
-	margin: 20px 30px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	width: 100%;
+	margin: 0 20px;
+	padding: 20px 30px;
 	vertical-align: center;
 }
 .not-content {

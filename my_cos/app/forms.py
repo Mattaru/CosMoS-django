@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
             'brand',
             'line',
             'name',
-            'consistency',
+            'ingredients',
             'ph',
             'effect_type',
             'skin_type',
