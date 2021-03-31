@@ -8,7 +8,7 @@
 {% block account %}
 	<div class="account-container">
 		{% if user.username %}
-			<p class="nav-link">{{ user.username }}</p>
+			<a class="nav-link" href="/profile/{{ user.id }}">{{ user.username }}</a>
 			<p class="nav-link">|</p>
 			<a class="nav-link" href="{% url 'acc:logout' %}">logout</a>
 		{% else %}
@@ -56,8 +56,9 @@
 				{% else %}
 					<p>{{ product.brand }}</p>
 				{% endif %}
-				<img src="/media/flags-svg/{{ product.brand.country.flag_img_name }}" width="16" height="16">
-			</div>					
+				
+			</div>	
+			<img src="/media/flags-svg/{{ product.brand.country.flag_img_name }}" width="32" height="32">				
 		</div>
 	</a>
 	{% endfor %}

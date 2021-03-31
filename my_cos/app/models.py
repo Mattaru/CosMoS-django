@@ -4,9 +4,11 @@ from django.urls import reverse
 
 from multiselectfield import MultiSelectField
 
+from app.validators import unique_country_name, unique_brand_name, unique_product_name
+
 
 class Country(models.Model):
-    name = models.CharField(verbose_name='Country name', max_length=100, unique=True)
+    name = models.CharField(verbose_name='Country name', max_length=100, unique=True, validators=[unique_country_name])
     flag_img_name = models.CharField(verbose_name='Flag image name', max_length=50,
                                      blank=True, null=True)
 
@@ -24,7 +26,7 @@ class Country(models.Model):
 
 
 class Brand(models.Model):
-    name = models.CharField(verbose_name='Brand name', max_length=100, unique=True)
+    name = models.CharField(verbose_name='Brand name', max_length=100, unique=True, validators=[unique_brand_name])
     description = models.TextField(verbose_name='Description', blank=True, null=True)
     country = models.ForeignKey('app.Country', verbose_name='Country', null=True, blank=True,
                                 on_delete=models.SET_NULL, related_name='brand_country')
@@ -40,7 +42,7 @@ class Product(models.Model):
     brand = models.ForeignKey('app.Brand', verbose_name='Brand', null=True, blank=True,
                                    on_delete=models.SET_NULL, related_name='product_brand')
     line = models.CharField(verbose_name='line', max_length=100, blank=True, null=True)
-    name = models.CharField(verbose_name='Product name', max_length=200, unique=True)
+    name = models.CharField(verbose_name='Product name', max_length=200, unique=True, validators=[unique_product_name])
     img = models.ImageField(verbose_name='Image', upload_to='product_img/', default='unknown.png', )
     ingredients = models.TextField(verbose_name='Ingredients')
     ingredients_img = models.ImageField(verbose_name='Ingredients image', upload_to='product_img/consistency/',
