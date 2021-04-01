@@ -60,14 +60,8 @@ class ProductDetail(DetailView):
 class ProductCreate(CreateView):
     model = Product
     form_class = ProductForm
-    template_name = 'products/product_create.html'
     success_url = reverse_lazy('app:success')
-
-
-
-
-
-
+    template_name = 'products/product_create.html'
 
 
 class SuccessView(TemplateView):

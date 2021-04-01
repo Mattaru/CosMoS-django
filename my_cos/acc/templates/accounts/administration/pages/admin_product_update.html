@@ -32,15 +32,18 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-    <a class="nav-link" href="">search</a>
-    <a class="nav-link" href="">Approved list</a>
+    <a class="nav-link" href="{% url 'acc:admin_panel' %}">search</a>
     <a class="nav-link" href="">Links</a>
-    <a class="nav-link" href="{% url 'app:product_list' %}">Back</a>
+    <a class="nav-link" href="{% url 'acc:admin_panel' %}">Back</a>
 	</div>
 {% endblock %}
 
 {% block content %}
-  <div class="content-container">
-    Profile
+  <div class="content-container create-block">
+    <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      {{ form.as_ul }}
+      <button type="submit">save</button>
+    </form>  
   </div>
 {% endblock %}

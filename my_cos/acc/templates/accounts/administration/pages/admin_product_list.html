@@ -8,7 +8,7 @@
 {% block account %}
 	<div class="account-container">
 		{% if user.username %}
-			<a class="nav-link" href="{% url 'acc:admin_panel' %}">{{ user.username }}</a>
+			<a class="nav-link" href="/administration/{{ user.id }}">{{ user.username }}</a>
 			<p class="nav-link">|</p>
 			<a class="nav-link" href="{% url 'acc:logout' %}">logout</a>
 		{% else %}
@@ -37,8 +37,8 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
-		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
+	    <a class="nav-link" href="">Links</a>
+	    <a class="nav-link" href="{% url 'acc:admin_panel' %}">Back</a>	
 	</div>
 {% endblock %}
 
