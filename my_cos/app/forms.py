@@ -16,6 +16,10 @@ class CountryForm(forms.ModelForm):
 
 
 class ProductForm(forms.ModelForm):
+    brand = forms.ModelChoiceField(queryset=Brand.objects.all(), required=True)
+    name = forms.CharField(max_length=200, required=True)
+    ingredients = forms.CharField(widget=forms.Textarea(), required=True)
+
     class Meta:
         model = Product
         fields = [

@@ -1,15 +1,16 @@
+from django.db.models import Q
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.core.exceptions import ValidationError
+from django.core.exceptions import NON_FIELD_ERRORS
 
 from multiselectfield import MultiSelectField
 
-from app.validators import unique_country_name, unique_brand_name, unique_product_name
-
 
 class Country(models.Model):
-    name = models.CharField(verbose_name='Country name', max_length=100, unique=True, validators=[unique_country_name])
-    flag_img_name = models.CharField(verbose_name='Flag image name', max_length=50,
+    name = models.CharField(_('country name'), max_length=100, unique=True)
+    flag_img_name = models.CharField(_('flag image name'), max_length=50,
                                      blank=True, null=True)
 
     def __str__(self):
@@ -24,11 +25,17 @@ class Country(models.Model):
             self.make_flag_image_name()
             return super().save(*args, **kwargs)
 
+    def validate_unique(self, *args, **kwargs):
+        qs = Country.objects.filter(~Q(id=self.id))
+        if qs.filter(name__icontains=self.name).exists():
+            raise ValidationError(_("Item with the same name is already exists."))
+        super(Country, self).validate_unique(*args, **kwargs)
+
 
 class Brand(models.Model):
-    name = models.CharField(verbose_name='Brand name', max_length=100, unique=True, validators=[unique_brand_name])
-    description = models.TextField(verbose_name='Description', blank=True, null=True)
-    country = models.ForeignKey('app.Country', verbose_name='Country', null=True, blank=True,
+    name = models.CharField(_('brand name'), max_length=100, unique=True)
+    description = models.TextField(_('description'), blank=True, null=True)
+    country = models.ForeignKey('app.Country', verbose_name=_('Country'), null=True, blank=True,
                                 on_delete=models.SET_NULL, related_name='brand_country')
 
     def __str__(self):
@@ -37,15 +44,21 @@ class Brand(models.Model):
     def get_absolute_url(self):
         return reverse('app:brand_detail', args=[self.id])
 
+    def validate_unique(self, *args, **kwargs):
+        qs = Brand.objects.filter(~Q(id=self.id))
+        if qs.filter(name__icontains=self.name).exists():
+            raise ValidationError(_("Item with the same name is already exists."))
+        super(Brand, self).validate_unique(*args, **kwargs)
+
 
 class Product(models.Model):
-    brand = models.ForeignKey('app.Brand', verbose_name='Brand', null=True, blank=True,
+    brand = models.ForeignKey('app.Brand', verbose_name=_('brand'), null=True, blank=True,
                                    on_delete=models.SET_NULL, related_name='product_brand')
-    line = models.CharField(verbose_name='line', max_length=100, blank=True, null=True)
-    name = models.CharField(verbose_name='Product name', max_length=200, unique=True, validators=[unique_product_name])
-    img = models.ImageField(verbose_name='Image', upload_to='product_img/', default='unknown.png', )
-    ingredients = models.TextField(verbose_name='Ingredients')
-    ingredients_img = models.ImageField(verbose_name='Ingredients image', upload_to='product_img/consistency/',
+    line = models.CharField(_('line'), max_length=100, blank=True, null=True)
+    name = models.CharField(_('product name'), max_length=200, unique=True)
+    img = models.ImageField(_('image'), upload_to='product_img/', default='unknown.png', )
+    ingredients = models.TextField(_('ingredients'))
+    ingredients_img = models.ImageField(_('ingredients image'), upload_to='product_img/consistency/',
                                         blank=True, null=True)
 
     class NumberPH(models.TextChoices):
@@ -61,7 +74,7 @@ class Product(models.Model):
         EIGHT_HALF = '8.5', _('8.5')
         NINE = '9', _('9')
 
-    ph = models.CharField(verbose_name='pH', choices=NumberPH.choices, max_length=3,
+    ph = models.CharField(_('ph'), choices=NumberPH.choices, max_length=3,
                           null=True, blank=True)
 
     class EffectType(models.TextChoices):
@@ -75,7 +88,7 @@ class Product(models.Model):
         HEALING = 'healing', _('Healing')
         ANTIPIGMENTATION = 'antipigmentation', _('Antipigmentation')
 
-    effect_type = MultiSelectField(verbose_name='Effect type', choices=EffectType.choices, max_length=113,
+    effect_type = MultiSelectField(_('effect type'), choices=EffectType.choices, max_length=113,
                                    null=True, blank=True)
 
     class SkinType(models.TextChoices):
@@ -90,7 +103,7 @@ class Product(models.Model):
         COMBINATION = 'combination', _('Combination')
         FOR_ALL = 'all', _('All')
 
-    skin_type = MultiSelectField(verbose_name='Skin type', choices=SkinType.choices, max_length=69,
+    skin_type = MultiSelectField(_('skin type'), choices=SkinType.choices, max_length=69,
                                  null=True, blank=True)
 
     class ForWhat(models.TextChoices):
@@ -100,13 +113,13 @@ class Product(models.Model):
         BD = 'body', _('Body')
         HR = 'hair', _('Hair')
 
-    for_what = MultiSelectField(verbose_name='For what', choices=ForWhat.choices, max_length=24,
+    for_what = MultiSelectField(_('for what'), choices=ForWhat.choices, max_length=24,
                                 null=True, blank=True)
-    ebay_link = models.CharField(verbose_name='Ebay(link)', max_length=3000, blank=True, null=True)
-    blog_link = models.CharField(verbose_name='Blog(link)', max_length=3000,
+    ebay_link = models.CharField(_('ebay(link)'), max_length=3000, blank=True, null=True)
+    blog_link = models.CharField(_('blog(link)'), max_length=3000,
                                  blank=True, default='https://beauty-granny.com')
-    youtube_link = models.CharField(verbose_name='Youtube(link)', max_length=3000, blank=True, null=True)
-    approved = models.BooleanField(default=False)
+    youtube_link = models.CharField(_('youtube(link)'), max_length=3000, blank=True, null=True)
+    approved = models.BooleanField(_('approved'), default=False)
 
     def __str__(self):
         return f'{self.name} -- {self.brand}'
@@ -114,5 +127,8 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('app:product_detail', args=[self.id])
 
-
-
+    def validate_unique(self, *args, **kwargs):
+        qs = Product.objects.filter(~Q(id=self.id))
+        if qs.filter(name__icontains=self.name).exists():
+            raise ValidationError(_("Item with the same name is already exists."))
+        super(Product, self).validate_unique(*args, **kwargs)
