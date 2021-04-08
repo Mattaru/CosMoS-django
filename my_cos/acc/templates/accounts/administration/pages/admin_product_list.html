@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block search %}
-	<form class="search-form" action="{% url 'app:product_list' %}">
+	<form class="search-form" action="{% url 'acc:admin_product_list' %}">
 		{{ search_form }}
 		<button class="search-btn">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -46,7 +46,7 @@
 <div class="content-container">
 	{% if object_list %}
 	{% for product in object_list %}
-	<a class="list-item-link" href="{{ product.get_absolute_url }}">
+	<a class="list-item-link" href="../{{ product.id }}">
 		<div class="list-row">		
 			<img class="list-img" src="{{ product.img.url }}" alt="{{ product.name }}">
 			<div class="product-simple-info">

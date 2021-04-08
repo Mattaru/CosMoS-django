@@ -41,6 +41,7 @@
   <div class="content-container detail-card">
     <div class="name-block">
       <h2> {{ object.brand }} - {{ object.line }} - {{ object.name }}</h2>
+      <img src="/media/flags-svg/{{ object.brand.country.flag_img_name }}" width="32" height="32">
     </div>
     <img class="detail-img" src="{{ object.img.url }}" alt="{{ object.name }}"><p></p>
     <div class="info-block">

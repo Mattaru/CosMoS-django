@@ -39,12 +39,18 @@ class AdminProductList(ListView, LoginRequiredMixin):
 
         if params.get('search'):
             data = params.get('search')
-            queryset = Product.objects.filter(approved=True)
-            queryset = queryset.filter(
-                Q(name__icontains=data)
-                | Q(line__icontains=data)
-                | Q(brand__name__icontains=data)
-            )
+            queryset = Product.objects.all()
+            data_list = data.split(' ')
+            data_list.insert(0, data)
+
+            for data in data_list:
+                qs = queryset.filter(
+                    Q(name__icontains=data)
+                    | Q(line__icontains=data)
+                    | Q(brand__name__icontains=data)
+                )
+                if qs:
+                    return qs
 
         return queryset
 
