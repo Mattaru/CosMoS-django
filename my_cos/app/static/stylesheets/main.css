@@ -57,11 +57,19 @@ strong {
 /* base */
 
 .grid-wrapper {
-	background: url('/media/background.jpg');
+	background: url('/media/background1.jpg');
 	margin: 0;
 	display: grid;
 	grid-template-columns: 30% 70%;
 	grid-template-rows: 300vh; 
+
+	/* Full height */
+	height: 100%; 
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 .left-nav {
 	background-color: rgba(255, 255, 255, 0.5);
@@ -89,9 +97,27 @@ strong {
 /* left-nav */
 
 .account-container{
+	background-image: linear-gradient(rgb(168, 212, 224, 0.7), rgb(255,255,255, 0.7));
 	display: flex;
 	justify-content: center;
-	margin: 0 auto;
+	margin: 0 0;
+	/*border: 1px solid white;*/
+	-webkit-box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77); 
+	box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77);
+}
+.acc-link {
+	display: inline-block;
+	padding: 10px 10px;
+	text-decoration: none;
+	color: rgba(0,0,0);
+}
+.acc-link:hover {
+	background-image: linear-gradient(rgb(98, 129, 164), rgb(255,255,255));
+	color: rgb(255,255,255);
+}
+.acc-btn {
+	border-right: 1px solid rgb(255,255,255);
+	border-left: 1px solid rgb(255,255,255);
 }
 .logo {
 	margin-top: 20px;
@@ -106,8 +132,11 @@ strong {
 	opacity: 1;
 }
 .search-btn {
-	background-color: rgba(255, 255, 255, 1);
+	background-image: linear-gradient(rgb(168, 212, 224, 0.7), rgb(255,255,255, 0.7));
 	border-left: none;
+}
+.search-btn:hover {
+	background-image: linear-gradient(rgb(98, 129, 164), rgb(255,255,255));
 }
 #id_search {
 	background-color: rgba(255, 255, 255, 1);
@@ -130,7 +159,7 @@ strong {
 	color: rgba(0, 0, 0, 1);
 }
 .nav-link:hover {
-	color: rgba(186, 7, 7, 1);
+	color: rgba(98, 129, 164);
 }
 
 /* block content */
@@ -147,34 +176,33 @@ strong {
 	display: flex;
 	background-color: rgba(255, 255, 255, 0.8);
 	margin-bottom: 10px;
-	padding: 20px 20px;
+	padding: 10px 10px;
 	border-radius: 8px;
 	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
 	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
 }
 .list-item-link {
-	color: rgba(219, 175, 15, 1);
+	color: rgb(0, 0, 0);
 	text-decoration: none;
 }
-.list-item-link:hover {
+.list-item-link .list-row .product-simple-info:hover {
+	background-image: linear-gradient(rgb(98, 129, 164), rgb(255,255,255, 0.7));
 	text-decoration: none;
-	color: rgba(219, 175, 15, 1);
-	border: 2px solid rgb(219, 175, 15);
 }
 .list-img {
 	width: 150px;
 	height: 100px;
 	border: 5px solid rgba(0, 0, 0, 1);
-	border-top-left-radius: 8px;
-	border-bottom-right-radius: 8px; 
+	border-radius: 8px; 
 	-webkit-box-shadow: 5px 4px 7px 1px rgba(0,0,0,0.55); 
 	box-shadow: 5px 4px 7px 1px rgba(0,0,0,0.55);
 }
 .product-simple-info {
-	background-color: rgba(0, 0, 0, 0.8);
+	background-image: linear-gradient(rgb(168, 212, 224, 0.7), rgb(255,255,255, 0.7));
 	border-radius: 8px;
 	margin: 0 20px;
 	padding: 20px 30px;
+	width: 70%;
 	vertical-align: center;
 }
 .not-content {
@@ -204,7 +232,7 @@ strong {
 	padding: 10px 10px;
 }
 .detail-img {
-	width: 80%;
+	width: 55%;
 	margin: 0 auto;
 	border: 5px solid rgba(0, 0, 0, 1);
 	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
@@ -220,7 +248,7 @@ strong {
 	text-transform: uppercase;
 }
 .card-property {
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(98, 129, 164);
 	border-radius: 8px;
 	margin-bottom: 10px; 
 	padding: 10px 10px;
