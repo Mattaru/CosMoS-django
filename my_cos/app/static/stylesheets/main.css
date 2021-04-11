@@ -45,6 +45,9 @@ table {
 
 /* main styles for body */
 
+body {
+	background-color: rgb(167, 191, 219);
+}
 h2 {
 	font-size: 30px;
 	font-weight: bold;
@@ -57,10 +60,10 @@ strong {
 /* base */
 
 .grid-wrapper {
-	background: url('/media/background1.jpg');
+	background: url('/media/background.jpg');
 	margin: 0;
 	display: grid;
-	grid-template-columns: 30% 70%;
+	grid-template-columns: 30% 70%; 
 	grid-template-rows: 300vh; 
 
 	/* Full height */
@@ -107,7 +110,7 @@ strong {
 }
 .acc-link {
 	display: inline-block;
-	padding: 10px 10px;
+	padding: 10px;
 	text-decoration: none;
 	color: rgba(0,0,0);
 }
@@ -115,14 +118,19 @@ strong {
 	background-image: linear-gradient(rgb(98, 129, 164), rgb(255,255,255));
 	color: rgb(255,255,255);
 }
+.empty-row {
+	padding: 10px;
+}
 .acc-btn {
 	border-right: 1px solid rgb(255,255,255);
 	border-left: 1px solid rgb(255,255,255);
 }
+.logo-container {
+	margin: 40px 20px;
+}
 .logo {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	opacity: 1;
+	width: 100%;
+	border-radius: 8px;
 }
 .search-form {
 	display: flex;
@@ -149,7 +157,7 @@ strong {
 	display: flex;
 	flex-direction: column;
 	width: 60%;
-	margin: 30px auto;
+	margin: 40px auto;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -224,17 +232,22 @@ strong {
 	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
 	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
 }
-.name-block,
 .info-block,
 .social-block {
 	border-radius: 8px;
 	margin: 10px 10px;
 	padding: 10px 10px;
 }
+.name-block {
+	display: flex;
+	justify-content: center;
+	margin: 40px;
+}
 .detail-img {
 	width: 55%;
 	margin: 0 auto;
-	border: 5px solid rgba(0, 0, 0, 1);
+	border: 5px solid rgb(98, 129, 164);
+	border-radius: 8px;
 	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
 	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
 }
@@ -272,6 +285,16 @@ strong {
 /* login */
 
 .login-block {
+	background-color:  rgba(255, 255, 255, 0.8);
+	border-radius: 8px;
+	text-align: center;
+	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
+	box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6);
+}
+
+/* Success page */
+
+.success-block {
 	background-color:  rgba(255, 255, 255, 0.8);
 	border-radius: 8px;
 	text-align: center;

@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block additional_style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="content-container success-block">
+		<p>The request has been successfully sended. When a moderator will approve your request it adding at the database. Thank you so much for the help!</p>
+		<a href="{% url 'app:product_list' %}">Back to the main page</a>
+	</div>
+{% endblock %}
