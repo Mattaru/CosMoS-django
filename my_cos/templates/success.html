@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block content %}
-	<div class="content-container success-block">
-		<p>The request has been successfully sended. When a moderator will approve your request it adding at the database. Thank you so much for the help!</p>
-		<a href="{% url 'app:product_list' %}">Back to the main page</a>
+	<div class="content-container">
+		<div class="success-block">
+			<p>The request has been successfully sended. When a moderator will approve your request it adding at the database. Thank you so much for the help!</p>
+			<a class="success-link" href="{% url 'app:product_list' %}">Back to the main page</a>
+		</div>	
 	</div>
 {% endblock %}

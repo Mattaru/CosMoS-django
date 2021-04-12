@@ -74,6 +74,8 @@ class Product(models.Model):
         EIGHT_HALF = '8.5', _('8.5')
         NINE = '9', _('9')
 
+        __empty__ = _('Absent')
+
     ph = models.CharField(_('ph'), choices=NumberPH.choices, max_length=3,
                           null=True, blank=True)
 
