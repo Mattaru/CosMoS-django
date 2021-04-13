@@ -19,9 +19,15 @@ class Country(models.Model):
     def make_flag_image_name(self):
         self.flag_img_name = f"{'-'.join(self.name.split(' ')).lower()}.svg"
 
+    def make_name_format(self):
+        name = list(self.name.lower())
+        name[0] = name[0].upper()
+        self.name = ''.join(name)
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.name:
+            self.make_name_format()
             self.make_flag_image_name()
             return super().save(*args, **kwargs)
 

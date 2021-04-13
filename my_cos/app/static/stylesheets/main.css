@@ -121,6 +121,21 @@ strong {
 	color: rgb(255,255,255);
 }
 
+/* Forms */
+
+.form-general {
+	padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(98, 129, 164);
+}
+.form-input {
+	width: 40%;
+    text-align: center;
+}
+.form-textarea {
+	width: 80%;
+}
+
 /* left-nav */
 
 .account-container{
@@ -237,6 +252,9 @@ strong {
 	width: 70%;
 	vertical-align: center;
 }
+.list-country-img {
+	width: 30px;
+}
 .not-content {
 	background-color: rgba(255, 255, 255, 0.8);
 	padding: 20px;
@@ -251,6 +269,7 @@ strong {
 
 .detail-card {
 	background-color:  rgba(255, 255, 255, 0.8);
+	padding: 20px;
 	border-radius: 8px;
 	text-align: center;
 	-webkit-box-shadow: -7px 5px 18px 5px rgba(0,0,0,0.6); 
