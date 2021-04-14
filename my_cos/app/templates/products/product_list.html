@@ -18,6 +18,7 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
+		<a class="nav-link" href="{% url 'app:product_list' %}">Search</a>
 		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
 		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
 	</div>

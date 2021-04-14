@@ -1,15 +1,18 @@
 from django.db.models import Q
 from django.views.generic import DetailView, ListView, UpdateView
 from django.views.generic.base import TemplateView
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
+
 from app.models import Product
 from app.forms import OneRowSearch
+from acc.forms import ProductAdminForm
 
 
-class AdministrationPanel(TemplateView, LoginRequiredMixin):
+class AdministrationPanel(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/administration/admin_panel.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -23,7 +26,7 @@ class AdministrationPanel(TemplateView, LoginRequiredMixin):
         return context
 
 
-class AdminProductList(ListView, LoginRequiredMixin):
+class AdminProductList(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'accounts/administration/pages/admin_product_list.html'
 
@@ -55,24 +58,8 @@ class AdminProductList(ListView, LoginRequiredMixin):
         return queryset
 
 
-class AdminProductUpdate(UpdateView, LoginRequiredMixin):
+class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
     model = Product
-    fields = [
-        'brand',
-        'line',
-        'name',
-        'img',
-        'ingredients',
-        'ingredients_img',
-        'ph',
-        'effect_type',
-        'skin_type',
-        'for_what',
-        'ebay_link',
-        'blog_link',
-        'youtube_link',
-        'approved',
-    ]
+    form_class = ProductAdminForm
     success_url = reverse_lazy('acc:admin_panel')
     template_name = 'accounts/administration/pages/admin_product_update.html'
-

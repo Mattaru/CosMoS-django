@@ -20,11 +20,64 @@
 {% endblock %}
 
 {% block content %}
-  <div class="content-container create-block">
-    <form enctype="multipart/form-data" method="post">
-      {% csrf_token %}
-      {{ form.as_ul }}
-      <button type="submit">save</button>
-    </form>  
+  <div class="content-container">
+    <div class="create-block">
+      <h2 class="page-name">Updating the product</h2>
+      
+      <form class="create-form" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+
+        <label class="create-form-field" for="{{ form.barand.id_for_lable }}">Brand:</label>
+        <div class="create-form-property-btn">{{ form.brand }}{{ form.brand.errors }}
+          <a class="add-btn" href="{% url 'app:brand_create' %}">add brand</a>
+        </div>
+
+        <label class="create-form-field" for="{{ form.line.id_for_lable }}">Line:</label>
+        <div class="create-form-property">{{ form.line }}{{ form.line.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.name.id_for_lable }}">Name:</label>
+        <div class="create-form-property">{{ form.name }}{{ form.name.errors }}
+          {% if form.non_field_errors %}
+          <div class="error-msg">{{ form.non_field_errors }}</div>
+          {% endif %}
+        </div>
+
+        <label class="create-form-field" for="{{ form.img.id_for_lable }}">Img:</label>
+        <div class="create-form-property">{{ form.img }}{{ form.img.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.ingredients.id_for_lable }}">Ingredients:</label>
+        <div class="create-form-property">{{ form.ingredients }}{{ form.ingredients.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.ingredients_img.id_for_lable }}">Ingredients img:</label>
+        <div class="create-form-property">{{ form.ingredients_img }}{{ form.ingredients_img.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.ph.id_for_lable }}">pH:</label>
+        <div class="create-form-property">{{ form.ph }}{{ form.ph.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.effect_type.id_for_lable }}">Effect type:</label>
+        <div class="create-form-property create-form-checkbox">{{ form.effect_type }}{{ form.effect_type.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.skin_type.id_for_lable }}">Skin type:</label>
+        <div class="create-form-property create-form-checkbox">{{ form.skin_type }}{{ form.skin_type.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.for_what.id_for_lable }}">For what:</label>
+        <div class="create-form-property create-form-checkbox">{{ form.for_what }}{{ form.for_what.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.ebay_link.id_for_lable }}">Ebay link:</label>
+        <div class="create-form-property">{{ form.ebay_link }}{{ form.ebay_link.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.blog_link.id_for_lable }}">Blog link:</label>
+        <div class="create-form-property">{{ form.blog_link }}{{ form.blog_link.errors }}</div>
+
+        <label class="create-form-field" for="{{ form.youtube_link.id_for_lable }}">Youtube link:</label>
+        <div class="create-form-property">{{ form.youtube_link }}{{ form.youtube_link.errors }}</div>
+
+        <label class="create-form-field approved-block" for="{{ form.approved.id_for_lable }}">Approved:</label>
+        <div class="create-form-property form-boolean">{{ form.approved }}{{ form.approved.errors }}</div>
+
+        <div></div>
+        <button class="create-form-btn" type="submit">Save changes</button>
+      </form>
+    </div>  
   </div>
 {% endblock %}
