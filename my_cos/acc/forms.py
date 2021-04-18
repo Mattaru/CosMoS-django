@@ -1,11 +1,9 @@
 from django import forms
 
 from app.models import Product
-from app.forms import ProductForm
 
 
 class ProductAdminForm(forms.ModelForm):
-
 
     class Meta:
         model = Product

@@ -33,7 +33,7 @@ class Country(models.Model):
 
     def validate_unique(self, *args, **kwargs):
         qs = Country.objects.filter(~Q(id=self.id))
-        if qs.filter(name__icontains=self.name).exists():
+        if qs.filter(name__iexact=self.name).exists():
             raise ValidationError(_("Item with the same name is already exists."))
         super(Country, self).validate_unique(*args, **kwargs)
 
@@ -52,14 +52,14 @@ class Brand(models.Model):
 
     def validate_unique(self, *args, **kwargs):
         qs = Brand.objects.filter(~Q(id=self.id))
-        if qs.filter(name__icontains=self.name).exists():
+        if qs.filter(name__iexact=self.name).exists():
             raise ValidationError(_("Item with the same name is already exists."))
         super(Brand, self).validate_unique(*args, **kwargs)
 
 
 class Product(models.Model):
     brand = models.ForeignKey('app.Brand', verbose_name=_('brand'), null=True, blank=True,
-                                   on_delete=models.SET_NULL, related_name='product_brand')
+                              on_delete=models.SET_NULL, related_name='product_brand')
     line = models.CharField(_('line'), max_length=100, blank=True, null=True)
     name = models.CharField(_('product name'), max_length=200, unique=True)
     img = models.ImageField(_('image'), upload_to='product_img/', default='unknown.png', )
@@ -137,6 +137,6 @@ class Product(models.Model):
 
     def validate_unique(self, *args, **kwargs):
         qs = Product.objects.filter(~Q(id=self.id))
-        if qs.filter(name__icontains=self.name).exists():
+        if qs.filter(name__iexact=self.name).exists():
             raise ValidationError(_("Item with the same name is already exists."))
         super(Product, self).validate_unique(*args, **kwargs)

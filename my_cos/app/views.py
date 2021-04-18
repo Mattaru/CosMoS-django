@@ -9,10 +9,16 @@ from app.forms import BrandForm, CountryForm, OneRowSearch, ProductForm
 
 
 class AboutUsView(TemplateView):
+    """
+        The resource description view.
+    """
     template_name = 'about_us.html'
 
 
 class BrandCreate(CreateView):
+    """
+        A brand creation view.
+    """
     model = Brand
     form_class = BrandForm
     template_name = 'brands/brand_create.html'
@@ -20,6 +26,9 @@ class BrandCreate(CreateView):
 
 
 class CountryCreate(CreateView):
+    """
+        A country creation view.
+    """
     model = Country
     form_class = CountryForm
     template_name = 'countries/country_create.html'
@@ -27,7 +36,11 @@ class CountryCreate(CreateView):
 
 
 class ProductList(ListView):
+    """
+        The product list view.
+    """
     model = Product
+    paginate_by = 50
     template_name = 'products/product_list.html'
 
     def get_context_data(self, **kwargs):
@@ -59,11 +72,17 @@ class ProductList(ListView):
 
 
 class ProductDetail(DetailView):
+    """
+        A product detail view.
+    """
     model = Product
     template_name = 'products/product_detail.html'
 
 
 class ProductCreate(CreateView):
+    """
+        A product creation view.
+    """
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('app:success')
@@ -71,4 +90,7 @@ class ProductCreate(CreateView):
 
 
 class SuccessView(TemplateView):
+    """
+        Creation success view.
+    """
     template_name = 'success.html'

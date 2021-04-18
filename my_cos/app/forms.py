@@ -13,18 +13,18 @@ class BrandForm(forms.ModelForm):
                 attrs={
                     'class': 'form-general form-input',
                     'placeholder': 'Write brand name here',
-                    'required': True
+                    'required': True,
                 }),
             'country': forms.Select(
                 attrs={
                     'class': 'form-general form-input',
-                    'required': True
+                    'required': True,
                 }),
             'description': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
                     'placeholder': 'Write info about the brand here...',
-                    'required': False
+                    'required': False,
                 })
         }
 
@@ -40,7 +40,7 @@ class CountryForm(forms.ModelForm):
                     'class': 'form-general form-input',
                     'placeholder': 'Write country name here',
                     'max_length': '10',
-                    'required': True
+                    'required': True,
                 })
         }
 
@@ -63,31 +63,31 @@ class ProductForm(forms.ModelForm):
             'brand': forms.Select(
                 attrs={
                     'class': 'form-general form-input',
-                    'required': True
+                    'required': True,
                 }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
                     'placeholder': 'Write brand line here',
-                    'required': False
+                    'required': False,
                 }),
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
                     'placeholder': 'Write product name here',
-                    'required': True
+                    'required': True,
                 }),
             'ingredients': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
                     'placeholder': 'Write ingredients here...',
-                    'required': True
+                    'required': True,
                 }),
             'ph': forms.Select(
                 attrs={
                     'class': 'form-general form-input',
                     'placeholder': 'Write product name here',
-                    'required': False
+                    'required': False,
                 }),
         }
 
@@ -97,6 +97,5 @@ class OneRowSearch(forms.Form):
         attrs={
             'class': '',
             'placeholder': 'brand | line | product',
-            # 'help_text': 'Help text'
         }
     ), required=False)

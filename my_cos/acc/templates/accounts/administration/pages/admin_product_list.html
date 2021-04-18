@@ -18,14 +18,35 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-	    <a class="nav-link" href="">Links</a>
-	    <a class="nav-link" href="{% url 'acc:admin_panel' %}">Back</a>	
+		<a class="nav-link" href="{% url 'app:product_list' %}">Home</a>
+    <a class="nav-link" href="{% url 'acc:admin_panel' %}">Approval list</a>
+    <a class="nav-link" href="{% url 'acc:admin_product_list' %}">search</a>
+    <a class="nav-link" href="">Links</a>  
 	</div>
 {% endblock %}
 
 {% block content %}
 <div class="content-container">
 	{% if object_list %}
+
+	<div class="pagination-block">
+    <span>
+        {% if page_obj.has_previous %}
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page=1">&laquo; first</a>
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page={{ page_obj.next_page_number }}">next</a>
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+	</div>
+
 	{% for product in object_list %}
 	<a class="list-item-link" href="../{{ product.id }}">
 		<div class="list-row">		
@@ -42,10 +63,32 @@
 		</div>
 	</a>
 	{% endfor %}
+
+	<div class="pagination-block">
+    <span>
+        {% if page_obj.has_previous %}
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page=1">&laquo; first</a>
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page={{ page_obj.next_page_number }}">next</a>
+            <a class="pagination-link" href="?search={{ request.GET.search }}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+	</div>
+
 	{% else %}
 		<div class="not-content">
 			<p>Please enter data for search...</p>
 		</div>
 	{% endif %}
+
+	
+
 </div>
 {% endblock %}
