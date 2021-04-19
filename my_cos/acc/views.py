@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.views.generic import DetailView, ListView, UpdateView
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404, render
@@ -21,7 +22,11 @@ class AdministrationPanel(LoginRequiredMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(AdministrationPanel, self).get_context_data(*args, **kwargs)
         if self.request.user.is_authenticated:
-            context['list_for_approval'] = Product.objects.filter(approved=False)
+            qs = Product.objects.filter(approved=False)
+            paginator = Paginator(qs, 10)
+            page_number = self.request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            context['list_for_approval'] = page_obj
 
         return context
 

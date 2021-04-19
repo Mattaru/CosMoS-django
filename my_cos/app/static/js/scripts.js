@@ -11,9 +11,4 @@ const imgHandler = () => {
     }
 };
 
-const imgBtnStyle = () => {
-    let imgBtn = document.getElementById("id_img");
-};
-
 imgHandler();
-imgBtnStyle();

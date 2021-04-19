@@ -37,10 +37,11 @@ class CountryCreate(CreateView):
 
 class ProductList(ListView):
     """
-        The product list view.
+        The product list view, where value of the 'Approved' field equal True,
+        and required field contains 'search' parameters.
     """
     model = Product
-    paginate_by = 50
+    paginate_by = 10
     template_name = 'products/product_list.html'
 
     def get_context_data(self, **kwargs):
@@ -77,6 +78,12 @@ class ProductDetail(DetailView):
     """
     model = Product
     template_name = 'products/product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetail, self).get_context_data(**kwargs)
+        context['search_form'] = OneRowSearch()
+
+        return context
 
 
 class ProductCreate(CreateView):
