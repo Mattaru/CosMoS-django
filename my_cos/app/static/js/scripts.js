@@ -1,13 +1,25 @@
 const imgHandler = () => {
-    let imgLinksList = document.querySelectorAll(".form-img a");
-    let ingLinksList = document.querySelectorAll(".form-ingredients-img a");
+    let formImg = document.querySelector(".form-img");
+    let imgLink = document.querySelectorAll(".form-img a")[0].href;
+    let formIngredientsImg = document.querySelector(".form-ingredients-img");
+    let ingredientsLink = document.querySelectorAll(".form-ingredients-img a")[0].href;
 
-    if (imgLinksList[0]) {
-        imgLinksList[0].innerHTML = "show img";
-    }
+    formImg.innerHTML = `
+    <p>Currently:</p>
+    <img class="currently-img" src="${imgLink}">
+    <input type="file" name="img" accept="img/*" id="img_id">
+    `;
 
-    if (ingLinksList[0]) {
-        ingLinksList[0].innerHTML = "show img";
+    if (ingredientsLink) {
+        formIngredientsImg.innerHTML = `
+        <p>Currently:</p>
+        <img class="currently-img" src="${ingredientsLink}">
+        <input type="file" name="img" accept="img/*" id="img_id">
+        `;
+    } else {
+        formIngredientsImg.innerHTML = `
+        <input type="file" name="img" accept="img/*" id="img_id">
+        `;
     }
 };
 

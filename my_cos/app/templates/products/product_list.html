@@ -73,8 +73,10 @@
 				{% else %}
 					<p>{{ product.brand }}</p>
 				{% endif %}
-			</div>	
-			<img class="list-country-img" src="/media/flags-svg/{{ product.brand.country.flag_img_name }}">	
+			</div>
+			<div class="list-country-img-block">
+				<img class="list-country-img" src="/media/flags-svg/{{ product.brand.country.flag_img_name }}">
+			</div>		
 		</div>
 	</a>
 	{% endfor %}
