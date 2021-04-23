@@ -1,12 +1,11 @@
-from django.db.models import Q
+from django.db.models import ProtectedError, Q
 from django.core.paginator import Paginator
-from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 from django.views.generic.base import TemplateView
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
 from django.urls import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-
 
 from app.models import Product
 from app.forms import OneRowSearch
@@ -21,8 +20,9 @@ class AdministrationPanel(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(AdministrationPanel, self).get_context_data(*args, **kwargs)
+
         if self.request.user.is_authenticated:
-            qs = Product.objects.filter(approved=False)
+            qs = Product.objects.filter(approved=False).order_by('name')
             paginator = Paginator(qs, 10)
             page_number = self.request.GET.get('page')
             page_obj = paginator.get_page(page_number)
@@ -75,3 +75,29 @@ class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
     form_class = ProductAdminForm
     success_url = reverse_lazy('acc:admin_panel')
     template_name = 'accounts/administration/pages/admin_product_update.html'
+
+
+class AdminProductDelete(LoginRequiredMixin, DeleteView):
+    """
+        Delete the particular product object.
+    """
+    model = Product
+    form_class = ProductAdminForm
+    success_url = reverse_lazy('acc:admin_panel')
+    template_name = 'accounts/administration/pages/admin_product_delete.html'
+
+
+def admin_unapproved_list_delete(request):
+    """
+    Delete all of the products, where the 'approved' field equal False.
+    """
+    query_set = Product.objects.filter(approved=False)
+
+    if request.method == 'POST':
+        try:
+            query_set.delete()
+        except ProtectedError:
+            return HttpResponse("This object can't be deleted!!")
+        return HttpResponseRedirect(reverse_lazy('acc:admin_panel'))
+
+    return render(request, 'accounts/administration/pages/admin_product_delete_unapproved.html')
