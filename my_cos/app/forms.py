@@ -95,7 +95,7 @@ class ProductForm(forms.ModelForm):
 class OneRowSearch(forms.Form):
     search = forms.CharField(max_length=255, label='', widget=forms.TextInput(
         attrs={
-            'class': '',
+            'class': 'search-form-input',
             'placeholder': 'brand | line | product',
         }
     ), required=False)

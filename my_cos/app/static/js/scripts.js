@@ -1,4 +1,4 @@
-const imgHandler = () => {
+const updatingImgHandler = () => {
     let formImg = document.querySelector(".form-img");
     let imgLink = document.querySelectorAll(".form-img a")[0].href;
     let formIngredientsImg = document.querySelector(".form-ingredients-img");
@@ -26,4 +26,4 @@ const imgHandler = () => {
     }
 };
 
-imgHandler();
+updatingImgHandler();

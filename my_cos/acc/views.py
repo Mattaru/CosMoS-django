@@ -60,7 +60,7 @@ class AdminProductList(LoginRequiredMixin, ListView):
                     Q(name__icontains=data)
                     | Q(line__icontains=data)
                     | Q(brand__name__icontains=data)
-                )
+                ).order_by('name')
                 if qs:
                     return qs
 
@@ -75,6 +75,12 @@ class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
     form_class = ProductAdminForm
     success_url = reverse_lazy('acc:admin_panel')
     template_name = 'accounts/administration/pages/admin_product_update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminProductUpdate, self).get_context_data(**kwargs)
+        context['search_form'] = OneRowSearch
+
+        return context
 
 
 class AdminProductDelete(LoginRequiredMixin, DeleteView):

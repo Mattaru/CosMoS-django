@@ -5,11 +5,26 @@
     <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
 {% endblock %}
 
+{% block left_nav %}
+	<div class="nav-panel">
+		<a class="nav-link" href="{% url 'app:product_list' %}">Search</a>
+		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
+		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
+	</div>
+{% endblock %}
+
 {% block content %}
 	<div class="content-container">
-		<div class="success-block">
-			<p>The request has been successfully sended. When a moderator will approve your request it adding at the database. Thank you so much for the help!</p>
+	<div class="not-content">
+		<div class="non-content-text-block">
+			<p>The request has been successfully sended. When a moderator will approve your request it adding in to the database. Thank you so much for the help!</p>
 			<a class="success-link" href="{% url 'app:product_list' %}">Back to the main page</a>
-		</div>	
+		</div>
+		<div class="arrow-container">
+			<div class="top-arrow-block"></div>
+			<div class="arrow-right"></div>
+		</div>
+		<img src="/media/search-waiting.png">
 	</div>
+</div>
 {% endblock %}

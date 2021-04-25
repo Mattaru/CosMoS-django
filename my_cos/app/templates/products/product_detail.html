@@ -9,7 +9,7 @@
   <form class="search-form" action="{% url 'app:product_list' %}">
     {{ search_form }}
     <button class="search-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
       </svg>
     </button>
@@ -26,79 +26,77 @@
 
 {% block content %}
   <div class="content-container">
-    <div class="detail-card">
+    <div>
+      <div class="top-button-block">
+        <button class="back-btn" onclick="window.history.go(-1); return false;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="country-block">
+        <img src="/media/flags-svg/{{ object.brand.country.flag_img_name }}" width="32" height="32">
+        <p>({{ object.brand.country.name }})</p>
+      </div>
+    </div>
 
-      <div>
-        <div class="top-button-block">
-          <button class="back-btn" onclick="window.history.go(-1); return false;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-            </svg>
-          </button>
-        </div>
-        <div class="country-block">
-          <img src="/media/flags-svg/{{ object.brand.country.flag_img_name }}" width="32" height="32">
-          <p>({{ object.brand.country.name }})</p>
-        </div>
+    <div class="name-block">
+      <h2> {{ object.brand }} - {{ object.line }} - {{ object.name }}</h2>
+    </div>
+    
+    <div class="info-block">
+      <div></div>
+      <div class="detail-img-block">
+        <img class="detail-img" src="{{ object.img.url }}" alt="{{ object.name }}">
       </div>
 
-      <div class="name-block">
-        <h2> {{ object.brand }} - {{ object.line }} - {{ object.name }}</h2>
+      <div></div>
+      <div class="social-block">
+        <a class="social-icon" href="{{ object.ebay_link }}">
+          <img class="social-img" src="/media/social/ebay.svg" name="ebay-link">
+        </a>
+        <a class="social-icon" href="{{ object.blog_link }}">
+          <img  class="social-img" src="/media/social/ebay.svg" name="blog-link">
+        </a>
+        <a class="social-icon" href="{{ object.youtube_link }}">
+          <img  class="social-img" src="/media/social/youtube.svg" name="youtube-link">
+        </a>
       </div>
+
+      <div class="card-property-name"><strong>Effect type:</strong></div>
+      <div class="card-property"><p>{{ object.effect_type }}</p></div>
       
-      <div class="info-block">
-        <div></div>
+      <div class="card-property-name"><strong>Skin type:</strong></div>
+      <div class="card-property"><p>{{ object.skin_type }}</p></div>
+      
+      <div class="card-property-name"><strong>For what:</strong></div>
+      <div class="card-property"><p>{{ object.for_what }}</p></div>
+
+      {% if object.ph %}
+        <div class="card-property-name"><strong>pH:</strong></div>
+        <div class="card-property"><p>{{ object.ph }}</p></div>
+      {% endif %}
+
+      <div class="card-property-name"><strong>Ingredients:</strong></div>
+      <div class="card-property"><p>{{ object.ingredients }}</p></div>
+
+      {% if object.ingredients_img %}
+        <div class="card-property-name card-ingredients-img-name"><strong>Ingredients img:</strong></div>
         <div class="detail-img-block">
-          <img class="detail-img" src="{{ object.img.url }}" alt="{{ object.name }}">
+          <img class="detail-img detail-ingredients-img" src="{{ object.ingredients_img.url }}" name="{{ object.name }}/consistency">
         </div>
+      {% endif %}   
+    </div>      
 
-        <div></div>
-        <div class="social-block">
-          <a class="social-icon" href="{{ object.ebay_link }}">
-            <img class="social-img" src="/media/social/ebay.svg" name="ebay-link">
-          </a>
-          <a class="social-icon" href="{{ object.blog_link }}">
-            <img  class="social-img" src="/media/social/ebay.svg" name="blog-link">
-          </a>
-          <a class="social-icon" href="{{ object.youtube_link }}">
-            <img  class="social-img" src="/media/social/youtube.svg" name="youtube-link">
-          </a>
-        </div>
-
-        <div class="card-property-name"><strong>Effect type:</strong></div>
-        <div class="card-property"><p>{{ object.effect_type }}</p></div>
-        
-        <div class="card-property-name"><strong>Skin type:</strong></div>
-        <div class="card-property"><p>{{ object.skin_type }}</p></div>
-        
-        <div class="card-property-name"><strong>For what:</strong></div>
-        <div class="card-property"><p>{{ object.for_what }}</p></div>
-
-        {% if object.ph %}
-          <div class="card-property-name"><strong>pH:</strong></div>
-          <div class="card-property"><p>{{ object.ph }}</p></div>
-        {% endif %}
-
-        <div class="card-property-name"><strong>Ingredients:</strong></div>
-        <div class="card-property"><p>{{ object.ingredients }}</p></div>
-
-        {% if object.ingredients_img %}
-          <div class="card-property-name card-ingredients-img-name"><strong>Ingredients img:</strong></div>
-          <div class="detail-img-block">
-            <img class="detail-img detail-ingredients-img" src="{{ object.ingredients_img.url }}" name="{{ object.name }}/consistency">
-          </div>
-        {% endif %}   
-      </div>      
-
-      <div class="bottom-btn-block">
-        <div class="bottom-back-btn-wrapper">
-          <button class="back-btn" onclick="window.history.go(-1); return false;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-            </svg>
-          </button>
-        </div>
+    <div class="bottom-btn-block">
+      <div class="bottom-back-btn-wrapper">
+        <button class="back-btn" onclick="window.history.go(-1); return false;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+          </svg>
+        </button>
       </div>
-    </div>  
+    </div>
+     
   </div>
 {% endblock %}
