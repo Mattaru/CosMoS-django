@@ -4,8 +4,8 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 
-from app.models import Product, Country, Brand
-from app.forms import BrandForm, CountryForm, OneRowSearch, ProductForm
+from app.models import Product, Country
+from app.forms import CountryForm, OneRowSearch, ProductForm
 
 
 TEXT = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.' \
@@ -34,7 +34,7 @@ TEXT = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.' \
 def create_objects(name, number):
     for num in range(number):
         product = Product.objects.create(
-            brand=Brand.objects.filter(name='MISSHA').first(),
+            brand='MISSHA',
             name=f'{name}{num}',
             ingredients=TEXT
         )
@@ -48,16 +48,6 @@ class AboutUsView(TemplateView):
     template_name = 'about_us.html'
 
 
-class BrandCreate(CreateView):
-    """
-        A brand creation view.
-    """
-    model = Brand
-    form_class = BrandForm
-    template_name = 'brands/brand_create.html'
-    success_url = reverse_lazy('app:product_create')
-
-
 class CountryCreate(CreateView):
     """
         A country creation view.
@@ -65,7 +55,7 @@ class CountryCreate(CreateView):
     model = Country
     form_class = CountryForm
     template_name = 'countries/country_create.html'
-    success_url = reverse_lazy('app:brand_create')
+    success_url = reverse_lazy('app:product_create')
 
 
 class ProductList(ListView):
@@ -74,7 +64,7 @@ class ProductList(ListView):
         and required field contains 'search' parameters.
     """
     model = Product
-    paginate_by = 10
+    paginate_by = 30
     template_name = 'products/product_list.html'
 
     def get_context_data(self, **kwargs):
@@ -97,7 +87,7 @@ class ProductList(ListView):
                 qs = queryset.filter(
                     Q(name__icontains=data)
                     | Q(line__icontains=data)
-                    | Q(brand__name__icontains=data)
+                    | Q(brand__icontains=data)
                 ).order_by('name')
                 if qs:
                     return qs

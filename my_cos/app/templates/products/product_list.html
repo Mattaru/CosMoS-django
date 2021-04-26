@@ -18,7 +18,7 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-		<a class="nav-link nav-link-active" href="{% url 'app:product_list' %}">Search</a>
+		<a class="nav-link nav-link-active" href="{% url 'app:product_list' %}">Main</a>
 		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
 		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
 	</div>
@@ -74,9 +74,11 @@
 					<small>{{ product.brand }}</small>
 				{% endif %}
 			</div>
+			{% if product.country %}
 			<div class="list-country-img-block">
-				<img class="list-country-img" src="/media/flags-svg/{{ product.brand.country.flag_img_name }}">
-			</div>		
+				<img class="list-country-img" src="/media/flags-svg/{{ product.country.flag_img_name }}">
+			</div>
+			{% endif %}		
 		</div>
 	</a>
 	{% endfor %}

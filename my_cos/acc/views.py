@@ -23,7 +23,7 @@ class AdministrationPanel(LoginRequiredMixin, TemplateView):
 
         if self.request.user.is_authenticated:
             qs = Product.objects.filter(approved=False).order_by('name')
-            paginator = Paginator(qs, 10)
+            paginator = Paginator(qs, 30)
             page_number = self.request.GET.get('page')
             page_obj = paginator.get_page(page_number)
             context['list_for_approval'] = page_obj
@@ -36,7 +36,7 @@ class AdminProductList(LoginRequiredMixin, ListView):
         View with the product list.
     """
     model = Product
-    paginate_by = 10
+    paginate_by = 30
     template_name = 'accounts/administration/pages/admin_product_list.html'
 
     def get_context_data(self, **kwargs):
@@ -59,7 +59,7 @@ class AdminProductList(LoginRequiredMixin, ListView):
                 qs = queryset.filter(
                     Q(name__icontains=data)
                     | Q(line__icontains=data)
-                    | Q(brand__name__icontains=data)
+                    | Q(brand__icontains=data)
                 ).order_by('name')
                 if qs:
                     return qs

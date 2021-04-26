@@ -11,6 +11,7 @@ class ProductAdminForm(forms.ModelForm):
             'brand',
             'line',
             'name',
+            'country',
             'img',
             'ingredients',
             'ingredients_img',
@@ -19,14 +20,19 @@ class ProductAdminForm(forms.ModelForm):
             'skin_type',
             'for_what',
             'ebay_link',
+            'amazon_link',
             'blog_link',
             'youtube_link',
+            'facebook_link',
+            'telegram_link',
+            'instagram_link',
             'approved',
         ]
         widgets = {
-            'brand': forms.Select(
+            'brand': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
+                    'placeholder': 'Write brand line here',
                     'required': True
                 }),
             'line': forms.TextInput(
@@ -41,6 +47,11 @@ class ProductAdminForm(forms.ModelForm):
                     'placeholder': 'Write product name here',
                     'required': True
                 }),
+            'country': forms.Select(
+                attrs={
+                    'class': 'form-general form-input',
+                    'required': False,
+                }),
             'ingredients': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
@@ -50,13 +61,18 @@ class ProductAdminForm(forms.ModelForm):
             'ph': forms.Select(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write product name here',
                     'required': False
                 }),
             'ebay_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
                     'placeholder': 'ebay link here',
+                    'required': False
+                }),
+            'amazon_link': forms.TextInput(
+                attrs={
+                    'class': 'form-general form-link',
+                    'placeholder': 'amazon link here',
                     'required': False
                 }),
             'blog_link': forms.TextInput(
@@ -69,6 +85,24 @@ class ProductAdminForm(forms.ModelForm):
                 attrs={
                     'class': 'form-general form-link',
                     'placeholder': 'youtube link here',
+                    'required': False
+                }),
+            'facebook_link': forms.TextInput(
+                attrs={
+                    'class': 'form-general form-link',
+                    'placeholder': 'facebook link here',
+                    'required': False
+                }),
+            'telegram_link': forms.TextInput(
+                attrs={
+                    'class': 'form-general form-link',
+                    'placeholder': 'telegram link here',
+                    'required': False
+                }),
+            'instagram_link': forms.TextInput(
+                attrs={
+                    'class': 'form-general form-link',
+                    'placeholder': 'instagram link here',
                     'required': False
                 }),
         }

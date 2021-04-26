@@ -28,7 +28,6 @@
     <a class="nav-link" href="{% url 'app:product_list' %}">Home</a>
     <a class="nav-link" href="{% url 'acc:admin_panel' %}">Approval list</a>
     <a class="nav-link nav-link-active" href="{% url 'acc:admin_product_list' %}">search</a>
-    <a class="nav-link" href="">Links</a>
 	</div>
 {% endblock %}
 
@@ -82,9 +81,11 @@
 					<small>{{ product.brand }}</small>
 				{% endif %}
 			</div>
+			{% if product.country %}
 			<div class="list-country-img-block">
-				<img class="list-country-img" src="/media/flags-svg/{{ product.brand.country.flag_img_name }}">
-			</div>		
+				<img class="list-country-img" src="/media/flags-svg/{{ product.country.flag_img_name }}">
+			</div>
+			{% endif %}		
 		</div>
 	</a>
 	{% endfor %}

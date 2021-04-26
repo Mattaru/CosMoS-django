@@ -1,32 +1,6 @@
 from django import forms
 
-from app.models import Brand, Country,  Product
-
-
-class BrandForm(forms.ModelForm):
-
-    class Meta:
-        model = Brand
-        fields = '__all__'
-        widgets = {
-            'name': forms.TextInput(
-                attrs={
-                    'class': 'form-general form-input',
-                    'placeholder': 'Write brand name here',
-                    'required': True,
-                }),
-            'country': forms.Select(
-                attrs={
-                    'class': 'form-general form-input',
-                    'required': True,
-                }),
-            'description': forms.Textarea(
-                attrs={
-                    'class': 'form-general form-textarea',
-                    'placeholder': 'Write info about the brand here...',
-                    'required': False,
-                })
-        }
+from app.models import Country, Product
 
 
 class CountryForm(forms.ModelForm):
@@ -60,9 +34,10 @@ class ProductForm(forms.ModelForm):
             'for_what',
         ]
         widgets = {
-            'brand': forms.Select(
+            'brand': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
+                    'placeholder': 'Write brand here',
                     'required': True,
                 }),
             'line': forms.TextInput(

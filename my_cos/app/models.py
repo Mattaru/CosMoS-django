@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import Q
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -38,30 +40,12 @@ class Country(models.Model):
         super(Country, self).validate_unique(*args, **kwargs)
 
 
-class Brand(models.Model):
-    name = models.CharField(_('brand name'), max_length=100, unique=True)
-    description = models.TextField(_('description'), blank=True, null=True)
-    country = models.ForeignKey('app.Country', verbose_name=_('Country'), null=True, blank=True,
-                                on_delete=models.SET_NULL, related_name='brand_country')
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('app:brand_detail', args=[self.id])
-
-    def validate_unique(self, *args, **kwargs):
-        qs = Brand.objects.filter(~Q(id=self.id))
-        if qs.filter(name__iexact=self.name).exists():
-            raise ValidationError(_("Item with the same name is already exists."))
-        super(Brand, self).validate_unique(*args, **kwargs)
-
-
 class Product(models.Model):
-    brand = models.ForeignKey('app.Brand', verbose_name=_('brand'), null=True, blank=True,
-                              on_delete=models.SET_NULL, related_name='product_brand')
+    brand = models.CharField(_('brand'), max_length=100, blank=True, null=True)
     line = models.CharField(_('line'), max_length=100, blank=True, null=True)
     name = models.CharField(_('product name'), max_length=200, unique=True)
+    country = models.ForeignKey('app.Country', blank=True, null=True, on_delete=models.SET_NULL,
+                                related_name='Product_country')
     img = models.ImageField(_('image'), upload_to='product_img/', default='unknown.png', )
     ingredients = models.TextField(_('ingredients'))
     ingredients_img = models.ImageField(_('ingredients image'), upload_to='product_img/consistency/',
@@ -124,9 +108,14 @@ class Product(models.Model):
     for_what = MultiSelectField(_('for what'), choices=ForWhat.choices, max_length=24,
                                 null=True, blank=True)
     ebay_link = models.CharField(_('ebay(link)'), max_length=3000, blank=True, null=True)
+    amazon_link = models.CharField(_('amazon(link)'), max_length=3000, blank=True, null=True)
     blog_link = models.CharField(_('blog(link)'), max_length=3000,
                                  blank=True, default='https://beauty-granny.com')
     youtube_link = models.CharField(_('youtube(link)'), max_length=3000, blank=True, null=True)
+    facebook_link = models.CharField(_('facebook(link)'), max_length=3000, blank=True, null=True)
+    telegram_link = models.CharField(_('telegram(link)'), max_length=3000, blank=True, null=True)
+    instagram_link = models.CharField(_('instagram(link)'), max_length=3000, blank=True, null=True)
+    creation_date = models.DateTimeField(_('date'), auto_now_add=True)
     approved = models.BooleanField(_('approved'), default=False)
 
     def __str__(self):

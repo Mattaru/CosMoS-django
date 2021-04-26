@@ -31,7 +31,9 @@
 
         {% block logo %}
           <div class="logo-container">
-            <img class="logo" src="/media/main-logo.png">
+            <a href="{% url 'app:product_list' %}">
+              <img class="logo" src="/media/main-logo.png">
+            </a>
           </div>
         {% endblock %}
 
