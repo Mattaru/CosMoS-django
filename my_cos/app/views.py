@@ -70,6 +70,9 @@ class ProductList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ProductList, self).get_context_data(**kwargs)
         context['search_form'] = OneRowSearch()
+        context['last_three_added'] = get_list_or_404(
+            Product.objects.filter(approved=True).order_by('creation_date')[:4]
+        )
 
         return context
 

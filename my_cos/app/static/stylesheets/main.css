@@ -140,7 +140,7 @@ ul {
 .form-general {
 	padding: 10px;
     border-radius: 5px;
-    border: 1px solid rgba(98, 129, 164);
+    border: 2px solid rgba(98, 129, 164);
     font-family: 'Montserrat Medium';
 	letter-spacing: 0.1px;
 }
@@ -197,8 +197,12 @@ ul {
 .logo-container {
 	margin: 40px 20px;
 }
+.logo-link:hover .logo {
+	border: 1px solid rgb(255, 255, 255);
+}
 .logo {
 	width: 100%;
+	border: 1px solid transparent;
 	border-radius: 8px;
 }
 .search-form {
@@ -269,6 +273,44 @@ ul {
 	color: rgb(0, 0, 0);
 }
 
+/* Main page */
+
+.main-page-name-block {
+	background-color: rgba(255, 255, 255, 0.7);
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 5px;
+}
+.main-page-content-block {
+	display: grid;
+	grid-template-columns: minmax(200px, 50%) minmax(200px, 50%);
+}
+.main-page-card-link {
+	margin: 4px;
+	text-decoration: none;
+	color: rgb(0, 0, 0);
+}
+.main-page-card {
+	background-color: rgba(255, 255, 255, 0.7);
+	width: 100%;
+	border-radius: 5px;
+}
+.main-page-card-name {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+.main-page-card-title {
+	padding-top: 10px;
+	margin: 0;
+}
+.main-page-img {
+	border-radius: 8px;
+	width: 70%;
+	margin: 10px 0;
+}
+
 /* Product list */
 
 .list-container {
@@ -291,9 +333,12 @@ ul {
 .list-item-link .list-row:hover {
 	border: 1px solid rgb(98, 129, 164);
 }
-.list-item-link .list-row .product-simple-info:hover {
+.list-item-link .list-row:hover .product-simple-info {
 	background-image: linear-gradient(rgb(98, 129, 164), rgb(255,255,255, 0.7));
 	text-decoration: none;
+}
+.list-item-link .list-row:hover .product-simple-info .product-simple-info-name {
+	color: rgb(255, 255, 255);
 }
 .list-img {
 	width: 150px;
@@ -326,7 +371,7 @@ ul {
 	display: flex;
 	justify-content: center;
 	background-color: rgba(255, 255, 255, 0);
-	height: 200px;
+	min-height: 200px;
 	text-align: center;
 }
 .non-content-text-block {
@@ -385,10 +430,18 @@ ul {
 	align-items: center;
 	width: 50%;
 }
+.detail-country-img{
+	border: 1px solid rgba(98, 129, 164, 0.5);
+	border-radius: 50%;
+}
+.detail-country-name {
+	margin: 0 30px 0 10px;
+}
 .info-block {
-	border-radius: 8px;
-	margin: 10px;
-	padding: 10px;
+	display: grid;
+	margin: 20px;
+	grid-template-columns: minmax(120px, 15%) minmax(200px, 85%);
+	text-align: left;
 }
 .name-block {
 	display: flex;
@@ -401,10 +454,17 @@ ul {
 .detail-img-block {
 	display: flex;
 }
-.detail-img-side {
+.detail-img-side-left,
+.detail-img-side-right {
 	display: flex;
 	flex-direction: column;
 	width: 20%;
+}
+.detail-img-side-left {
+	align-items: flex-start;
+}
+.detail-img-side-right {
+	align-items: flex-end;
 }
 .detail-img {
 	width: 60%;
@@ -415,24 +475,16 @@ ul {
 }
 .social-icon {
 	display: inline-block;
-	padding: 4px;
-	margin: 5px; 
-	border: 1px solid rgba(0, 0, 0, 0.5);
-	border-radius: 5px;
+	width: 80%;
+	margin: 2px 0;
 	align-items: center;
-	-webkit-box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77); 
-	box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77);
 }
-.social-icon:hover {
-	background-image: linear-gradient(rgb(98, 129, 164), rgb(255,255,255, 0.7));
-}
-.social-img-left {
-	height: 50px;
+.social-img {
+	height: 110px;
 	width: 100%;
 }
-.social-img-right {
-	height: 50px;
-	width: 100%;
+.social-title-block {
+	width: 80%;
 }
 .social-title {
 	font-size: 20px;
@@ -442,27 +494,22 @@ ul {
 .social-block {
 	display: flex;
 	justify-content: center;
+	margin: 16px 0 14px 0;
 }
 .bottom-social-icon-wrapper {
-	margin: 10px 2px;
-}
-.bottom-social-icon {
 	height: 40px;
 	width: 40px;
+	margin: 0 2px;
+}
+.bottom-social-icon {
+	height: 100%;
+	width: 100%;
 }
 .facebook {
 	color: rgb(81, 122, 245);
 }
 .telegram {
 	color: rgb(47, 190, 222);
-}
-.instagram {
-
-}
-.info-block {
-	display: grid;
-	grid-template-columns: 20% 80%;
-	text-align: left;
 }
 .card-property-name {
 	margin-top: 10px;
@@ -509,7 +556,7 @@ ul {
 .create-form {
 	display: grid;
 	padding: 20px 40px;
-	grid-template-columns: 20% 80%;
+	grid-template-columns: minmax(120px, 15%) minmax(200px, 85%);
 	text-align: left;
 }
 .create-form-field {

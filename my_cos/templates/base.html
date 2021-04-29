@@ -9,6 +9,7 @@
   <body>
     <div class="grid-wrapper">
       <div class="left-nav">
+        
         {% block account %}
           <div class="account-container">
             {% if user.username %}
@@ -31,7 +32,7 @@
 
         {% block logo %}
           <div class="logo-container">
-            <a href="{% url 'app:product_list' %}">
+            <a class="logo-link" href="{% url 'app:product_list' %}">
               <img class="logo" src="/media/main-logo.png">
             </a>
           </div>
