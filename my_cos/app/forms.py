@@ -12,7 +12,6 @@ class CountryForm(forms.ModelForm):
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write country name here',
                     'max_length': '10',
                     'required': True,
                 })

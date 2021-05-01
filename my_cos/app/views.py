@@ -41,21 +41,31 @@ def create_objects(name, number):
         product.save()
 
 
+class MainPageView(TemplateView):
+    """
+        Show the ordered queryset by 'creation_date', and show a last four of it.
+    """
+    template_name = 'main_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MainPageView, self).get_context_data(**kwargs)
+        context['search_form'] = OneRowSearch()
+        context['last_four_added'] = Product.objects.filter(approved=True).order_by('-creation_date')[:4]
+
+        return context
+
+
 class AboutUsView(TemplateView):
     """
         The resource description view.
     """
     template_name = 'about_us.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(AboutUsView, self).get_context_data(**kwargs)
+        context['search_form'] = OneRowSearch()
 
-class CountryCreate(CreateView):
-    """
-        A country creation view.
-    """
-    model = Country
-    form_class = CountryForm
-    template_name = 'countries/country_create.html'
-    success_url = reverse_lazy('app:product_create')
+        return context
 
 
 class ProductList(ListView):
@@ -70,9 +80,6 @@ class ProductList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ProductList, self).get_context_data(**kwargs)
         context['search_form'] = OneRowSearch()
-        context['last_three_added'] = get_list_or_404(
-            Product.objects.filter(approved=True).order_by('creation_date')[:4]
-        )
 
         return context
 
@@ -121,9 +128,21 @@ class ProductCreate(CreateView):
     success_url = reverse_lazy('app:success')
     template_name = 'products/product_create.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductCreate, self).get_context_data(**kwargs)
+        context['search_form'] = OneRowSearch()
+
+        return context
+
 
 class SuccessView(TemplateView):
     """
         Creation success view.
     """
     template_name = 'success.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SuccessView, self).get_context_data(**kwargs)
+        context['search_form'] = OneRowSearch()
+
+        return context

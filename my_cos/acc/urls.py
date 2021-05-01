@@ -6,14 +6,16 @@ from acc.views import (
     AdminProductList,
     AdminProductUpdate,
     AdminProductDelete,
-    admin_unapproved_list_delete
+    admin_unapproved_list_delete,
 )
 
 
 app_name = 'acc'
 
 urlpatterns = [
-    path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('login/', LoginView.as_view(
+        template_name='accounts/login.html'
+    ), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
     path('administration/', AdministrationPanel.as_view(), name='admin_panel'),

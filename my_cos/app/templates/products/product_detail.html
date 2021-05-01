@@ -18,9 +18,9 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-    <a class="nav-link nav-link-active" href="{% url 'app:product_list' %}">Main</a>
+    <a class="nav-link nav-link-active" href="{% url 'app:main_page' %}">Main</a>
     <a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
-		<a class="nav-link" href="">About us</a>
+		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
 	</div>
 {% endblock %}
 
@@ -47,7 +47,11 @@
     <div class="info-block">
       <div class="card-property-name"></div>
       <div class="name-block">
-        <h2> {{ object.brand }} - {{ object.line }} - {{ object.name }}</h2>
+        {% if object.line %}
+          <h2>{{ object.brand }} - {{ object.line }} - {{ object.name }}</h2>
+        {% else %}
+          <h2>{{ object.brand }} - {{ object.name }}</h2>
+        {% endif %}
       </div>
 
       <div class="card-property-name"></div>
@@ -66,7 +70,7 @@
 
         <img class="detail-img" src="{{ object.img.url }}" alt="{{ object.name }}">
 
-        <div class="detail-img-side-right"></div>
+        {% comment %} <div class="detail-img-side-right"></div> {% endcomment %}
       </div>
 
       <div class="card-property-name"></div>

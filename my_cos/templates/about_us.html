@@ -5,9 +5,20 @@
   <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
 {% endblock %}
 
+{% block search %}
+  <form class="search-form" action="{% url 'app:product_list' %}">
+    {{ search_form }}
+    <button class="search-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+    </button>
+  </form>
+{% endblock %}
+
 {% block left_nav %}
 	<div class="nav-panel">
-		<a class="nav-link" href="{% url 'app:product_list' %}">Main</a>
+		<a class="nav-link" href="{% url 'app:main_page' %}">Main</a>
 		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
 		<a class="nav-link nav-link-active" href="{% url 'app:about_us' %}">About us</a>
 	</div>
@@ -17,14 +28,60 @@
 	<div class="content-container">
 
 		<div class="about-us-wrapper-left">
-			<img class="wrapper-img" src="/media/search-waiting.png">
-			<div class="wrapper-msg">Thank you to the visit us.</div>
+			<div class="about-us-img-container">
+				<img class="wrapper-img" src="/media/search-waiting.png">
+			</div>
+			<div class="wrapper-msg"><h2>Thank you to the visit us.</h2></div>
 		</div>
 
 		<div class="about-us-wrapper-right">
-			<div class="wrapper-msg">We try make for you simle and easy application, where you can search a many different cosmetic products from the countrys all of world and see the details about tham.</div>
-			<img class="wrapper-img" src="/media/search-waiting.png">
+			<div class="wrapper-msg">
+				<h3>about app:</h3>
+				<p>We try make for you simle and easy for use application,
+				where you can find a many different cosmetic products from the all countrys
+				of the world and see the general info about tham.</p>
+				<p>You can help to us add a new product and when moderator check it,
+					 product has be added in to the application.</p>
+			</div>
+			<div class="about-us-img-container">
+				<img class="wrapper-img" src="/media/search-waiting.png">
+			</div>
 		</div>
 
+		<div class="about-us-wrapper-left">
+			<div class="about-us-img-container">
+				<img class="wrapper-img" src="/media/search-waiting.png">
+			</div>
+			<div class="wrapper-msg">
+				<h3>Partner:</h3>
+				<p>Main base of the application take the materials from the <a href="https://beauty-granny.com">beauty-granny.com</a>,
+					that garantie higth quality of the rewies, photo and general information.</p>
+			   <p>There is you can find all information about <strong>BeautyGrunny</strong>:</p>
+			   <div class="about-us-socil-block">
+				   <a class="about-us-social-link" href="{{ object.facebook_link }}" target="_blank">
+					   <img class="about-us-social-icon" src="/media/social/facebook-ball.svg">
+				   </a>
+				   <a class="about-us-social-link" href="{{ object.instagram_link }}" target="_blank">
+					   <img class="about-us-social-icon" src="/media/social/instagram.svg">
+				   </a>
+				   <a class="about-us-social-link" href="{{ object.telegram_link }}" target="_blank">
+					   <img class="about-us-social-icon" src="/media/social/telegram-ball.svg">
+				   </a>
+				   <a class="about-us-social-link" href="{{ object.youtube_link }}" target="_blank">
+					   <img class="about-us-social-icon" src="/media/social/youtube-ball.svg">
+				   </a>
+			   </div>
+			</div>
+		</div>
+
+		<div class="about-us-wrapper-right">
+			<div class="wrapper-msg">
+				<h3>Contact info:</h3>
+				<p>For all questions: <a href="">gmail.com</a></p>
+			</div>
+			<div class="about-us-img-container">
+				<img class="wrapper-img" src="/media/search-waiting.png">
+			</div>
+		</div>
 	</div>
 {% endblock %}
