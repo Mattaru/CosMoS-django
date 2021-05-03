@@ -67,7 +67,7 @@
     {% endif %}
 
     {% for product in list_for_approval %}
-    <a class="list-item-link" href="{{ product.id }}">
+    <a class="list-item-link" href="{{ product.slug }}">
       <div class="list-row">    
         <img class="list-img" src="{{ product.img.url }}" alt="{{ product.name }}">
         <div class="product-simple-info">

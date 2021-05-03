@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-03 17:45+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\app\models.py:19
+msgid "country name"
+msgstr ""
+
+#: .\app\models.py:50 .\app\models.py:157
+msgid "Item with the same name is already exists."
+msgstr ""
+
+#: .\app\models.py:60
+msgid "brand"
+msgstr ""
+
+#: .\app\models.py:61
+msgid "line"
+msgstr ""
+
+#: .\app\models.py:62
+msgid "product name"
+msgstr ""
+
+#: .\app\models.py:64
+msgid "country"
+msgstr ""
+
+#: .\app\models.py:66
+msgid "image"
+msgstr ""
+
+#: .\app\models.py:67
+msgid "ingredients"
+msgstr ""
+
+#: .\app\models.py:68
+msgid "ingredients image"
+msgstr ""
+
+#: .\app\models.py:84
+msgid "Absent"
+msgstr ""
+
+#: .\app\models.py:90
+msgid "Calming"
+msgstr ""
+
+#: .\app\models.py:91
+msgid "Anti wrinkle"
+msgstr ""
+
+#: .\app\models.py:92
+msgid "Skin elasticity"
+msgstr ""
+
+#: .\app\models.py:93
+msgid "Moisturizing"
+msgstr ""
+
+#: .\app\models.py:94
+msgid "Skin microbiome"
+msgstr ""
+
+#: .\app\models.py:95
+msgid "Sun protection"
+msgstr ""
+
+#: .\app\models.py:96
+msgid "Lifting"
+msgstr ""
+
+#: .\app\models.py:97
+msgid "Healing"
+msgstr ""
+
+#: .\app\models.py:98
+msgid "Antipigmentation"
+msgstr ""
+
+#: .\app\models.py:100
+msgid "effect type"
+msgstr ""
+
+#: .\app\models.py:104
+msgid "Normal"
+msgstr ""
+
+#: .\app\models.py:105
+msgid "Oily"
+msgstr ""
+
+#: .\app\models.py:106
+msgid "Dry"
+msgstr ""
+
+#: .\app\models.py:107
+msgid "Dehydrated"
+msgstr ""
+
+#: .\app\models.py:108
+msgid "Aging"
+msgstr ""
+
+#: .\app\models.py:109
+msgid "Teenage"
+msgstr ""
+
+#: .\app\models.py:110
+msgid "Baby"
+msgstr ""
+
+#: .\app\models.py:111
+msgid "Problem"
+msgstr ""
+
+#: .\app\models.py:112
+msgid "Combination"
+msgstr ""
+
+#: .\app\models.py:113
+msgid "All"
+msgstr ""
+
+#: .\app\models.py:115
+msgid "skin type"
+msgstr ""
+
+#: .\app\models.py:119
+msgid "Face"
+msgstr ""
+
+#: .\app\models.py:120
+msgid "Eyes"
+msgstr ""
+
+#: .\app\models.py:121
+msgid "Neck"
+msgstr ""
+
+#: .\app\models.py:122
+msgid "Body"
+msgstr ""
+
+#: .\app\models.py:123
+msgid "Hair"
+msgstr ""
+
+#: .\app\models.py:125
+msgid "for what"
+msgstr ""
+
+#: .\app\models.py:135
+msgid "date"
+msgstr ""
+
+#: .\app\models.py:136
+msgid "approved"
+msgstr ""
+
+#: .\app\templates\main_page.html:23
+msgid "Main"
+msgstr "главная"
+
+#: .\app\templates\main_page.html:24
+msgid "Add product"
+msgstr "добавить средство"
+
+#: .\app\templates\main_page.html:25
+msgid "About us"
+msgstr "о нас"
+
+#: .\app\templates\main_page.html:34
+msgid "Recently added"
+msgstr "Недавно добавленные"
+
+#: .\my_cos\settings.py:133
+msgid "English"
+msgstr ""
+
+#: .\my_cos\settings.py:134
+msgid "Russia"
+msgstr ""
+
+#: .\templates\base.html:26
+msgid "logout"
+msgstr "вход"
+
+#: .\templates\base.html:31
+msgid "login"
+msgstr "выход"

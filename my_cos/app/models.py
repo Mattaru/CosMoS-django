@@ -1,18 +1,24 @@
-from datetime import datetime
-
 from django.db.models import Q
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.template.defaultfilters import slugify
+from django.utils.translation import gettext as _
 from django.urls import reverse
 from django.core.exceptions import ValidationError
-from django.core.exceptions import NON_FIELD_ERRORS
 
 from multiselectfield import MultiSelectField
 
 
+def get_img_upload_path(instance, filename):
+    """
+        Make new path for a file uploading.
+    """
+    return f'product-images/{instance.name}/{filename}'
+
+
 class Country(models.Model):
     name = models.CharField(_('country name'), max_length=100, unique=True)
-    flag_img_name = models.CharField(_('flag image name'), max_length=50,
+    slug = models.SlugField(max_length=100, null=True, unique=True)
+    flag_img_name = models.CharField('flag image name', max_length=50,
                                      blank=True, null=True)
 
     def __str__(self):
@@ -28,9 +34,14 @@ class Country(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
         if self.name:
             self.make_name_format()
             self.make_flag_image_name()
+
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
+
             return super().save(*args, **kwargs)
 
     def validate_unique(self, *args, **kwargs):
@@ -39,34 +50,40 @@ class Country(models.Model):
             raise ValidationError(_("Item with the same name is already exists."))
         super(Country, self).validate_unique(*args, **kwargs)
 
+    def get_absolute_url(self):
+        reverse('', kwargs={
+            'slug': self.slug
+        })
+
 
 class Product(models.Model):
     brand = models.CharField(_('brand'), max_length=100, blank=True, null=True)
     line = models.CharField(_('line'), max_length=100, blank=True, null=True)
     name = models.CharField(_('product name'), max_length=200, unique=True)
-    country = models.ForeignKey('app.Country', blank=True, null=True, on_delete=models.SET_NULL,
+    slug = models.SlugField(max_length=200, null=True, unique=True)
+    country = models.ForeignKey('app.Country', verbose_name=_('country'), blank=True, null=True, on_delete=models.SET_NULL,
                                 related_name='Product_country')
-    img = models.ImageField(_('image'), upload_to='product_img/', default='unknown.png', )
+    img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )
     ingredients = models.TextField(_('ingredients'))
-    ingredients_img = models.ImageField(_('ingredients image'), upload_to='product_img/consistency/',
+    ingredients_img = models.ImageField(_('ingredients image'), upload_to=get_img_upload_path,
                                         blank=True, null=True)
 
     class NumberPH(models.TextChoices):
-        FORE = '4', _('4')
-        FORE_HALF = '4.5', _('4.5')
-        FIVE = '5', _('5')
-        FIVE_HALF = '5.5', _('5.5')
-        SIX = '6', _('6')
-        SIX_HALF = '6.5', _('6.5')
-        SEVEN = '7', _('7')
-        SEVEN_HALF = '7.5', _('7.5')
-        EIGHT = '8', _('8')
-        EIGHT_HALF = '8.5', _('8.5')
-        NINE = '9', _('9')
+        FORE = '4', '4'
+        FORE_HALF = '4.5', '4.5'
+        FIVE = '5', '5'
+        FIVE_HALF = '5.5', '5.5'
+        SIX = '6', '6'
+        SIX_HALF = '6.5', '6.5'
+        SEVEN = '7', '7'
+        SEVEN_HALF = '7.5', '7.5'
+        EIGHT = '8', '8'
+        EIGHT_HALF = '8.5', '8.5'
+        NINE = '9', '9'
 
         __empty__ = _('Absent')
 
-    ph = models.CharField(_('ph'), choices=NumberPH.choices, max_length=3,
+    ph = models.CharField('ph', choices=NumberPH.choices, max_length=3,
                           null=True, blank=True)
 
     class EffectType(models.TextChoices):
@@ -107,25 +124,36 @@ class Product(models.Model):
 
     for_what = MultiSelectField(_('for what'), choices=ForWhat.choices, max_length=24,
                                 null=True, blank=True)
-    ebay_link = models.CharField(_('ebay(link)'), max_length=3000, blank=True, null=True)
-    amazon_link = models.CharField(_('amazon(link)'), max_length=3000, blank=True, null=True)
-    blog_link = models.CharField(_('blog(link)'), max_length=3000,
+    ebay_link = models.CharField('ebay(link)', max_length=3000, blank=True, null=True)
+    amazon_link = models.CharField('amazon(link)', max_length=3000, blank=True, null=True)
+    blog_link = models.CharField('blog(link)', max_length=3000,
                                  blank=True, default='https://beauty-granny.com')
-    youtube_link = models.CharField(_('youtube(link)'), max_length=3000, blank=True, null=True)
-    facebook_link = models.CharField(_('facebook(link)'), max_length=3000, blank=True, null=True)
-    telegram_link = models.CharField(_('telegram(link)'), max_length=3000, blank=True, null=True)
-    instagram_link = models.CharField(_('instagram(link)'), max_length=3000, blank=True, null=True)
+    youtube_link = models.CharField('youtube(link)', max_length=3000, blank=True, null=True)
+    facebook_link = models.CharField('facebook(link)', max_length=3000, blank=True, null=True)
+    telegram_link = models.CharField('telegram(link)', max_length=3000, blank=True, null=True)
+    instagram_link = models.CharField('instagram(link)', max_length=3000, blank=True, null=True)
     creation_date = models.DateTimeField(_('date'), auto_now_add=True)
     approved = models.BooleanField(_('approved'), default=False)
 
     def __str__(self):
         return f'{self.name} -- {self.brand}'
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
+
+            return super().save(*args, **kwargs)
+
     def get_absolute_url(self):
-        return reverse('app:product_detail', args=[self.id])
+        return reverse('app:product_detail', kwargs={
+            'slug': self.slug
+        })
 
     def validate_unique(self, *args, **kwargs):
         qs = Product.objects.filter(~Q(id=self.id))
         if qs.filter(name__iexact=self.name).exists():
             raise ValidationError(_("Item with the same name is already exists."))
         super(Product, self).validate_unique(*args, **kwargs)
+
