@@ -17,8 +17,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy('app:main_page')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '+psm(zqp4f%bs+$0uq*m=ui2pb=r_1xzpmsm&_dcli%fz-0(z7'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 
