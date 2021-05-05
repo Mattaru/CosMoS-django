@@ -5,18 +5,9 @@ from app.models import Product, Country
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = (
-        'country',
-        'ingredients',
-        'ph',
-        'effect_type',
-        'skin_type',
-        'for_what',
-    )
+    pass
 
 
 @register(Country)
 class CountryTranslationOptions(TranslationOptions):
-    fields = (
-        'name',
-    )
+    pass

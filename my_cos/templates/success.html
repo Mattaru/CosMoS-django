@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block additional_style %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
@@ -18,9 +20,9 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-		<a class="nav-link" href="{% url 'app:main_page' %}">Main</a>
-		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
-		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
+		<a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
+		<a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+		<a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
 	</div>
 {% endblock %}
 
@@ -28,8 +30,8 @@
 	<div class="content-container">
 	<div class="not-content">
 		<div class="non-content-text-block">
-			<p>The request has been successfully sended. When a moderator will approve your request it adding in to the database. Thank you so much for the help!</p>
-			<a class="success-link" href="{% url 'app:main_page' %}">Back to the main page</a>
+			<p>{% trans 'The request has been successfully sended. When a moderator will approve your request it adding in to the database. Thank you so much for the help' %}!</p>
+			<a class="success-link" href="{% url 'app:main_page' %}">{% trans 'Back to the main page' %}</a>
 		</div>
 		<div class="arrow-container">
 			<div class="top-arrow-block"></div>

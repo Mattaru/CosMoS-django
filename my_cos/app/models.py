@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.core.exceptions import ValidationError
 
@@ -10,7 +10,7 @@ from multiselectfield import MultiSelectField
 
 def get_img_upload_path(instance, filename):
     """
-        Make new path for a file uploading.
+        Make new path for a files uploading.
     """
     return f'product-images/{instance.name}/{filename}'
 
@@ -65,8 +65,6 @@ class Product(models.Model):
                                 related_name='Product_country')
     img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )
     ingredients = models.TextField(_('ingredients'))
-    ingredients_img = models.ImageField(_('ingredients image'), upload_to=get_img_upload_path,
-                                        blank=True, null=True)
 
     class NumberPH(models.TextChoices):
         FORE = '4', '4'

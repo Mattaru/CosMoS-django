@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block additional_style %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
@@ -18,9 +20,9 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-    <a class="nav-link nav-link-active" href="{% url 'app:main_page' %}">Main</a>
-    <a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
-		<a class="nav-link" href="{% url 'app:about_us' %}">About us</a>
+    <a class="nav-link nav-link-active" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
+    <a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+		<a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
 	</div>
 {% endblock %}
 
@@ -41,9 +43,7 @@
         {% endif %}
       </div>
     </div>
-
-    
-    
+  
     <div class="info-block">
       <div class="card-property-name"></div>
       <div class="name-block">
@@ -58,7 +58,7 @@
       <div class="detail-img-block">
         <div class="detail-img-side-left">
           <div class="social-title-block">
-            <p class="social-title">buy on</p>
+            <p class="social-title">{% trans 'buy on' %}</p>
           </div>
           <a class="social-icon" href="{{ object.ebay_link }}" target="_blank">
             <img class="social-img" src="/media/social/ebay-ball.svg" name="ebay-link">
@@ -89,29 +89,22 @@
         </a>
       </div>
 
-      <div class="card-property-name"><strong>Effect type:</strong></div>
-      <div class="card-property"><p>{{ object.effect_type }}</p></div>
+      <div class="card-property-name"><strong>{% trans 'Effect type' %}:</strong></div>
+      <div class="card-property"><p>{{ object.effect_type | lower }}</p></div>
       
-      <div class="card-property-name"><strong>Skin type:</strong></div>
-      <div class="card-property"><p>{{ object.skin_type }}</p></div>
+      <div class="card-property-name"><strong>{% trans 'Skin type' %}:</strong></div>
+      <div class="card-property"><p>{{ object.skin_type | lower }}</p></div>
       
-      <div class="card-property-name"><strong>For what:</strong></div>
-      <div class="card-property"><p>{{ object.for_what }}</p></div>
+      <div class="card-property-name"><strong>{% trans 'For what' %}:</strong></div>
+      <div class="card-property"><p>{{ object.for_what | lower }}</p></div>
 
       {% if object.ph %}
         <div class="card-property-name"><strong>pH:</strong></div>
         <div class="card-property"><p>{{ object.ph }}</p></div>
       {% endif %}
 
-      <div class="card-property-name"><strong>Ingredients:</strong></div>
-      <div class="card-property"><p>{{ object.ingredients }}</p></div>
-
-      {% if object.ingredients_img %}
-        <div class="card-property-name card-ingredients-img-name"><strong>Ingredients img:</strong></div>
-        <div class="detail-img-block">
-          <img class="detail-img detail-ingredients-img" src="{{ object.ingredients_img.url }}" name="{{ object.name }}/consistency">
-        </div>
-      {% endif %}   
+      <div class="card-property-name"><strong>{% trans 'Ingredients' %}:</strong></div>
+      <div class="card-property"><p>{{ object.ingredients | lower }}</p></div>  
     </div>      
 
     <div class="bottom-btn-block">

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block additional_style %}
   {% load static %}
   <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
@@ -18,9 +20,9 @@
 
 {% block left_nav %}
 	<div class="nav-panel">
-		<a class="nav-link" href="{% url 'app:main_page' %}">Main</a>
-		<a class="nav-link" href="{% url 'app:product_create' %}">Add product</a>
-		<a class="nav-link nav-link-active" href="{% url 'app:about_us' %}">About us</a>
+		<a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
+		<a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+		<a class="nav-link nav-link-active" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
 	</div>
 {% endblock %}
 
@@ -31,17 +33,14 @@
 			<div class="about-us-img-container">
 				<img class="wrapper-img" src="/media/search-waiting.png">
 			</div>
-			<div class="wrapper-msg"><h2>Thank you to the visit us.</h2></div>
+			<div class="wrapper-msg"><h2>{% trans 'Thank you to the visit us' %}.</h2></div>
 		</div>
 
 		<div class="about-us-wrapper-right">
 			<div class="wrapper-msg">
-				<h3>about app:</h3>
-				<p>We try make for you simle and easy for use application,
-				where you can find a many different cosmetic products from the all countrys
-				of the world and see the general info about tham.</p>
-				<p>You can help to us add a new product and when moderator check it,
-					 product has be added in to the application.</p>
+				<h3>{% trans 'About app' %}:</h3>
+				<p>{% trans 'We try make for you simle and easy for use application, where you can find a many different cosmetic products from the all countrys of the world and see the general info about tham.' %}</p>
+				<p>{% trans 'You can help to us add a new product and when moderator check it, product has be added in to the application.' %}</p>
 			</div>
 			<div class="about-us-img-container">
 				<img class="wrapper-img" src="/media/search-waiting.png">
@@ -53,10 +52,17 @@
 				<img class="wrapper-img" src="/media/search-waiting.png">
 			</div>
 			<div class="wrapper-msg">
-				<h3>Partner:</h3>
-				<p>Main base of the application take the materials from the <a href="https://beauty-granny.com">beauty-granny.com</a>,
-					that garantie higth quality of the rewies, photo and general information.</p>
-			   <p>There is you can find all information about <strong>BeautyGrunny</strong>:</p>
+				<h3>{% trans 'Contact info' %}:</h3>
+				<p>{% trans 'For the calaboration' %}: <a href="">gmail.com</a></p>
+			</div>
+		</div>
+
+		<div class="about-us-wrapper-right">
+			<div class="wrapper-msg">
+				<h3>{% trans 'Partners' %}:</h3>
+				<p>{% trans 'Main base of the application take the materials from the' %}</p> <a href="https://beauty-granny.com">beauty-granny.com</a>,
+					<p>{% trans 'that garantie higth quality of the rewies, photo and general information' %}.</p>
+			   <p>{% trans 'There is you can find all information about' %} <strong>BeautyGrunny</strong>:</p>
 			   <div class="about-us-socil-block">
 				   <a class="about-us-social-link" href="{{ object.facebook_link }}" target="_blank">
 					   <img class="about-us-social-icon" src="/media/social/facebook-ball.svg">
@@ -71,13 +77,6 @@
 					   <img class="about-us-social-icon" src="/media/social/youtube-ball.svg">
 				   </a>
 			   </div>
-			</div>
-		</div>
-
-		<div class="about-us-wrapper-right">
-			<div class="wrapper-msg">
-				<h3>Contact info:</h3>
-				<p>For all questions: <a href="">gmail.com</a></p>
 			</div>
 			<div class="about-us-img-container">
 				<img class="wrapper-img" src="/media/search-waiting.png">

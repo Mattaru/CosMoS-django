@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from app.models import Product
 
@@ -14,7 +15,6 @@ class ProductAdminForm(forms.ModelForm):
             'country',
             'img',
             'ingredients',
-            'ingredients_img',
             'ph',
             'effect_type',
             'skin_type',
@@ -32,19 +32,19 @@ class ProductAdminForm(forms.ModelForm):
             'brand': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write brand line here',
+                    'placeholder': _('Write brand line here'),
                     'required': True
                 }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write brand line here',
+                    'placeholder': _('Write brand line here'),
                     'required': False
                 }),
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write product name here',
+                    'placeholder': _('Write product name here'),
                     'required': True
                 }),
             'country': forms.Select(
@@ -55,7 +55,7 @@ class ProductAdminForm(forms.ModelForm):
             'ingredients': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
-                    'placeholder': 'Write ingredients here...',
+                    'placeholder': _('Write ingredients here...'),
                     'required': True
                 }),
             'ph': forms.Select(
@@ -66,43 +66,43 @@ class ProductAdminForm(forms.ModelForm):
             'ebay_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'ebay link here',
+                    'placeholder': _('ebay link here'),
                     'required': False
                 }),
             'amazon_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'amazon link here',
+                    'placeholder': _('amazon link here'),
                     'required': False
                 }),
             'blog_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'blog link here',
+                    'placeholder': _('blog link here'),
                     'required': False
                 }),
             'youtube_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'youtube link here',
+                    'placeholder': _('youtube link here'),
                     'required': False
                 }),
             'facebook_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'facebook link here',
+                    'placeholder': _('facebook link here'),
                     'required': False
                 }),
             'telegram_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'telegram link here',
+                    'placeholder': _('telegram link here'),
                     'required': False
                 }),
             'instagram_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': 'instagram link here',
+                    'placeholder': _('instagram link here'),
                     'required': False
                 }),
         }

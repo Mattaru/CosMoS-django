@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-03 17:45+0300\n"
+"POT-Creation-Date: 2021-05-05 18:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,190 +20,462 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: .\acc\forms.py:35 .\acc\forms.py:41 .\app\forms.py:46
+msgid "Write brand line here"
+msgstr "Название линии"
+
+#: .\acc\forms.py:47 .\app\forms.py:52 .\app\forms.py:64
+msgid "Write product name here"
+msgstr "название"
+
+#: .\acc\forms.py:69
+msgid "ebay link here"
+msgstr "Ссылка на ebay"
+
+#: .\acc\forms.py:75
+msgid "amazon link here"
+msgstr "Ссылка на amazon"
+
+#: .\acc\forms.py:81
+msgid "blog link here"
+msgstr "Ссылка на блог"
+
+#: .\acc\forms.py:87
+msgid "youtube link here"
+msgstr "Ссылка на yotube"
+
+#: .\acc\forms.py:93
+msgid "facebook link here"
+msgstr "ссылка на facebook"
+
+#: .\acc\forms.py:99
+msgid "telegram link here"
+msgstr "ссылка на telegram"
+
+#: .\acc\forms.py:105
+msgid "instagram link here"
+msgstr "ссылка на instagram"
+
+#: .\acc\templates\accounts\administration\admin_panel.html:22
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:22
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:22
+#: .\acc\templates\accounts\administration\pages\admin_product_list.html:27
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:27
+msgid "administration"
+msgstr "администрирование"
+
+#: .\acc\templates\accounts\administration\admin_panel.html:25
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:25
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:25
+#: .\acc\templates\accounts\administration\pages\admin_product_list.html:30
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:30
+msgid "Home"
+msgstr "главная"
+
+#: .\acc\templates\accounts\administration\admin_panel.html:26
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:26
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:26
+#: .\acc\templates\accounts\administration\pages\admin_product_list.html:31
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:31
+msgid "Approval list"
+msgstr "на одобрение"
+
+#: .\acc\templates\accounts\administration\admin_panel.html:27
+msgid "delete all"
+msgstr "удалить все"
+
+#: .\acc\templates\accounts\administration\admin_panel.html:28
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:27
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:27
+#: .\acc\templates\accounts\administration\pages\admin_product_list.html:32
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:32
+msgid "search"
+msgstr "поиск"
+
+#: .\acc\templates\accounts\administration\admin_panel.html:131
+msgid "Not anything for approval"
+msgstr "Нет ничего для одобрения"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:34
+msgid "Are you sure want to delete this product"
+msgstr "Вы уверены, что хотите удалить это средство"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:35
+msgid "Are you sure want to delete all of the unapproved products"
+msgstr "Вы уверены, что хотите удалить все не одобренные средства"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_list.html:134
+msgid "What do you want to find"
+msgstr "Что вы хотите найти"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:46
+msgid "Updating the product"
+msgstr "Обновить сведения о средстве"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:51
+#: .\app\templates\products\product_create.html:44
+msgid "Brand"
+msgstr "Брэнд"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:54
+#: .\app\templates\products\product_create.html:48
+msgid "Line"
+msgstr "Линия"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:57
+#: .\app\templates\products\product_create.html:51
+msgid "Name"
+msgstr "Название"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:64
+msgid "Country"
+msgstr "Страна"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:67
+msgid "Img"
+msgstr "Фото"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:70
+#: .\app\templates\products\product_create.html:58
+#: .\app\templates\products\product_detail.html:107
+msgid "Ingredients"
+msgstr "Ингредиенты"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:76
+#: .\app\templates\products\product_create.html:64
+#: .\app\templates\products\product_detail.html:93
+msgid "Effect type"
+msgstr "Эффект"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:79
+#: .\app\templates\products\product_create.html:67
+#: .\app\templates\products\product_detail.html:96
+msgid "Skin type"
+msgstr "Тип кожи"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:82
+#: .\app\templates\products\product_create.html:70
+#: .\app\templates\products\product_detail.html:99
+msgid "For what"
+msgstr "Для чего"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:85
+msgid "Ebay link"
+msgstr "Ссылка на ebay"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:88
+msgid "Amazon link"
+msgstr "Ссылка на amazon"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:91
+msgid "Blog link"
+msgstr "Ссылка на блог"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:94
+msgid "Youtube link"
+msgstr "Ссылка на yotube"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:97
+msgid "facebook link"
+msgstr "ссылка на facebook"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:100
+msgid "telegram link"
+msgstr "ссылка на telegram"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:103
+msgid "instagram link"
+msgstr "ссылка на instagram"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:106
+msgid "Approved"
+msgstr "Одобрено"
+
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:110
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\app\forms.py:40
+msgid "Write brand here"
+msgstr "Название брэнда"
+
+#: .\app\forms.py:74
+#, fuzzy
+#| msgid "Adding a product"
+msgid "brand | line | product"
+msgstr "Добавить средство"
+
 #: .\app\models.py:19
 msgid "country name"
-msgstr ""
+msgstr "страна"
 
-#: .\app\models.py:50 .\app\models.py:157
+#: .\app\models.py:50 .\app\models.py:155
 msgid "Item with the same name is already exists."
-msgstr ""
+msgstr "Такое имя уже используется."
 
 #: .\app\models.py:60
 msgid "brand"
-msgstr ""
+msgstr "брэнд"
 
 #: .\app\models.py:61
 msgid "line"
-msgstr ""
+msgstr "линия"
 
 #: .\app\models.py:62
 msgid "product name"
-msgstr ""
+msgstr "название"
 
 #: .\app\models.py:64
 msgid "country"
-msgstr ""
+msgstr "страна"
 
 #: .\app\models.py:66
 msgid "image"
-msgstr ""
+msgstr "фото"
 
 #: .\app\models.py:67
 msgid "ingredients"
-msgstr ""
+msgstr "ингредиенты"
 
-#: .\app\models.py:68
-msgid "ingredients image"
-msgstr ""
-
-#: .\app\models.py:84
+#: .\app\models.py:82
 msgid "Absent"
-msgstr ""
+msgstr "Отсутствует"
+
+#: .\app\models.py:88
+msgid "Calming"
+msgstr "Успокаивающий"
+
+#: .\app\models.py:89
+msgid "Anti wrinkle"
+msgstr "От морщин"
 
 #: .\app\models.py:90
-msgid "Calming"
-msgstr ""
+msgid "Skin elasticity"
+msgstr "Для эластичности кожи"
 
 #: .\app\models.py:91
-msgid "Anti wrinkle"
-msgstr ""
+msgid "Moisturizing"
+msgstr "Увлажняющий"
 
 #: .\app\models.py:92
-msgid "Skin elasticity"
-msgstr ""
+msgid "Skin microbiome"
+msgstr "Для микробиома кожи"
 
 #: .\app\models.py:93
-msgid "Moisturizing"
-msgstr ""
+msgid "Sun protection"
+msgstr "Защита от солнца"
 
 #: .\app\models.py:94
-msgid "Skin microbiome"
-msgstr ""
+msgid "Lifting"
+msgstr "Подтяжка лица"
 
 #: .\app\models.py:95
-msgid "Sun protection"
-msgstr ""
+msgid "Healing"
+msgstr "Залечивающий"
 
 #: .\app\models.py:96
-msgid "Lifting"
-msgstr ""
-
-#: .\app\models.py:97
-msgid "Healing"
-msgstr ""
+msgid "Antipigmentation"
+msgstr "Антипигментационный"
 
 #: .\app\models.py:98
-msgid "Antipigmentation"
-msgstr ""
-
-#: .\app\models.py:100
 msgid "effect type"
-msgstr ""
+msgstr "ффект"
+
+#: .\app\models.py:102
+msgid "Normal"
+msgstr "Нормальная"
+
+#: .\app\models.py:103
+msgid "Oily"
+msgstr "Жирная"
 
 #: .\app\models.py:104
-msgid "Normal"
-msgstr ""
+msgid "Dry"
+msgstr "Сухая"
 
 #: .\app\models.py:105
-msgid "Oily"
-msgstr ""
+msgid "Dehydrated"
+msgstr "Обезвоженная"
 
 #: .\app\models.py:106
-msgid "Dry"
-msgstr ""
+msgid "Aging"
+msgstr "Возрастная"
 
 #: .\app\models.py:107
-msgid "Dehydrated"
-msgstr ""
+msgid "Teenage"
+msgstr "Подростковая"
 
 #: .\app\models.py:108
-msgid "Aging"
-msgstr ""
+msgid "Baby"
+msgstr "Детская"
 
 #: .\app\models.py:109
-msgid "Teenage"
-msgstr ""
+msgid "Problem"
+msgstr "Проблемная"
 
 #: .\app\models.py:110
-msgid "Baby"
-msgstr ""
+msgid "Combination"
+msgstr "Комбинированная"
 
 #: .\app\models.py:111
-msgid "Problem"
-msgstr ""
-
-#: .\app\models.py:112
-msgid "Combination"
-msgstr ""
+msgid "All"
+msgstr "Для все типов"
 
 #: .\app\models.py:113
-msgid "All"
-msgstr ""
-
-#: .\app\models.py:115
 msgid "skin type"
-msgstr ""
+msgstr "тип кожи"
+
+#: .\app\models.py:117
+msgid "Face"
+msgstr "Лицо"
+
+#: .\app\models.py:118
+msgid "Eyes"
+msgstr "Глаза"
 
 #: .\app\models.py:119
-msgid "Face"
-msgstr ""
+msgid "Neck"
+msgstr "Шея"
 
 #: .\app\models.py:120
-msgid "Eyes"
-msgstr ""
+msgid "Body"
+msgstr "Тело"
 
 #: .\app\models.py:121
-msgid "Neck"
-msgstr ""
-
-#: .\app\models.py:122
-msgid "Body"
-msgstr ""
+msgid "Hair"
+msgstr "Волосы"
 
 #: .\app\models.py:123
-msgid "Hair"
-msgstr ""
-
-#: .\app\models.py:125
 msgid "for what"
-msgstr ""
+msgstr "для чего"
 
-#: .\app\models.py:135
+#: .\app\models.py:133
 msgid "date"
-msgstr ""
+msgstr "дата"
 
-#: .\app\models.py:136
+#: .\app\models.py:134
 msgid "approved"
-msgstr ""
+msgstr "одобрено"
 
 #: .\app\templates\main_page.html:23
+#: .\app\templates\products\product_create.html:23
+#: .\app\templates\products\product_detail.html:23
+#: .\app\templates\products\product_list.html:23 .\templates\about_us.html:23
+#: .\templates\success.html:23
 msgid "Main"
-msgstr "главная"
+msgstr "Главная"
 
 #: .\app\templates\main_page.html:24
+#: .\app\templates\products\product_create.html:24
+#: .\app\templates\products\product_detail.html:24
+#: .\app\templates\products\product_list.html:24 .\templates\about_us.html:24
+#: .\templates\success.html:24
 msgid "Add product"
-msgstr "добавить средство"
+msgstr "Добавить средство"
 
 #: .\app\templates\main_page.html:25
+#: .\app\templates\products\product_create.html:25
+#: .\app\templates\products\product_detail.html:25
+#: .\app\templates\products\product_list.html:25 .\templates\about_us.html:25
+#: .\templates\success.html:25
 msgid "About us"
-msgstr "о нас"
+msgstr "О нас"
 
 #: .\app\templates\main_page.html:34
 msgid "Recently added"
 msgstr "Недавно добавленные"
 
+#: .\app\templates\products\product_create.html:39
+msgid "Adding a product"
+msgstr "Добавить средство"
+
+#: .\app\templates\products\product_create.html:74
+msgid "Send"
+msgstr "Отправить"
+
+#: .\app\templates\products\product_detail.html:61
+msgid "buy on"
+msgstr "купить"
+
 #: .\my_cos\settings.py:133
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 #: .\my_cos\settings.py:134
 msgid "Russia"
+msgstr "Русский"
+
+#: .\templates\about_us.html:36
+msgid "Thank you to the visit us"
+msgstr "Спасибо что посетили нас"
+
+#: .\templates\about_us.html:41
+msgid "About app"
+msgstr "О приложении"
+
+#: .\templates\about_us.html:42
+msgid ""
+"We try make for you simle and easy for use application, where you can find a "
+"many different cosmetic products from the all countrys of the world and see "
+"the general info about tham."
 msgstr ""
+"Мы стремимся создать для вас удобный и простой вприменении инструмент, с "
+"помощью которого вы сможете находить разлючную косметическую продукцию и "
+"получать основную информацию о ней."
 
-#: .\templates\base.html:26
+#: .\templates\about_us.html:43
+msgid ""
+"You can help to us add a new product and when moderator check it, product "
+"has be added in to the application."
+msgstr ""
+"Вы можете помочь нам и добавлять свои средства, а после проверки "
+"модераторами они будут добавлены в базу данных."
+
+#: .\templates\about_us.html:55
+msgid "Contact info"
+msgstr "Контакты"
+
+#: .\templates\about_us.html:56
+msgid "For the calaboration"
+msgstr "Для сотрудничества"
+
+#: .\templates\about_us.html:62
+msgid "Partners"
+msgstr "Партнеры"
+
+#: .\templates\about_us.html:63
+msgid "Main base of the application take the materials from the"
+msgstr "Основная часть материалов взята из"
+
+#: .\templates\about_us.html:64
+msgid ""
+"that garantie higth quality of the rewies, photo and general information"
+msgstr "это гарантирует высокое качество обзоров, фото и основной информации"
+
+#: .\templates\about_us.html:65
+msgid "There is you can find all information about"
+msgstr "Здесь вы можете найти информацию о"
+
+#: .\templates\base.html:25
 msgid "logout"
-msgstr "вход"
+msgstr "выйти"
 
-#: .\templates\base.html:31
+#: .\templates\base.html:30
 msgid "login"
-msgstr "выход"
+msgstr "войти"
+
+#: .\templates\base.html:52
+msgid "language"
+msgstr "язык"
+
+#: .\templates\success.html:33
+msgid ""
+"The request has been successfully sended. When a moderator will approve your "
+"request it adding in to the database. Thank you so much for the help"
+msgstr ""
+"Запрос был успешно отправлен. Когда модератор одобрит ваш запрос, он "
+"добавится в базу и станет доступен для просмотра. Спасибо за вашу помощь"
+
+#: .\templates\success.html:34
+msgid "Back to the main page"
+msgstr "Вернуться на главную"

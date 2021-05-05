@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from app.models import Country, Product
 
@@ -36,31 +37,31 @@ class ProductForm(forms.ModelForm):
             'brand': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write brand here',
+                    'placeholder': _('Write brand here'),
                     'required': True,
                 }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write brand line here',
+                    'placeholder': _('Write brand line here'),
                     'required': False,
                 }),
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write product name here',
+                    'placeholder': _('Write product name here'),
                     'required': True,
                 }),
             'ingredients': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
-                    'placeholder': 'Write ingredients here...',
+                    'placeholder': _('Write ingredients here...'),
                     'required': True,
                 }),
             'ph': forms.Select(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': 'Write product name here',
+                    'placeholder': _('Write product name here'),
                     'required': False,
                 }),
         }
@@ -70,6 +71,6 @@ class OneRowSearch(forms.Form):
     search = forms.CharField(max_length=255, label='', widget=forms.TextInput(
         attrs={
             'class': 'search-form-input',
-            'placeholder': 'brand | line | product',
+            'placeholder': _('brand | line | product'),
         }
     ), required=False)

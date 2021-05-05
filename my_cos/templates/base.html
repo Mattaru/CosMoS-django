@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,9 +8,6 @@
     {% load static %}
     {% block additional_style %}{% endblock %}
   </head>
-
-  {% load i18n %}
-
   <body>
     <div class="grid-wrapper">
       <div class="left-nav">
@@ -30,23 +29,6 @@
               </svg> 
               <a class="acc-link acc-btn" href="{% url 'acc:login' %}">{% trans 'login' %}</a>
             {% endif %}
-
-            <div>
-              <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select name="language">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                            {{ language.name_local }} ({{ language.code }})
-                        </option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="Go">
-              </form>
-            </div>
           </div>
         {% endblock %}
 
@@ -61,6 +43,32 @@
         {% block search %}{% endblock %}
 
         {% block left_nav %}{% endblock %}
+
+        {% block languages %}
+          <div>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            <span class="languge-row"><small>{% trans 'language' %}</small></span>
+            <span class="language-code">{{ LANGUAGE_CODE }}</span>
+            <div class="language-block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+              </svg>
+              <div class="language-dropdown-block">
+                {% for language in languages %}
+                  <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <input name="language" type="hidden" value="{{ language.code }}">
+                    <button class="language-btn" type="submit">{{ language.code }}</button>
+                  </form>  
+                {% endfor %}
+              </div>
+            </div>
+            
+          </div>
+        {% endblock %}
       </div>
       <div class="content-block">
         {% block content %}{% endblock %}
