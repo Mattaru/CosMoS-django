@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 18:19+0300\n"
+"POT-Creation-Date: 2021-05-06 11:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,11 @@ msgstr "Название линии"
 
 #: .\acc\forms.py:47 .\app\forms.py:52 .\app\forms.py:64
 msgid "Write product name here"
-msgstr "название"
+msgstr "Название"
+
+#: .\acc\forms.py:58 .\app\forms.py:58
+msgid "Write ingredients here..."
+msgstr "Ингредиенты..."
 
 #: .\acc\forms.py:69
 msgid "ebay link here"
@@ -70,7 +74,7 @@ msgstr "администрирование"
 #: .\acc\templates\accounts\administration\pages\admin_product_list.html:30
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:30
 msgid "Home"
-msgstr "главная"
+msgstr "Главная"
 
 #: .\acc\templates\accounts\administration\admin_panel.html:26
 #: .\acc\templates\accounts\administration\pages\admin_product_delete.html:26
@@ -78,7 +82,7 @@ msgstr "главная"
 #: .\acc\templates\accounts\administration\pages\admin_product_list.html:31
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:31
 msgid "Approval list"
-msgstr "на одобрение"
+msgstr "На одобрение"
 
 #: .\acc\templates\accounts\administration\admin_panel.html:27
 msgid "delete all"
@@ -89,8 +93,8 @@ msgstr "удалить все"
 #: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:27
 #: .\acc\templates\accounts\administration\pages\admin_product_list.html:32
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:32
-msgid "search"
-msgstr "поиск"
+msgid "Search"
+msgstr "Поиск"
 
 #: .\acc\templates\accounts\administration\admin_panel.html:131
 msgid "Not anything for approval"
@@ -160,20 +164,20 @@ msgid "For what"
 msgstr "Для чего"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:85
-msgid "Ebay link"
-msgstr "Ссылка на ebay"
+msgid "ebay link"
+msgstr "ссылка на ebay"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:88
-msgid "Amazon link"
-msgstr "Ссылка на amazon"
+msgid "amazon link"
+msgstr "ссылка на amazon"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:91
-msgid "Blog link"
-msgstr "Ссылка на блог"
+msgid "blog link"
+msgstr "ссылка на блог"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:94
-msgid "Youtube link"
-msgstr "Ссылка на yotube"
+msgid "youtube link"
+msgstr "ссылка на yotube"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:97
 msgid "facebook link"
@@ -188,8 +192,9 @@ msgid "instagram link"
 msgstr "ссылка на instagram"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:106
-msgid "Approved"
-msgstr "Одобрено"
+#: .\app\models.py:134
+msgid "approved"
+msgstr "одобрено"
 
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:110
 msgid "Save"
@@ -200,10 +205,8 @@ msgid "Write brand here"
 msgstr "Название брэнда"
 
 #: .\app\forms.py:74
-#, fuzzy
-#| msgid "Adding a product"
 msgid "brand | line | product"
-msgstr "Добавить средство"
+msgstr "брэнд | линия | средство"
 
 #: .\app\models.py:19
 msgid "country name"
@@ -353,10 +356,6 @@ msgstr "для чего"
 msgid "date"
 msgstr "дата"
 
-#: .\app\models.py:134
-msgid "approved"
-msgstr "одобрено"
-
 #: .\app\templates\main_page.html:23
 #: .\app\templates\products\product_create.html:23
 #: .\app\templates\products\product_detail.html:23
@@ -407,7 +406,7 @@ msgstr "Русский"
 
 #: .\templates\about_us.html:36
 msgid "Thank you to the visit us"
-msgstr "Спасибо что посетили нас"
+msgstr "Спасибо, что посетили нас"
 
 #: .\templates\about_us.html:41
 msgid "About app"

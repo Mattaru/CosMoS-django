@@ -299,6 +299,10 @@ ul {
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
 }
+.language-icon {
+	height: 16px;
+	width: 16px;
+}
 .language-dropdown-block {
 	background-color: rgba(255, 255, 255, 1);
 	display: none;
@@ -634,7 +638,7 @@ ul {
 	font-weight: bold;
 }
 .create-form-field-approved {
-	padding: 10px 20px;
+	padding: 10px 20px 10px 6px;
 	font-weight: bold;
 }
 .create-form-property-btn {
@@ -714,6 +718,10 @@ ul {
 }
 .btn-back {
 	color: rgba(153, 6, 6, 1);
+}
+.delete-page-btn {
+	height: 32px;
+	width: 32px;
 }
 
 /* login */
@@ -805,13 +813,21 @@ ul {
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: landscape) {
+	.grid-wrapper {
+		min-width: 200vh;
+	}
+
 	/* left-nav */
 
 	.logo-container {
-		margin: 20px 10px;
+		margin: 10px 10px;
 	}
 	.search-form {
 		width: 80%;
+		margin: 0 auto 10px auto;
+	}
+	.nav-panel {
+		margin: 10px auto;
 	}
 
 	/* Main page */
@@ -832,8 +848,21 @@ ul {
 
 	/* Product detail */
 
+	.social-title {
+		font-size: 14px;
+		font-weight: bold;
+	}
 	.detail-img {
 		width: 80%;
+	}
+	.card-property-name {
+		font-size: 12px;
+	}
+
+	/* Product create */
+
+	.create-form {
+		grid-template-columns: minmax(140px, 20%) minmax(200px, 80%);
 	}
 
 	/* Success page */
@@ -900,6 +929,24 @@ ul {
 		margin: 15px 0;
 		padding: 20px;
 		font-size: 30px;
+	}
+	.language-block {
+		margin-bottom: 40px;
+	}
+	.language-row {
+		font-size: 40px;
+	}
+	.language-code {
+		font-size: 40px;
+	}
+	.language-icon {
+		height: 40px;
+		width: 40px;
+	}
+	.language-btn {
+		height: 80px;
+		width: 80px;
+		font-size: 40px;
 	}
 
 	/* Main page */
@@ -982,6 +1029,10 @@ ul {
 	.create-form-field {
 		font-size: 30px;
 	}
+	.social-title {
+		font-size: 30px;
+		font-weight: bold;
+	}
 	.form-general {
 		padding: 24px;
 		border-radius: 10px;
@@ -1014,6 +1065,15 @@ ul {
 	.create-form-field-approved {
 		font-size: 30px;
 	}
+	.create-form-btn {
+		min-width: 220px;
+	}
+
+	/* Administaration */
+
+	.nav-link-aditional {
+		font-size: 30px;
+	}
 
 	/* Success page */
 
@@ -1029,5 +1089,16 @@ ul {
 	}
 	.non-content-img {
 		max-height: 400px;
+	}
+
+	/* Delete page */
+
+	.delete-msg-block {
+		font-size: 30px;
+	}
+	.delete-page-btn {
+		height: 60px;
+		width: 60px;
+		margin: 0 20px;
 	}
 }

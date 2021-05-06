@@ -28,8 +28,8 @@
   </div>
   <div class="nav-panel nav-panel-admin">
     <a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Home' %}</a>
-    <a class="nav-link" href="{% url 'acc:admin_panel' %}">{% trans 'Approval list' %}</a>
-    <a class="nav-link nav-link-active" href="{% url 'acc:admin_product_list' %}">{% trans 'search' %}</a>
+    <a class="nav-link" href="{% url 'acc:admin_unapproved_list' %}">{% trans 'Approval list' %}</a>
+    <a class="nav-link nav-link-active" href="{% url 'acc:admin_product_list' %}">{% trans 'Search' %}</a>
   </div>
 {% endblock %}
 
@@ -48,62 +48,62 @@
     <form class="create-form" enctype="multipart/form-data" method="post">
       {% csrf_token %}
 
-      <label class="create-form-field" for="{{ form.barand.id_for_lable }}">{% trans 'Brand' %}:</label>
+      <label class="create-form-field" for="{{ form.barand.id_for_lable }}">{% trans 'Brand' %}</label>
       <div class="create-form-property-btn">{{ form.brand }}{{ form.brand.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.line.id_for_lable }}">{% trans 'Line' %}:</label>
+      <label class="create-form-field" for="{{ form.line.id_for_lable }}">{% trans 'Line' %}</label>
       <div class="create-form-property">{{ form.line }}{{ form.line.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.name.id_for_lable }}">{% trans 'Name' %}:</label>
+      <label class="create-form-field" for="{{ form.name.id_for_lable }}">{% trans 'Name' %}</label>
       <div class="create-form-property">{{ form.name }}{{ form.name.errors }}
         {% if form.non_field_errors %}
         <div class="error-msg">{{ form.non_field_errors }}</div>
         {% endif %}
       </div>
 
-      <label class="create-form-field" for="{{ form.country.id_for_lable }}">{% trans 'Country' %}:</label>
+      <label class="create-form-field" for="{{ form.country.id_for_lable }}">{% trans 'Country' %}</label>
       <div class="create-form-property">{{ form.country }}{{ form.country.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.img.id_for_lable }}">{% trans 'Img' %}:</label>
+      <label class="create-form-field" for="{{ form.img.id_for_lable }}">{% trans 'Img' %}</label>
       <div class="create-form-property form-img">{{ form.img }}{{ form.img.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.ingredients.id_for_lable }}">{% trans 'Ingredients' %}:</label>
+      <label class="create-form-field" for="{{ form.ingredients.id_for_lable }}">{% trans 'Ingredients' %}</label>
       <div class="create-form-property">{{ form.ingredients }}{{ form.ingredients.errors }}</div>
 
       <label class="create-form-field" for="{{ form.ph.id_for_lable }}">pH:</label>
       <div class="create-form-property">{{ form.ph }}{{ form.ph.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.effect_type.id_for_lable }}">{% trans 'Effect type' %}:</label>
+      <label class="create-form-field" for="{{ form.effect_type.id_for_lable }}">{% trans 'Effect type' %}</label>
       <div class="create-form-property create-form-checkbox">{{ form.effect_type }}{{ form.effect_type.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.skin_type.id_for_lable }}">{% trans 'Skin type' %}:</label>
+      <label class="create-form-field" for="{{ form.skin_type.id_for_lable }}">{% trans 'Skin type' %}</label>
       <div class="create-form-property create-form-checkbox">{{ form.skin_type }}{{ form.skin_type.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.for_what.id_for_lable }}">{% trans 'For what' %}:</label>
+      <label class="create-form-field" for="{{ form.for_what.id_for_lable }}">{% trans 'For what' %}</label>
       <div class="create-form-property create-form-checkbox">{{ form.for_what }}{{ form.for_what.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.ebay_link.id_for_lable }}">{% trans 'Ebay link' %}:</label>
+      <label class="create-form-field" for="{{ form.ebay_link.id_for_lable }}"><small>{% trans 'ebay link' %}</small></label>
       <div class="create-form-property">{{ form.ebay_link }}{{ form.ebay_link.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.amazon_link.id_for_lable }}">{% trans 'Amazon link' %}:</label>
+      <label class="create-form-field" for="{{ form.amazon_link.id_for_lable }}"><small>{% trans 'amazon link' %}</small></label>
       <div class="create-form-property">{{ form.amazon_link }}{{ form.amazon_link.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.blog_link.id_for_lable }}">{% trans 'Blog link' %}:</label>
+      <label class="create-form-field" for="{{ form.blog_link.id_for_lable }}"><small>{% trans 'blog link' %}</small></label>
       <div class="create-form-property">{{ form.blog_link }}{{ form.blog_link.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.youtube_link.id_for_lable }}">{% trans 'Youtube link' %}:</label>
+      <label class="create-form-field" for="{{ form.youtube_link.id_for_lable }}"><small>{% trans 'youtube link' %}</small></label>
       <div class="create-form-property">{{ form.youtube_link }}{{ form.youtube_link.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.facebook_link.id_for_lable }}">{% trans 'facebook link' %}:</label>
+      <label class="create-form-field" for="{{ form.facebook_link.id_for_lable }}"><small>{% trans 'facebook link' %}</small></label>
       <div class="create-form-property">{{ form.facebook_link }}{{ form.facebook_link.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.telegram_link.id_for_lable }}">{% trans 'telegram link' %}:</label>
+      <label class="create-form-field" for="{{ form.telegram_link.id_for_lable }}"><small>{% trans 'telegram link' %}</small></label>
       <div class="create-form-property">{{ form.telegram_link }}{{ form.telegram_link.errors }}</div>
 
-      <label class="create-form-field" for="{{ form.instagram_link.id_for_lable }}">{% trans 'instagram link' %}:</label>
+      <label class="create-form-field" for="{{ form.instagram_link.id_for_lable }}"><small>{% trans 'instagram link' %}</small></label>
       <div class="create-form-property">{{ form.instagram_link }}{{ form.instagram_link.errors }}</div>
 
-      <label class="create-form-field-approved approved-block" for="{{ form.approved.id_for_lable }}">{% trans 'Approved' %}:</label>
+      <label class="create-form-field-approved approved-block" for="{{ form.approved.id_for_lable }}">{% trans 'approved' %}</label>
       <div class="create-form-property form-boolean">{{ form.approved }}{{ form.approved.errors }}</div>
 
       <div></div>

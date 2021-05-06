@@ -28,8 +28,8 @@
   </div>
 	<div class="nav-panel nav-panel-admin">
     <a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Home' %}</a>
-    <a class="nav-link" href="{% url 'acc:admin_panel' %}">{% trans 'Approval list' %}</a>
-    <a class="nav-link nav-link-active" href="{% url 'acc:admin_product_list' %}">{% trans 'search' %}</a>
+    <a class="nav-link" href="{% url 'acc:admin_unapproved_list' %}">{% trans 'Approval list' %}</a>
+    <a class="nav-link nav-link-active" href="{% url 'acc:admin_product_list' %}">{% trans 'Search' %}</a>
 	</div>
 {% endblock %}
 

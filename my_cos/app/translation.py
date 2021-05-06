@@ -1,6 +1,11 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from app.models import Product, Country
+from app.models import Ingredient, Product, Country
+
+
+@register(Ingredient)
+class IngredientTranslationOptions(TranslationOptions):
+    pass
 
 
 @register(Product)

@@ -15,6 +15,23 @@ def get_img_upload_path(instance, filename):
     return f'product-images/{instance.name}/{filename}'
 
 
+def ingredients_validator(instance, text):
+
+    ingredients_list = text.split(',')
+    qs = Ingredient.objects.all()
+
+    for i in ingredients_list:
+        ingredient_name = i.lstrip(' ').lower()
+
+        if not qs.filter(name__iexact=ingredient_name).exist():
+            ingredient = Ingredient(name=ingredient_name)
+            ingredient.save()
+            instance.ingredients_list.add(ingredient)
+        else:
+            ingredient = qs.filter(name=ingredient_name).first()
+            instance.ingredients_list.add(ingredient)
+
+
 class Country(models.Model):
     name = models.CharField(_('country name'), max_length=100, unique=True)
     slug = models.SlugField(max_length=100, null=True, unique=True)
@@ -56,6 +73,32 @@ class Country(models.Model):
         })
 
 
+class Ingredient(models.Model):
+    name = models.CharField(_('ingredient name'), max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, null=True, unique=True)
+    description = models.TextField()
+
+    class SafetyClassification(models.TextChoices):
+        SAFE = 'safe', _('Safe')
+        NEUTRAL = 'neutral', _('Neutral')
+        HARMFUL = 'harmful', _('Harmful')
+
+        __empty__ = _('Absent')
+
+    safety_classification = models.CharField(_('safety classification'), choices=SafetyClassification.choices,
+                                                  max_length=7, null=True, blank=True)
+    approved = models.BooleanField(_('approved'), default=False)
+
+    def __str__(self):
+        return f'{self.name} -- ({self.description})'
+
+    def validate_unique(self, *args, **kwargs):
+        qs = Country.objects.filter(~Q(id=self.id))
+        if qs.filter(name__iexact=self.name).exists():
+            raise ValidationError(_("Item with the same name is already exists."))
+        super(Ingredient, self).validate_unique(*args, **kwargs)
+
+
 class Product(models.Model):
     brand = models.CharField(_('brand'), max_length=100, blank=True, null=True)
     line = models.CharField(_('line'), max_length=100, blank=True, null=True)
@@ -65,6 +108,7 @@ class Product(models.Model):
                                 related_name='Product_country')
     img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )
     ingredients = models.TextField(_('ingredients'))
+    ingredients_list = models.ManyToManyField(Ingredient, blank=True)
 
     class NumberPH(models.TextChoices):
         FORE = '4', '4'

@@ -12,14 +12,14 @@ from app.forms import OneRowSearch
 from acc.forms import ProductAdminForm
 
 
-class AdministrationPanel(LoginRequiredMixin, TemplateView):
+class AdministrationUnapprovedList(LoginRequiredMixin, TemplateView):
     """
         View with the product list, where the 'Approved' field equal False.
     """
-    template_name = 'accounts/administration/admin_panel.html'
+    template_name = 'accounts/administration/admin_unapproved_list.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super(AdministrationPanel, self).get_context_data(*args, **kwargs)
+        context = super(AdministrationUnapprovedList, self).get_context_data(*args, **kwargs)
 
         if self.request.user.is_authenticated:
             qs = Product.objects.filter(approved=False).order_by('name')
@@ -89,7 +89,7 @@ class AdminProductDelete(LoginRequiredMixin, DeleteView):
     """
     model = Product
     form_class = ProductAdminForm
-    success_url = reverse_lazy('acc:admin_panel')
+    success_url = reverse_lazy('acc:admin_unapproved_list')
     template_name = 'accounts/administration/pages/admin_product_delete.html'
 
 
@@ -104,6 +104,6 @@ def admin_unapproved_list_delete(request):
             query_set.delete()
         except ProtectedError:
             return HttpResponse("This object can't be deleted!!")
-        return HttpResponseRedirect(reverse_lazy('acc:admin_panel'))
+        return HttpResponseRedirect(reverse_lazy('acc:admin_unapproved_list'))
 
     return render(request, 'accounts/administration/pages/admin_product_delete_unapproved.html')
