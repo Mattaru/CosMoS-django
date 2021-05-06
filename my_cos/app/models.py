@@ -23,7 +23,7 @@ def ingredients_validator(instance, text):
     for i in ingredients_list:
         ingredient_name = i.lstrip(' ').lower()
 
-        if not qs.filter(name__iexact=ingredient_name).exist():
+        if not qs.filter(name__iexact=ingredient_name).exists():
             ingredient = Ingredient(name=ingredient_name)
             ingredient.save()
             instance.ingredients_list.add(ingredient)
@@ -97,6 +97,14 @@ class Ingredient(models.Model):
         if qs.filter(name__iexact=self.name).exists():
             raise ValidationError(_("Item with the same name is already exists."))
         super(Ingredient, self).validate_unique(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
+
+            return super().save(*args, **kwargs)
 
 
 class Product(models.Model):
@@ -180,14 +188,6 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} -- {self.brand}'
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if not self.slug and self.name:
-            self.slug = slugify(self.name)
-
-            return super().save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('app:product_detail', kwargs={
             'slug': self.slug
@@ -199,3 +199,15 @@ class Product(models.Model):
             raise ValidationError(_("Item with the same name is already exists."))
         super(Product, self).validate_unique(*args, **kwargs)
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        instance = Product.objects.get(id=self.id)
+
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
+
+        if self.ingredients and self.approved:
+            ingredients_validator(instance, self.ingredients)
+            self.ingredients = ''
+
+        return super().save(*args, **kwargs)

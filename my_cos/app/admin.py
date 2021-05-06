@@ -7,7 +7,11 @@ from app.models import Country, Ingredient, Product
 
 @admin.register(Ingredient)
 class IngredientAdmin(TranslationAdmin):
-    pass
+    list_display = (
+        'name',
+        'description',
+        'approved'
+    )
 
 
 @admin.register(Country)
