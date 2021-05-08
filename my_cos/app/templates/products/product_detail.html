@@ -89,22 +89,70 @@
         </a>
       </div>
 
-      <div class="card-property-name"><strong>{% trans 'Effect type' %}:</strong></div>
-      <div class="card-property"><p>{{ object.effect_type | lower }}</p></div>
+      <div class="card-property-name"><strong>{% trans 'Effect type' %}</strong></div>
+      <div class="card-property"><span>{{ object.effect_type | lower }}</span></div>
       
-      <div class="card-property-name"><strong>{% trans 'Skin type' %}:</strong></div>
-      <div class="card-property"><p>{{ object.skin_type | lower }}</p></div>
+      <div class="card-property-name"><strong>{% trans 'Skin type' %}</strong></div>
+      <div class="card-property"><span>{{ object.skin_type | lower }}</span></div>
       
-      <div class="card-property-name"><strong>{% trans 'For what' %}:</strong></div>
-      <div class="card-property"><p>{{ object.for_what | lower }}</p></div>
+      <div class="card-property-name"><strong>{% trans 'For what' %}</strong></div>
+      <div class="card-property"><span>{{ object.for_what | lower }}</span></div>
 
       {% if object.ph %}
-        <div class="card-property-name"><strong>pH:</strong></div>
-        <div class="card-property"><p>{{ object.ph }}</p></div>
-      {% endif %}
+        <div class="card-property-name"><strong>pH</strong></div>
+        <div class="card-property"><span>{{ object.ph }}</span></div>
+      {% endif %} 
 
-      <div class="card-property-name"><strong>{% trans 'Ingredients' %}:</strong></div>
-      <div class="card-property"><p>{{ object.ingredients | lower }}</p></div>  
+      <div class="card-property-name"><strong>{% trans 'Ingredients' %}</strong></div>
+      <div class="card-property-ingredients">
+        {% for ingredient in object.ingredients_list.all %}
+          {% if ingredient.safety_classification == 'safe' %}
+            <a class="card-ingredients-link" href="">
+              <span>{{ ingredient.name }}</span>
+              <sup class="safe">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </sup>
+              <span class="card-incredient-link-comma">,</span>
+            </a>
+          {% elif ingredient.safety_classification == 'neutral' %}
+            <a class="card-ingredients-link" href="">
+              <span>{{ ingredient.name }}</span>
+              <sup class="neutral">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </sup>
+              <span class="card-incredient-link-comma">,</span>
+            </a>
+          {% elif ingredient.safety_classification == 'harmful' %}
+            <a class="card-ingredients-link" href="">
+              <span>{{ ingredient.name }}</span>
+              <sup class="harmful">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </sup>
+              <span class="card-incredient-link-comma">,</span>
+            </a>
+          {% else %}
+            <a class="card-ingredients-link">
+              <span>{{ ingredient.name }}</span>
+              <sup class="absent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </sup>
+              <span class="card-incredient-link-comma">,</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div> 
     </div>      
 
     <div class="bottom-btn-block">

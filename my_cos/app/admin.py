@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from modeltranslation.admin import TranslationAdmin
 
-from app.models import Country, Ingredient, Product
+from app.models import (Country, Ingredient, Product)
 
 
 @admin.register(Ingredient)
@@ -12,11 +12,12 @@ class IngredientAdmin(TranslationAdmin):
         'description',
         'approved'
     )
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Country)
 class CountryAdmin(TranslationAdmin):
-    pass
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Product)

@@ -1,3 +1,5 @@
+import uuid
+
 from django.db.models import Q
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -15,28 +17,17 @@ def get_img_upload_path(instance, filename):
     return f'product-images/{instance.name}/{filename}'
 
 
-def ingredients_validator(instance, text):
-
-    ingredients_list = text.split(',')
-    qs = Ingredient.objects.all()
-
-    for i in ingredients_list:
-        ingredient_name = i.lstrip(' ').lower()
-
-        if not qs.filter(name__iexact=ingredient_name).exists():
-            ingredient = Ingredient(name=ingredient_name)
-            ingredient.save()
-            instance.ingredients_list.add(ingredient)
-        else:
-            ingredient = qs.filter(name=ingredient_name).first()
-            instance.ingredients_list.add(ingredient)
-
-
 class Country(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('country name'), max_length=100, unique=True)
     slug = models.SlugField(max_length=100, null=True, unique=True)
     flag_img_name = models.CharField('flag image name', max_length=50,
                                      blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('Country')
+        verbose_name_plural = _('Countries')
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -59,7 +50,7 @@ class Country(models.Model):
         if not self.slug and self.name:
             self.slug = slugify(self.name)
 
-            return super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
     def validate_unique(self, *args, **kwargs):
         qs = Country.objects.filter(~Q(id=self.id))
@@ -74,6 +65,7 @@ class Country(models.Model):
 
 
 class Ingredient(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('ingredient name'), max_length=200, unique=True)
     slug = models.SlugField(max_length=200, null=True, unique=True)
     description = models.TextField()
@@ -85,9 +77,14 @@ class Ingredient(models.Model):
 
         __empty__ = _('Absent')
 
-    safety_classification = models.CharField(_('safety classification'), choices=SafetyClassification.choices,
-                                                  max_length=7, null=True, blank=True)
+    safety_classification = models.CharField(_('safety classification'), max_length=7,
+                                             choices=SafetyClassification.choices, null=True, blank=True)
+    creation_date = models.DateTimeField(_('date'), auto_now_add=True)
     approved = models.BooleanField(_('approved'), default=False)
+
+    class Meta:
+        verbose_name = _('Ingredient')
+        verbose_name_plural = _('Ingredients')
 
     def __str__(self):
         return f'{self.name} -- ({self.description})'
@@ -104,16 +101,17 @@ class Ingredient(models.Model):
         if not self.slug and self.name:
             self.slug = slugify(self.name)
 
-            return super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 class Product(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     brand = models.CharField(_('brand'), max_length=100, blank=True, null=True)
     line = models.CharField(_('line'), max_length=100, blank=True, null=True)
     name = models.CharField(_('product name'), max_length=200, unique=True)
     slug = models.SlugField(max_length=200, null=True, unique=True)
-    country = models.ForeignKey('app.Country', verbose_name=_('country'), blank=True, null=True, on_delete=models.SET_NULL,
-                                related_name='Product_country')
+    country = models.ForeignKey('app.Country', verbose_name=_('country'), blank=True, null=True,
+                                on_delete=models.SET_NULL, related_name='Product_country')
     img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )
     ingredients = models.TextField(_('ingredients'))
     ingredients_list = models.ManyToManyField(Ingredient, blank=True)
@@ -185,6 +183,11 @@ class Product(models.Model):
     creation_date = models.DateTimeField(_('date'), auto_now_add=True)
     approved = models.BooleanField(_('approved'), default=False)
 
+    class Meta:
+        verbose_name = _('Product')
+        verbose_name_plural = _('Products')
+        ordering = ['name', '-creation_date']
+
     def __str__(self):
         return f'{self.name} -- {self.brand}'
 
@@ -201,13 +204,8 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        instance = Product.objects.get(id=self.id)
 
         if not self.slug and self.name:
             self.slug = slugify(self.name)
-
-        if self.ingredients and self.approved:
-            ingredients_validator(instance, self.ingredients)
-            self.ingredients = ''
 
         return super().save(*args, **kwargs)

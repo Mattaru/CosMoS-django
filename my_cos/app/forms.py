@@ -56,7 +56,7 @@ class ProductForm(forms.ModelForm):
                 attrs={
                     'class': 'form-general form-textarea',
                     'placeholder': _('Write ingredients here...'),
-                    'required': True,
+                    'required': False,
                 }),
             'ph': forms.Select(
                 attrs={

@@ -15,6 +15,14 @@
 	url('/media/fonts/Montserrat-Bold.ttf') format('truetype');
 }
 
+@font-face {
+	font-family: 'Ultra-Regular';
+	font-weight: 400;
+	font-style: normal;
+	src: local('Ultra-Regular'),
+	url('/media/fonts/Ultra-Regular.ttf') format('truetype');
+}
+
 /* main styles for body */
 
 body {
@@ -22,8 +30,9 @@ body {
 	margin: 0;
 	padding: 0;
 	border: none;
-	font-family: 'Montserrat Medium', Helvetica, Arial, sans-serif !important;
+	font-family: Garamond, Helvetica, Arial, sans-serif !important;
 	letter-spacing: 0.1px;
+	/* font-weight: bold; */
 }
 ul {
 	list-style-position: inside;
@@ -86,7 +95,7 @@ ul {
 	text-align: center;
 	color: rgb(0, 0, 0);
 	text-decoration: none;
-	font-family: 'Montserrat Medium', Helvetica, Arial, sans-serif !important;
+	font-family: Garamond, Helvetica, Arial, sans-serif !important;
 	letter-spacing: 0.1px;
 }
 ::-webkit-file-upload-button:hover {
@@ -141,7 +150,7 @@ ul {
 	padding: 10px;
     border-radius: 5px;
     border: 2px solid rgba(98, 129, 164);
-    font-family: 'Montserrat Medium', Helvetica, Arial, sans-serif !important;
+    font-family: Garamond, Helvetica, Arial, sans-serif !important;
 	letter-spacing: 0.1px;
 }
 .form-input {
@@ -221,7 +230,7 @@ ul {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	text-align: center;
-	font-family: 'Montserrat Medium', Helvetica, Arial, sans-serif !important;
+	font-family: Garamond, Helvetica, Arial, sans-serif !important;
 	letter-spacing: 0.1px;
 	font-size: 10px;
 }
@@ -261,7 +270,7 @@ ul {
 	padding: 10px 0;
 	text-decoration: none;
 	border: 1px solid rgb(255, 255, 255);
-	font-family: 'Montserrat Bold', Helvetica, Arial, sans-serif !important;
+	font-family: Garamond, Helvetica, Arial, sans-serif !important;
 	font-weight: bold;
 }
 .nav-link:hover {
@@ -593,7 +602,6 @@ ul {
 }
 .card-property-name {
 	margin-top: 10px;
-	padding-top: 16px;
 	text-transform: uppercase;
 }
 .card-property {
@@ -603,6 +611,36 @@ ul {
 	padding: 10px;
 	color: 	rgba(255, 255, 255, 1);
 }
+
+.card-property-ingredients {
+	background-color: rgba(255, 255, 255, 0.7);
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+}
+.card-ingredients-link {
+	display: inline-block;
+	margin: 1px;
+	padding: 0;
+	text-decoration: none;
+	color: black;
+}
+.card-incredient-link-comma {
+	color: black;
+}
+.safe {
+	color: green;
+}
+.neutral {
+	color: gold;
+}
+.harmful {
+	color: red;
+}
+.absent {
+	color: gray;
+}
+
 .bottom-btn-block,
 .bottom-back-btn-wrapper,
 .bottom-delete-btn-wrapper {
@@ -683,7 +721,7 @@ ul {
 	padding: 10px 0;
 	border-radius: 5px;
 	border: 1px solid rgba(98, 129, 164);
-	font-family: 'Montserrat Medium', Helvetica, Arial, sans-serif !important;
+	font-family: Garamond, Helvetica, Arial, sans-serif !important;
 	letter-spacing: 0.1px;
 }
 .create-form-btn:hover {

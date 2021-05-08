@@ -13,7 +13,7 @@ TEXT = 'Just a new ingredient, very nice day, simple program, one, 1.2 prices'
 
 def create_objects(name, number):
     for num in range(number):
-        product = Product.objects.create(
+        product = Product(
             brand='MISSHA',
             name=f'{name}{num}',
             ingredients=TEXT
