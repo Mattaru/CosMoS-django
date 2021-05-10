@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'debug_toolbar',
     'multiselectfield',
 
     'acc',
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -147,4 +150,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFIELDS_DIRS = [
     os.path.join(BASE_DIR, 'static/')
+]
+
+# Django debug toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]

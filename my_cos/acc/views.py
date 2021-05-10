@@ -9,13 +9,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from app.models import Product
 from app.forms import OneRowSearch
-from acc.forms import ProductAdminForm
+from app.handlers_service import make_list_from_searching_string, get_queryset_with_filtered_data_for_search
+from .forms import ProductAdminForm
 
 
 class AdministrationUnapprovedList(LoginRequiredMixin, TemplateView):
-    """
-        View with the product list, where the 'Approved' field equal False.
-    """
+    """View with the product list, where the 'Approved' field equal False."""
     template_name = 'accounts/administration/admin_unapproved_list.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -32,18 +31,13 @@ class AdministrationUnapprovedList(LoginRequiredMixin, TemplateView):
 
 
 class AdminProductList(LoginRequiredMixin, ListView):
-    """
-        View with the product list.
-    """
+    """View with the product list."""
     model = Product
     paginate_by = 30
     template_name = 'accounts/administration/pages/admin_product_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(AdminProductList, self).get_context_data(**kwargs)
-        context['search_form'] = OneRowSearch()
-
-        return context
+    extra_context = {
+        'search_form': OneRowSearch()
+    }
 
     def get_queryset(self):
         queryset = []
@@ -52,41 +46,31 @@ class AdminProductList(LoginRequiredMixin, ListView):
         if params.get('search'):
             data = params.get('search')
             queryset = Product.objects.all()
-            data_list = data.split(' ')
-            data_list.insert(0, data)
+            data_list = make_list_from_searching_string(data=data)
+            qs = get_queryset_with_filtered_data_for_search(
+                queryset=queryset,
+                search_list=data_list
+            )
 
-            for data in data_list:
-                qs = queryset.filter(
-                    Q(name__icontains=data)
-                    | Q(line__icontains=data)
-                    | Q(brand__icontains=data)
-                ).order_by('name')
-                if qs:
-                    return qs
+            if qs:
+                return qs
 
         return queryset
 
 
 class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
-    """
-        View with the product update form.
-    """
+    """View with the product update form."""
     model = Product
     form_class = ProductAdminForm
     success_url = reverse_lazy('acc:admin_unapproved_list')
     template_name = 'accounts/administration/pages/admin_product_update.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(AdminProductUpdate, self).get_context_data(**kwargs)
-        context['search_form'] = OneRowSearch
-
-        return context
+    extra_context = {
+        'search_form': OneRowSearch()
+    }
 
 
 class AdminProductDelete(LoginRequiredMixin, DeleteView):
-    """
-        Delete the particular product object.
-    """
+    """Delete the particular product object."""
     model = Product
     form_class = ProductAdminForm
     success_url = reverse_lazy('acc:admin_unapproved_list')
@@ -94,9 +78,7 @@ class AdminProductDelete(LoginRequiredMixin, DeleteView):
 
 
 def admin_unapproved_list_delete(request):
-    """
-    Delete all of the products, where the 'approved' field equal False.
-    """
+    """Delete all of the products, where the 'approved' field equal False."""
     query_set = Product.objects.filter(approved=False)
 
     if request.method == 'POST':
