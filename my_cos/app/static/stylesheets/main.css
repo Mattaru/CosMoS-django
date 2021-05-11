@@ -321,6 +321,7 @@ ul {
 	border-radius: 5px;
 	-webkit-box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77); 
 	box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77);
+	z-index: 1;
 }
 .language-btn {
 	background-color: rgba(0, 0, 0, 0);
@@ -604,47 +605,85 @@ ul {
 	margin-top: 10px;
 	text-transform: uppercase;
 }
+.card-property-name-ingredients {
+	padding-top: 14px;
+}
+.card-property-name-info {
+	display: flex;
+	flex-direction: column;
+	text-transform: none;
+	width: 114px;
+	margin: 20px auto;
+	padding: 4px;
+	border-radius: 5px;
+}
 .card-property {
-	background-color: rgba(98, 129, 164);
 	border-radius: 8px;
 	margin-bottom: 5px; 
 	padding: 10px;
-	color: 	rgba(255, 255, 255, 1);
+	color: 	rgba(0, 0, 0, 1);
 }
-
+.card-property-block {
+	position: relative;
+}
 .card-property-ingredients {
-	background-color: rgba(255, 255, 255, 0.7);
+	background-image: linear-gradient(rgb(168, 212, 224, 0.7), rgba(255,255,255, 0.7));
 	display: flex;
 	flex-wrap: wrap;
+	align-content: space-around;
 	padding: 10px;
+	border-radius: 5px; 
 }
 .card-ingredients-link {
-	display: inline-block;
 	margin: 1px;
-	padding: 0;
-	text-decoration: none;
-	color: black;
+	color: rgb(0, 0, 0);
 }
 .card-incredient-link-comma {
 	color: black;
 }
 .safe {
-	color: green;
+	color: rgb(16, 115, 41);
 }
 .neutral {
-	color: gold;
+	color: rgb(156, 156, 22);
 }
 .harmful {
-	color: red;
+	color: rgb(166, 13, 13);
 }
 .absent {
-	color: gray;
+	color: rgb(127, 130, 128);
 }
-
+.card-property-drop-block {
+	background-image: linear-gradient(rgba(98, 129, 164, 1), rgba(255,255,255, 1));
+	display: none;
+	position: absolute;
+	margin-top: 2px;
+	padding: 8px;
+	border: 1px solid rgb(98, 129, 164);
+	border-radius: 5px;
+	-webkit-box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77); 
+	box-shadow: -1px 5px 7px -2px rgba(0,0,0,0.77);
+	z-index: 1;
+}
+.card-property-drop-block-title {
+	color: rgb(255, 255, 255);
+	margin: 0 0 6px 0;
+	padding: 4px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4); 
+}
+.card-property-block:hover .card-ingredients-link {
+	cursor: pointer;
+}
+.card-property-block:hover .card-property-drop-block {
+	display: block;
+}
 .bottom-btn-block,
 .bottom-back-btn-wrapper,
 .bottom-delete-btn-wrapper {
 	display: flex;
+}
+.bottom-btn-block {
+	margin-top: 30px;
 }
 .bottom-back-btn-wrapper,
 .bottom-delete-btn-wrapper {

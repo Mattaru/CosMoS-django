@@ -1,4 +1,3 @@
-from django.shortcuts import get_list_or_404, render
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
@@ -6,7 +5,8 @@ from django.urls import reverse_lazy
 from app.models import Product, Country
 from app.forms import CountryForm, OneRowSearch, ProductForm
 from .handlers_service import make_list_from_searching_string,\
-    get_queryset_with_filtered_data_for_search
+    get_queryset_with_filtered_data_for_search,\
+    get_search_data
 
 
 class MainPageView(TemplateView):
@@ -37,21 +37,22 @@ class ProductList(ListView):
     }
 
     def get_queryset(self):
-        queryset = []
-        params = self.request.GET.dict()
+        approved_products = super(ProductList, self).get_queryset()\
+            .filter(approved=True)
+        search_data = get_search_data(self.request)
+        qs = []
 
-        if params.get('search'):
-            data = params.get('search')
-            queryset = Product.objects.filter(approved=True)
-            data_list = make_list_from_searching_string(string=data)
+        if search_data:
+            search_list = make_list_from_searching_string(string=search_data)
             qs = get_queryset_with_filtered_data_for_search(
-                queryset=queryset,
-                search_list=data_list
+                queryset=approved_products,
+                search_list=search_list
             )
+
             if qs:
                 return qs
 
-        return queryset
+        return qs
 
 
 class ProductDetail(DetailView):
@@ -63,8 +64,8 @@ class ProductDetail(DetailView):
     }
 
     def get_queryset(self):
-        qs = super(ProductDetail, self).get_queryset()
-        qs = qs.prefetch_related('ingredients_list')
+        qs = super(ProductDetail, self).get_queryset()\
+            .prefetch_related('ingredients_list')
 
         return qs
 

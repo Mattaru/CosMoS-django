@@ -14,3 +14,5 @@ def add_ingredients_in_product(names: list[str], instance) -> None:
             ingredient = Ingredient(name=name)
             ingredient.save()
             instance.ingredients_list.add(ingredient)
+
+

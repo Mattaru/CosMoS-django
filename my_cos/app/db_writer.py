@@ -19,7 +19,8 @@ INGREDIENTS = 'Water, Glycerin, Dipropylene Glycol, Triethylhexanoin, Lactobacil
        ' Ipomoea Batatas Root Extract, Trichosanthes Kirilowii Root Extract, Lycium Chinense Fruit Extract,' \
        ' Citrus Unshiu Peel Extract, Lonicera Japonica (Honeysuckle) Flower Extract, Millet Extract,' \
        ' Glechoma Hederacea Extract, Platycodon Grandiflorum Root Extract, Acer Palmatum Leaf Extract,' \
-       ' Daucus Carota Sativa (Carrot) Root Extract, Codonopsis Lanceolata Root Extract, Camellia Japonica Leaf Extract,' \
+       ' Daucus Carota Sativa (Carrot) Root Extract, Codonopsis Lanceolata Root Extract,' \
+              ' Camellia Japonica Leaf Extract,' \
        ' Rubus Idaeus (Raspberry) Fruit Extract, Melissa Officinalis Extract,' \
        ' Lippia Citriodora Leaf Extract, Allium Sativum (Garlic) Bulb Extract, Portulaca Oleracea Extract,' \
        ' Chaenomeles Sinensis Fruit Extract, Daikon Extract, Ficus Carica (Fig) Fruit Extract,' \
@@ -57,48 +58,46 @@ INGREDIENTS = 'Water, Glycerin, Dipropylene Glycol, Triethylhexanoin, Lactobacil
        ' Xanthan Gum, Phytosphingosine, Mica, Titanium Dioxide, Glyceryl Acrylate/Acrylic Acid Copolymer, Carbomer,' \
        ' Cholesterol, Beta-Glucan, Ferric Oxide, Olea Europaea (Olive) Fruit Oil, Macadamia Integrifolia Seed Oil,' \
        ' Trisodium EDTA, Tromethamine, Fragrance'
+
 INGREDIENT_DESCRIPTION = 'Safe, neutral, harmful'
 
 
-def _get_random_value_from_ingredient_safety_classification() -> str:
-    """Get random value from the ingredient safety classification."""
-    value = random.choice(Ingredient.SafetyClassification.choices)
-    if not value:
-        value = random.choice(Ingredient.SafetyClassification.choices)
-    else:
-        return value
+# def _get_random_value_from_ingredient_safety_classification() -> str:
+#     """Get random value from the ingredient safety classification."""
+#     value = random.choice(Ingredient.SafetyClassification.choices)
+#     if value:
+#         return value
 
 
-def _create_ingredients(names: list[str], product) -> None:
+def _create_ingredients(names: list[str], instance) -> None:
     """Create the ingredient with a name from the names list."""
     for name in names:
         try:
             ingredient = Ingredient.objects.get(name=name)
-            product.ingredients_list.add(ingredient)
+            instance.ingredients_list.add(ingredient)
         except Ingredient.DoesNotExist:
             ingredient = Ingredient(
                 name=name,
                 description=INGREDIENT_DESCRIPTION,
-                safety_classification=_get_random_value_from_ingredient_safety_classification(),
+                safety_classification=random.choice(Ingredient.SafetyClassification.choices),
                 approved=True
             )
             ingredient.save()
-            product.ingredients_list.add(ingredient)
+            instance.ingredients_list.add(ingredient)
 
 
 def create_products(name: str, quantity: int) -> None:
     """Enter a product by name and how many you wont to create. Then will be created ingredients from product
     ingredients and they will be added to the product ingredients list."""
-    names_list = get_ingredients_names_list_from_string(ingredients=INGREDIENTS)
+    # names_list = get_ingredients_names_list_from_string(ingredients=INGREDIENTS)
 
     for number in range(quantity):
         product = Product(
             brand='MISSHA',
-            name=f'{name}{number}',
-            ingredients=INGREDIENTS
+            name=f'{name} - {number}',
+            ingredients=INGREDIENTS,
+            approved=True
         )
         product.save()
-        _create_ingredients(names=names_list, product=product)
-
-
+        # _create_ingredients(names=names_list, instance=product)
 

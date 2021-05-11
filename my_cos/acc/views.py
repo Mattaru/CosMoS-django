@@ -9,13 +9,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from app.models import Product
 from app.forms import OneRowSearch
-from app.handlers_service import make_list_from_searching_string, get_queryset_with_filtered_data_for_search
+from app.handlers_service import make_list_from_searching_string,\
+    get_queryset_with_filtered_data_for_search,\
+    get_search_data
 from .forms import ProductAdminForm
 
 
 class AdministrationUnapprovedList(LoginRequiredMixin, TemplateView):
     """View with the product list, where the 'Approved' field equal False."""
     template_name = 'accounts/administration/admin_unapproved_list.html'
+    extra_context = {
+        'search_form': OneRowSearch()
+    }
 
     def get_context_data(self, *args, **kwargs):
         context = super(AdministrationUnapprovedList, self).get_context_data(*args, **kwargs)
@@ -40,22 +45,21 @@ class AdminProductList(LoginRequiredMixin, ListView):
     }
 
     def get_queryset(self):
-        queryset = []
-        params = self.request.GET.dict()
+        queryset = super(AdminProductList, self).get_queryset()
+        search_string = get_search_data(self.request)
+        qs = []
 
-        if params.get('search'):
-            data = params.get('search')
-            queryset = Product.objects.all()
-            data_list = make_list_from_searching_string(data=data)
+        if search_string:
+            search_list = make_list_from_searching_string(string=search_string)
             qs = get_queryset_with_filtered_data_for_search(
                 queryset=queryset,
-                search_list=data_list
+                search_list=search_list
             )
 
             if qs:
                 return qs
 
-        return queryset
+        return qs
 
 
 class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
@@ -75,11 +79,17 @@ class AdminProductDelete(LoginRequiredMixin, DeleteView):
     form_class = ProductAdminForm
     success_url = reverse_lazy('acc:admin_unapproved_list')
     template_name = 'accounts/administration/pages/admin_product_delete.html'
+    extra_context = {
+        'search_form': OneRowSearch()
+    }
 
 
 def admin_unapproved_list_delete(request):
     """Delete all of the products, where the 'approved' field equal False."""
     query_set = Product.objects.filter(approved=False)
+    context = {
+        'search_form': OneRowSearch()
+    }
 
     if request.method == 'POST':
         try:
@@ -88,4 +98,8 @@ def admin_unapproved_list_delete(request):
             return HttpResponse("This object can't be deleted!!")
         return HttpResponseRedirect(reverse_lazy('acc:admin_unapproved_list'))
 
-    return render(request, 'accounts/administration/pages/admin_product_delete_unapproved.html')
+    return render(
+        request,
+        'accounts/administration/pages/admin_product_delete_unapproved.html',
+        context
+    )

@@ -20,7 +20,7 @@ def get_img_upload_path(instance, filename):
 class Country(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('country name'), max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, null=True, unique=True)
+    slug = models.SlugField(max_length=255, null=True, unique=True)
     flag_img_name = models.CharField('flag image name', max_length=50,
                                      blank=True, null=True)
 
@@ -66,8 +66,8 @@ class Country(models.Model):
 
 class Ingredient(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(_('ingredient name'), max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, null=True, unique=True)
+    name = models.CharField(_('ingredient name'), max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, null=True, unique=True)
     description = models.TextField()
 
     class SafetyClassification(models.TextChoices):
@@ -107,9 +107,9 @@ class Ingredient(models.Model):
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     brand = models.CharField(_('brand'), max_length=100, blank=True, null=True)
-    line = models.CharField(_('line'), max_length=100, blank=True, null=True)
-    name = models.CharField(_('product name'), max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, null=True, unique=True)
+    line = models.CharField(_('line'), max_length=125, blank=True, null=True)
+    name = models.CharField(_('product name'), max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, null=True, unique=True)
     country = models.ForeignKey('app.Country', verbose_name=_('country'), blank=True, null=True,
                                 on_delete=models.SET_NULL, related_name='Product_country')
     img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )

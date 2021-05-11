@@ -47,3 +47,11 @@ def get_queryset_with_filtered_data_for_search(queryset, search_list: list[str])
         ).order_by('name')
 
         return qs
+
+
+def get_search_data(request) -> str:
+    """Get search data from the view's request."""
+    params = request.GET.dict()
+    search_data = params.get('search')
+
+    return search_data

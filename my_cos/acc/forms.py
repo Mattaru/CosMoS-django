@@ -15,6 +15,7 @@ class ProductAdminForm(forms.ModelForm):
             'country',
             'img',
             'ingredients',
+            'ingredients_list',
             'ph',
             'effect_type',
             'skin_type',

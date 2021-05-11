@@ -1,6 +1,6 @@
-const updatingImgHandler = () => {
-    let formImg = document.querySelector(".form-img");
-    let imgLink = document.querySelectorAll(".form-img a");
+const updatingProductImgHandler = () => {
+    let formImg = document.querySelector('.form-img');
+    let imgLink = document.querySelectorAll('.form-img a');
 
     if (formImg && imgLink) {
         formImg.innerHTML = `
@@ -11,4 +11,4 @@ const updatingImgHandler = () => {
     }
 };
 
-updatingImgHandler();
+updatingProductImgHandler();
