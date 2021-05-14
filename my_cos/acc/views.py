@@ -1,17 +1,18 @@
-from django.db.models import ProtectedError, Q
+from django.db import transaction
+from django.db.models import ProtectedError
 from django.core.paginator import Paginator
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 from django.views.generic.base import TemplateView
-from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from app.models import Product
 from app.forms import OneRowSearch
-from app.handlers_service import make_list_from_searching_string,\
-    get_queryset_with_filtered_data_for_search,\
-    get_search_data
+from core.handlers import (make_list_from_searching_string,
+    get_queryset_with_filtered_data_for_search,
+    get_search_data)
 from .forms import ProductAdminForm
 
 
@@ -72,6 +73,14 @@ class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
         'search_form': OneRowSearch()
     }
 
+    @transaction.atomic
+    def form_valid(self, form):
+        product = form.save(commit=False)
+        product.save()
+        form.save_m2m()
+
+        return redirect(reverse_lazy('acc:admin_unapproved_list'))
+
 
 class AdminProductDelete(LoginRequiredMixin, DeleteView):
     """Delete the particular product object."""
@@ -86,14 +95,14 @@ class AdminProductDelete(LoginRequiredMixin, DeleteView):
 
 def admin_unapproved_list_delete(request):
     """Delete all of the products, where the 'approved' field equal False."""
-    query_set = Product.objects.filter(approved=False)
+    queryset = Product.objects.filter(approved=False)
     context = {
         'search_form': OneRowSearch()
     }
 
     if request.method == 'POST':
         try:
-            query_set.delete()
+            queryset.delete()
         except ProtectedError:
             return HttpResponse("This object can't be deleted!!")
         return HttpResponseRedirect(reverse_lazy('acc:admin_unapproved_list'))

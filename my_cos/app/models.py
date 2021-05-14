@@ -1,20 +1,13 @@
 import uuid
 
-from django.db.models import Q
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-from django.core.exceptions import ValidationError
 
 from multiselectfield import MultiSelectField
 
-
-def get_img_upload_path(instance, filename):
-    """
-        Make new path for a files uploading.
-    """
-    return f'product-images/{instance.name}/{filename}'
+from core.handlers import get_img_upload_path, check_unique_name
 
 
 class Country(models.Model):
@@ -33,12 +26,12 @@ class Country(models.Model):
         return self.name
 
     def make_flag_image_name(self):
+        """Make flag svg name."""
         self.flag_img_name = f"{'-'.join(self.name.split(' ')).lower()}.svg"
 
     def make_name_format(self):
-        name = list(self.name.lower())
-        name[0] = name[0].upper()
-        self.name = ''.join(name)
+        """Make name capitalize."""
+        self.name = self.name.capitalize()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -53,9 +46,9 @@ class Country(models.Model):
         return super().save(*args, **kwargs)
 
     def validate_unique(self, *args, **kwargs):
-        qs = Country.objects.filter(~Q(id=self.id))
-        if qs.filter(name__iexact=self.name).exists():
-            raise ValidationError(_("Item with the same name is already exists."))
+        check_unique_name(model=Country,
+                          instance=self
+                          )
         super(Country, self).validate_unique(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -68,7 +61,7 @@ class Ingredient(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('ingredient name'), max_length=255, unique=True)
     slug = models.SlugField(max_length=255, null=True, unique=True)
-    description = models.TextField()
+    description = models.TextField(_('description'), blank=True)
 
     class SafetyClassification(models.TextChoices):
         SAFE = 'safe', _('Safe')
@@ -90,9 +83,9 @@ class Ingredient(models.Model):
         return f'{self.name} -- ({self.description})'
 
     def validate_unique(self, *args, **kwargs):
-        qs = Country.objects.filter(~Q(id=self.id))
-        if qs.filter(name__iexact=self.name).exists():
-            raise ValidationError(_("Item with the same name is already exists."))
+        check_unique_name(model=Ingredient,
+                          instance=self
+                          )
         super(Ingredient, self).validate_unique(*args, **kwargs)
 
     def save(self, *args, **kwargs):
@@ -113,8 +106,8 @@ class Product(models.Model):
     country = models.ForeignKey('app.Country', verbose_name=_('country'), blank=True, null=True,
                                 on_delete=models.SET_NULL, related_name='Product_country')
     img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )
-    ingredients = models.TextField(_('ingredients'))
-    ingredients_list = models.ManyToManyField(Ingredient, blank=True)
+    ingredients = models.TextField(_('ingredients'), blank=True)
+    ingredients_list = models.ManyToManyField(Ingredient, blank=True, null=True)
 
     class NumberPH(models.TextChoices):
         FORE = '4', '4'
@@ -197,9 +190,9 @@ class Product(models.Model):
         })
 
     def validate_unique(self, *args, **kwargs):
-        qs = Product.objects.filter(~Q(id=self.id))
-        if qs.filter(name__iexact=self.name).exists():
-            raise ValidationError(_("Item with the same name is already exists."))
+        check_unique_name(model=Product,
+                          instance=self
+                          )
         super(Product, self).validate_unique(*args, **kwargs)
 
     def save(self, *args, **kwargs):

@@ -3,8 +3,8 @@ from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 
 from app.models import Product, Country
-from app.forms import CountryForm, OneRowSearch, ProductForm
-from .handlers_service import make_list_from_searching_string,\
+from app.forms import OneRowSearch, ProductForm
+from core.handlers import make_list_from_searching_string,\
     get_queryset_with_filtered_data_for_search,\
     get_search_data
 

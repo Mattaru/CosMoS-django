@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'acc',
     'app',
+    'core',
 ]
 
 MIDDLEWARE = [

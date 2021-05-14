@@ -1,5 +1,13 @@
 from django.db.models import Q
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
+
+def get_img_upload_path(instance, filename):
+    """Make new path for a files uploading."""
+    return f'product-images/{instance.name}/{filename}'
+
 
 def _capitalize_every_word_in_string(string: str) -> str:
     """Get a string, capitalize every word in this string and return it back."""
@@ -55,3 +63,11 @@ def get_search_data(request) -> str:
     search_data = params.get('search')
 
     return search_data
+
+
+def check_unique_name(model, instance):
+    """Check is it name unique in the class."""
+    qs = model.objects.filter(~Q(id=instance.id))
+
+    if qs.filter(name__iexact=instance.name).exists():
+        raise ValidationError(_("Item with the same name is already exists."))

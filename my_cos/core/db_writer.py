@@ -1,7 +1,7 @@
 import random
 
-from .models import Product, Ingredient
-from .handlers_service import get_ingredients_names_list_from_string
+from app.models import Product, Ingredient
+from .handlers import get_ingredients_names_list_from_string
 
 
 INGREDIENTS = 'Water, Glycerin, Dipropylene Glycol, Triethylhexanoin, Lactobacillus/Soybean Ferment Extract,' \
@@ -89,15 +89,12 @@ def _create_ingredients(names: list[str], instance) -> None:
 def create_products(name: str, quantity: int) -> None:
     """Enter a product by name and how many you wont to create. Then will be created ingredients from product
     ingredients and they will be added to the product ingredients list."""
-    # names_list = get_ingredients_names_list_from_string(ingredients=INGREDIENTS)
-
     for number in range(quantity):
         product = Product(
             brand='MISSHA',
             name=f'{name} - {number}',
-            ingredients=INGREDIENTS,
+            ingredients="One, two, three",
             approved=True
         )
         product.save()
-        # _create_ingredients(names=names_list, instance=product)
 

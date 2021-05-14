@@ -23,9 +23,9 @@ class CountryAdmin(TranslationAdmin):
 @admin.register(Product)
 class ProductAdmin(TranslationAdmin):
     list_display = (
+        'name',
         'brand',
         'line',
-        'name',
         'approved',
     )
     prepopulated_fields = {'slug': ('name',)}
