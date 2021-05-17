@@ -49,9 +49,6 @@ class ProductList(ListView):
                 search_list=search_list
             )
 
-            if qs:
-                return qs
-
         return qs
 
 

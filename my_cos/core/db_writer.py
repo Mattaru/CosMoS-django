@@ -62,13 +62,6 @@ INGREDIENTS = 'Water, Glycerin, Dipropylene Glycol, Triethylhexanoin, Lactobacil
 INGREDIENT_DESCRIPTION = 'Safe, neutral, harmful'
 
 
-# def _get_random_value_from_ingredient_safety_classification() -> str:
-#     """Get random value from the ingredient safety classification."""
-#     value = random.choice(Ingredient.SafetyClassification.choices)
-#     if value:
-#         return value
-
-
 def _create_ingredients(names: list[str], instance) -> None:
     """Create the ingredient with a name from the names list."""
     for name in names:

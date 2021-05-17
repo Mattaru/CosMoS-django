@@ -39,7 +39,7 @@
       <div class="country-block">
         {% if object.country %}
         <img class="detail-country-img" src="/media/flags-svg/{{ object.country.flag_img_name }}" width="32" height="32">
-        <p class="detail-country-name">({{ object.country.name }})</p>
+        <p class="detail-country-name">{{ object.country.name }}</p>
         {% endif %}
       </div>
     </div>

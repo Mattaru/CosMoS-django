@@ -11,7 +11,7 @@ def get_img_upload_path(instance, filename):
 
 def _capitalize_every_word_in_string(string: str) -> str:
     """Get a string, capitalize every word in this string and return it back."""
-    ingredient_name = string.split(' ')
+    ingredient_name = string.strip(' ').split(' ')
     new_name = []
 
     for word in ingredient_name:
