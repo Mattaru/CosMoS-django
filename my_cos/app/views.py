@@ -1,6 +1,9 @@
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
 from app.models import Product, Country
 from app.forms import OneRowSearch, ProductForm
@@ -14,10 +17,20 @@ class MainPageView(TemplateView):
     template_name = 'main_page.html'
     extra_context = {
         'search_form': OneRowSearch(),
-        'last_four_added': Product.objects.filter(approved=True).order_by('-creation_date')[:4]
     }
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(MainPageView, self).get_context_data(*args, **kwargs)
+        main_page_qs = cache.get_or_set(
+            'main_page_queryset',
+            Product.objects.filter(approved=True).order_by('-creation_date')[:9]
+        )
+        context['last_four_added'] = main_page_qs
 
+        return context
+
+
+@method_decorator(cache_page(60*5), name='dispatch')
 class AboutUsView(TemplateView):
     """The resource description view."""
     template_name = 'about_us.html'
@@ -38,9 +51,11 @@ class ProductList(ListView):
 
     def get_queryset(self):
         approved_products = super(ProductList, self).get_queryset()\
-            .filter(approved=True)
+            .select_related('country')\
+            .filter(approved=True)\
+            .order_by('name')
         search_data = get_search_data(self.request)
-        qs = []
+        qs = cache.get_or_set('approved_product_list', approved_products)
 
         if search_data:
             search_list = make_list_from_searching_string(string=search_data)
@@ -59,12 +74,6 @@ class ProductDetail(DetailView):
     extra_context = {
         'search_form': OneRowSearch()
     }
-
-    def get_queryset(self):
-        qs = super(ProductDetail, self).get_queryset()\
-            .prefetch_related('ingredients_list')
-
-        return qs
 
 
 class ProductCreate(CreateView):

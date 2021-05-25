@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block additional_style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
+{% endblock %}
+
+{% block left_nav %}
+	<div class="nav-panel">
+		<a class="nav-link nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
+		<a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+		<a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
+	</div>
+{% endblock %}
+
+{% block content %}
+<div class="content-container login-block">
+	<form method="post">
+		{% csrf_token %}
+		{% for field in form %}
+			<p>
+				{{ field.label_tag }}<br>
+				{{ field }}
+				{% if field.help_text %}
+					<small>{{ field.help_text }}</small>
+				{% endif %}
+				{% for error in field.errors %}
+					<p style="color: red">{{ error }}</p>
+				{% endfor %}
+			</p>
+		{% endfor %}
+		<button type="submit">sign up</button>
+	</form>
+</div>
+{% endblock %}

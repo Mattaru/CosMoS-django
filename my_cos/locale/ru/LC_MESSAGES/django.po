@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-06 11:48+0300\n"
+"POT-Creation-Date: 2021-05-18 11:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,143 +60,137 @@ msgstr "ссылка на telegram"
 msgid "instagram link here"
 msgstr "ссылка на instagram"
 
-#: .\acc\templates\accounts\administration\admin_panel.html:22
-#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:22
-#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:22
+#: .\acc\templates\accounts\administration\admin_unapproved_list.html:27
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:27
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:27
 #: .\acc\templates\accounts\administration\pages\admin_product_list.html:27
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:27
 msgid "administration"
 msgstr "администрирование"
 
-#: .\acc\templates\accounts\administration\admin_panel.html:25
-#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:25
-#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:25
+#: .\acc\templates\accounts\administration\admin_unapproved_list.html:30
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:30
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:30
 #: .\acc\templates\accounts\administration\pages\admin_product_list.html:30
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:30
 msgid "Home"
 msgstr "Главная"
 
-#: .\acc\templates\accounts\administration\admin_panel.html:26
-#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:26
-#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:26
+#: .\acc\templates\accounts\administration\admin_unapproved_list.html:31
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:31
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:31
 #: .\acc\templates\accounts\administration\pages\admin_product_list.html:31
 #: .\acc\templates\accounts\administration\pages\admin_product_update.html:31
 msgid "Approval list"
 msgstr "На одобрение"
 
-#: .\acc\templates\accounts\administration\admin_panel.html:27
+#: .\acc\templates\accounts\administration\admin_unapproved_list.html:32
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:32
 msgid "delete all"
 msgstr "удалить все"
 
-#: .\acc\templates\accounts\administration\admin_panel.html:28
-#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:27
-#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:27
-#: .\acc\templates\accounts\administration\pages\admin_product_list.html:32
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:32
-msgid "Search"
-msgstr "Поиск"
-
-#: .\acc\templates\accounts\administration\admin_panel.html:131
+#: .\acc\templates\accounts\administration\admin_unapproved_list.html:135
 msgid "Not anything for approval"
 msgstr "Нет ничего для одобрения"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:34
+#: .\acc\templates\accounts\administration\pages\admin_product_delete.html:38
 msgid "Are you sure want to delete this product"
 msgstr "Вы уверены, что хотите удалить это средство"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:35
+#: .\acc\templates\accounts\administration\pages\admin_product_delete_unapproved.html:39
 msgid "Are you sure want to delete all of the unapproved products"
 msgstr "Вы уверены, что хотите удалить все не одобренные средства"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_list.html:134
+#: .\acc\templates\accounts\administration\pages\admin_product_list.html:133
 msgid "What do you want to find"
 msgstr "Что вы хотите найти"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:46
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:45
 msgid "Updating the product"
 msgstr "Обновить сведения о средстве"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:51
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:50
 #: .\app\templates\products\product_create.html:44
 msgid "Brand"
 msgstr "Брэнд"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:54
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:53
 #: .\app\templates\products\product_create.html:48
 msgid "Line"
 msgstr "Линия"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:57
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:56
 #: .\app\templates\products\product_create.html:51
 msgid "Name"
 msgstr "Название"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:64
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:63
+#: .\app\models.py:21
 msgid "Country"
 msgstr "Страна"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:67
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:66
 msgid "Img"
 msgstr "Фото"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:70
-#: .\app\templates\products\product_create.html:58
-#: .\app\templates\products\product_detail.html:107
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:69
+#: .\app\models.py:80 .\app\templates\products\product_create.html:58
+#: .\app\templates\products\product_detail.html:108
 msgid "Ingredients"
 msgstr "Ингредиенты"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:76
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:78
 #: .\app\templates\products\product_create.html:64
 #: .\app\templates\products\product_detail.html:93
 msgid "Effect type"
 msgstr "Эффект"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:79
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:81
 #: .\app\templates\products\product_create.html:67
 #: .\app\templates\products\product_detail.html:96
 msgid "Skin type"
 msgstr "Тип кожи"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:82
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:84
 #: .\app\templates\products\product_create.html:70
 #: .\app\templates\products\product_detail.html:99
 msgid "For what"
 msgstr "Для чего"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:85
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:87
 msgid "ebay link"
 msgstr "ссылка на ebay"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:88
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:90
 msgid "amazon link"
 msgstr "ссылка на amazon"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:91
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:93
 msgid "blog link"
 msgstr "ссылка на блог"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:94
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:96
 msgid "youtube link"
-msgstr "ссылка на yotube"
+msgstr "ссылка на youtube"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:97
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:99
 msgid "facebook link"
 msgstr "ссылка на facebook"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:100
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:102
 msgid "telegram link"
 msgstr "ссылка на telegram"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:103
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:105
 msgid "instagram link"
 msgstr "ссылка на instagram"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:106
-#: .\app\models.py:134
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:108
+#: .\app\models.py:76 .\app\models.py:177
 msgid "approved"
 msgstr "одобрено"
 
-#: .\acc\templates\accounts\administration\pages\admin_product_update.html:110
+#: .\acc\templates\accounts\administration\pages\admin_product_update.html:112
 msgid "Save"
 msgstr "Сохранить"
 
@@ -208,153 +202,199 @@ msgstr "Название брэнда"
 msgid "brand | line | product"
 msgstr "брэнд | линия | средство"
 
-#: .\app\models.py:19
+#: .\app\models.py:15
 msgid "country name"
 msgstr "страна"
 
-#: .\app\models.py:50 .\app\models.py:155
-msgid "Item with the same name is already exists."
-msgstr "Такое имя уже используется."
-
-#: .\app\models.py:60
-msgid "brand"
-msgstr "брэнд"
-
-#: .\app\models.py:61
-msgid "line"
-msgstr "линия"
+#: .\app\models.py:22
+#, fuzzy
+#| msgid "Country"
+msgid "Countries"
+msgstr "Страна"
 
 #: .\app\models.py:62
-msgid "product name"
-msgstr "название"
-
-#: .\app\models.py:64
-msgid "country"
-msgstr "страна"
-
-#: .\app\models.py:66
-msgid "image"
-msgstr "фото"
-
-#: .\app\models.py:67
-msgid "ingredients"
+#, fuzzy
+#| msgid "ingredients"
+msgid "ingredient name"
 msgstr "ингредиенты"
 
-#: .\app\models.py:82
+#: .\app\models.py:64
+msgid "description"
+msgstr "описание"
+
+#: .\app\models.py:67
+msgid "Safe"
+msgstr "Безопасный"
+
+#: .\app\models.py:68
+msgid "Neutral"
+msgstr "Нейтральный"
+
+#: .\app\models.py:69
+msgid "Harmful"
+msgstr "Вредный"
+
+#: .\app\models.py:71 .\app\models.py:125
 msgid "Absent"
 msgstr "Отсутствует"
 
-#: .\app\models.py:88
+#: .\app\models.py:73
+msgid "safety classification"
+msgstr "безопасность"
+
+#: .\app\models.py:75 .\app\models.py:176
+msgid "date"
+msgstr "дата"
+
+#: .\app\models.py:79
+#, fuzzy
+#| msgid "Ingredients"
+msgid "Ingredient"
+msgstr "Ингредиенты"
+
+#: .\app\models.py:102
+msgid "brand"
+msgstr "брэнд"
+
+#: .\app\models.py:103
+msgid "line"
+msgstr "линия"
+
+#: .\app\models.py:104
+msgid "product name"
+msgstr "название"
+
+#: .\app\models.py:106
+msgid "country"
+msgstr "страна"
+
+#: .\app\models.py:108
+msgid "image"
+msgstr "фото"
+
+#: .\app\models.py:109
+msgid "ingredients"
+msgstr "ингредиенты"
+
+#: .\app\models.py:131
 msgid "Calming"
 msgstr "Успокаивающий"
 
-#: .\app\models.py:89
+#: .\app\models.py:132
 msgid "Anti wrinkle"
 msgstr "От морщин"
 
-#: .\app\models.py:90
+#: .\app\models.py:133
 msgid "Skin elasticity"
 msgstr "Для эластичности кожи"
 
-#: .\app\models.py:91
+#: .\app\models.py:134
 msgid "Moisturizing"
 msgstr "Увлажняющий"
 
-#: .\app\models.py:92
+#: .\app\models.py:135
 msgid "Skin microbiome"
 msgstr "Для микробиома кожи"
 
-#: .\app\models.py:93
+#: .\app\models.py:136
 msgid "Sun protection"
 msgstr "Защита от солнца"
 
-#: .\app\models.py:94
+#: .\app\models.py:137
 msgid "Lifting"
 msgstr "Подтяжка лица"
 
-#: .\app\models.py:95
+#: .\app\models.py:138
 msgid "Healing"
 msgstr "Залечивающий"
 
-#: .\app\models.py:96
+#: .\app\models.py:139
 msgid "Antipigmentation"
 msgstr "Антипигментационный"
 
-#: .\app\models.py:98
+#: .\app\models.py:141
 msgid "effect type"
 msgstr "ффект"
 
-#: .\app\models.py:102
+#: .\app\models.py:145
 msgid "Normal"
 msgstr "Нормальная"
 
-#: .\app\models.py:103
+#: .\app\models.py:146
 msgid "Oily"
 msgstr "Жирная"
 
-#: .\app\models.py:104
+#: .\app\models.py:147
 msgid "Dry"
 msgstr "Сухая"
 
-#: .\app\models.py:105
+#: .\app\models.py:148
 msgid "Dehydrated"
 msgstr "Обезвоженная"
 
-#: .\app\models.py:106
+#: .\app\models.py:149
 msgid "Aging"
 msgstr "Возрастная"
 
-#: .\app\models.py:107
+#: .\app\models.py:150
 msgid "Teenage"
 msgstr "Подростковая"
 
-#: .\app\models.py:108
+#: .\app\models.py:151
 msgid "Baby"
 msgstr "Детская"
 
-#: .\app\models.py:109
+#: .\app\models.py:152
 msgid "Problem"
 msgstr "Проблемная"
 
-#: .\app\models.py:110
+#: .\app\models.py:153
 msgid "Combination"
 msgstr "Комбинированная"
 
-#: .\app\models.py:111
+#: .\app\models.py:154
 msgid "All"
 msgstr "Для все типов"
 
-#: .\app\models.py:113
+#: .\app\models.py:156
 msgid "skin type"
 msgstr "тип кожи"
 
-#: .\app\models.py:117
+#: .\app\models.py:160
 msgid "Face"
 msgstr "Лицо"
 
-#: .\app\models.py:118
+#: .\app\models.py:161
 msgid "Eyes"
 msgstr "Глаза"
 
-#: .\app\models.py:119
+#: .\app\models.py:162
 msgid "Neck"
 msgstr "Шея"
 
-#: .\app\models.py:120
+#: .\app\models.py:163
 msgid "Body"
 msgstr "Тело"
 
-#: .\app\models.py:121
+#: .\app\models.py:164
 msgid "Hair"
 msgstr "Волосы"
 
-#: .\app\models.py:123
+#: .\app\models.py:166
 msgid "for what"
 msgstr "для чего"
 
-#: .\app\models.py:133
-msgid "date"
-msgstr "дата"
+#: .\app\models.py:180
+#, fuzzy
+#| msgid "Add product"
+msgid "Product"
+msgstr "Добавить средство"
+
+#: .\app\models.py:181
+#, fuzzy
+#| msgid "Add product"
+msgid "Products"
+msgstr "Добавить средство"
 
 #: .\app\templates\main_page.html:23
 #: .\app\templates\products\product_create.html:23
@@ -396,11 +436,31 @@ msgstr "Отправить"
 msgid "buy on"
 msgstr "купить"
 
-#: .\my_cos\settings.py:133
+#: .\app\templates\products\product_detail.html:116
+msgid "safe"
+msgstr "безопасный"
+
+#: .\app\templates\products\product_detail.html:124
+msgid "neutral"
+msgstr "нейтральный"
+
+#: .\app\templates\products\product_detail.html:132
+msgid "harmful"
+msgstr "вредный"
+
+#: .\app\templates\products\product_detail.html:140
+msgid "data is absent"
+msgstr "нет данных"
+
+#: .\core\handlers.py:73
+msgid "Item with the same name is already exists."
+msgstr "Такое имя уже используется."
+
+#: .\my_cos\settings.py:137
 msgid "English"
 msgstr "Английский"
 
-#: .\my_cos\settings.py:134
+#: .\my_cos\settings.py:138
 msgid "Russia"
 msgstr "Русский"
 
@@ -478,3 +538,6 @@ msgstr ""
 #: .\templates\success.html:34
 msgid "Back to the main page"
 msgstr "Вернуться на главную"
+
+#~ msgid "Search"
+#~ msgstr "Поиск"

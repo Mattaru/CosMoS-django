@@ -1,111 +1,39 @@
-from django.db import transaction
-from django.db.models import ProtectedError
-from django.core.paginator import Paginator
-from django.views.generic import DeleteView, DetailView, ListView, UpdateView
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+from django.shortcuts import render
+from django.views.generic import FormView
 from django.views.generic.base import TemplateView
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from app.models import Product
-from app.forms import OneRowSearch
-from core.handlers import (make_list_from_searching_string,
-    get_queryset_with_filtered_data_for_search,
-    get_search_data)
-from .forms import ProductAdminForm
+from .forms import UserForm
 
 
-class AdministrationUnapprovedList(LoginRequiredMixin, TemplateView):
-    """View with the product list, where the 'Approved' field equal False."""
-    template_name = 'accounts/administration/admin_unapproved_list.html'
-    extra_context = {
-        'search_form': OneRowSearch()
-    }
+class RegistrationView(FormView):
+    """New User creation view."""
+    form_class = UserForm
+    template_name = 'accounts/registration.html'
+    success_url = reverse_lazy('app:main_page')
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(AdministrationUnapprovedList, self).get_context_data(*args, **kwargs)
-
-        if self.request.user.is_authenticated:
-            qs = Product.objects.filter(approved=False).order_by('name')
-            paginator = Paginator(qs, 30)
-            page_number = self.request.GET.get('page')
-            page_obj = paginator.get_page(page_number)
-            context['list_for_approval'] = page_obj
-
-        return context
-
-
-class AdminProductList(LoginRequiredMixin, ListView):
-    """View with the product list."""
-    model = Product
-    paginate_by = 30
-    template_name = 'accounts/administration/pages/admin_product_list.html'
-    extra_context = {
-        'search_form': OneRowSearch()
-    }
-
-    def get_queryset(self):
-        queryset = super(AdminProductList, self).get_queryset()
-        search_string = get_search_data(self.request)
-        qs = []
-
-        if search_string:
-            search_list = make_list_from_searching_string(string=search_string)
-            qs = get_queryset_with_filtered_data_for_search(
-                queryset=queryset,
-                search_list=search_list
-            )
-
-        return qs
-
-
-class AdminProductUpdate(LoginRequiredMixin, UpdateView, ):
-    """View with the product update form."""
-    model = Product
-    form_class = ProductAdminForm
-    success_url = reverse_lazy('acc:admin_unapproved_list')
-    template_name = 'accounts/administration/pages/admin_product_update.html'
-    extra_context = {
-        'search_form': OneRowSearch()
-    }
-
-    @transaction.atomic
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(RegistrationView, self).get_context_data(*args, **kwargs)
+    #     context['form'] = UserForm()
+    #
+    #     return context
+    #
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
+    #
+    #     if form.is_valid():
+    #         username = form.cleaned_data.get('username')
+    #         password = form.cleaned_data.get('password1')
+    #         user = User(username=username, password=password)
+    #
+    #         return HttpResponseRedirect('/success/')
     def form_valid(self, form):
-        product = form.save(commit=False)
-        product.save()
-        form.save_m2m()
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        login(self.request, authenticate(username=username, password=raw_password))
 
-        return redirect(reverse_lazy('acc:admin_unapproved_list'))
-
-
-class AdminProductDelete(LoginRequiredMixin, DeleteView):
-    """Delete the particular product object."""
-    model = Product
-    form_class = ProductAdminForm
-    success_url = reverse_lazy('acc:admin_unapproved_list')
-    template_name = 'accounts/administration/pages/admin_product_delete.html'
-    extra_context = {
-        'search_form': OneRowSearch()
-    }
-
-
-def admin_unapproved_list_delete(request):
-    """Delete all of the products, where the 'approved' field equal False."""
-    queryset = Product.objects.filter(approved=False)
-    context = {
-        'search_form': OneRowSearch()
-    }
-
-    if request.method == 'POST':
-        try:
-            queryset.delete()
-        except ProtectedError:
-            return HttpResponse("This object can't be deleted!!")
-        return HttpResponseRedirect(reverse_lazy('acc:admin_unapproved_list'))
-
-    return render(
-        request,
-        'accounts/administration/pages/admin_product_delete_unapproved.html',
-        context
-    )
+        return super(RegistrationView, self).form_valid(form)

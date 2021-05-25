@@ -10,13 +10,14 @@ import debug_toolbar
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
-
     path('__debug__/', include(debug_toolbar.urls)),
 ]
 
 urlpatterns += i18n_patterns(
     path('', include('acc.urls')),
+    path('', include('administration.urls')),
     path('', include('app.urls')),
+
 )
 
 if settings.DEBUG:

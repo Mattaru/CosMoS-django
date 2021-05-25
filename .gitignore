@@ -2,7 +2,8 @@
 my_cos/.env
 my_cos/media/product_img
 .git
+my_cos/administration/__pycache__
 my_cos/app/__pycache__
-my_cos/acc/__pycache__
+my_cos/auth/__pycache__
 my_cos/my_cos/__pycache__
 

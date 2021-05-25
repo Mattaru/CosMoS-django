@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'multiselectfield',
 
     'acc',
+    'administration',
     'app',
     'core',
 ]
@@ -118,6 +119,19 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": os.getenv('REDIS_LOCATION'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -141,6 +155,7 @@ LANGUAGES = (
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale/')
 ]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

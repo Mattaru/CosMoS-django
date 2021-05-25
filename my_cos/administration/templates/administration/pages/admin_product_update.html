@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block search %}
-  <form class="search-form" action="{% url 'acc:admin_product_list' %}">
+  <form class="search-form" action="{% url 'administration:admin_product_list' %}">
     {{ search_form }}
     <button class="search-btn">
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
@@ -28,7 +28,7 @@
   </div>
   <div class="nav-panel nav-panel-admin">
     <a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Home' %}</a>
-    <a class="nav-link" href="{% url 'acc:admin_unapproved_list' %}">{% trans 'Approval list' %}</a>
+    <a class="nav-link" href="{% url 'administration:admin_unapproved_list' %}">{% trans 'Approval list' %}</a>
   </div>
 {% endblock %}
 

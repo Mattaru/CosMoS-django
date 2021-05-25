@@ -18,5 +18,5 @@ urlpatterns = [
     path('list/<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
     path('create/', ProductCreate.as_view(), name='product_create'),
     path('about-us/', AboutUsView.as_view(), name='about_us'),
-    path('success', SuccessView.as_view(), name='success'),
+    path('success/', SuccessView.as_view(), name='success'),
 ]

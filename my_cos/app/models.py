@@ -107,7 +107,7 @@ class Product(models.Model):
                                 on_delete=models.SET_NULL, related_name='Product_country')
     img = models.ImageField(_('image'), upload_to=get_img_upload_path, default='unknown.png', )
     ingredients = models.TextField(_('ingredients'), blank=True)
-    ingredients_list = models.ManyToManyField(Ingredient, blank=True, null=True)
+    ingredients_list = models.ManyToManyField(Ingredient, blank=True)
 
     class NumberPH(models.TextChoices):
         FORE = '4', '4'
