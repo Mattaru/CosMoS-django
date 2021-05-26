@@ -1,11 +1,53 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
 
 
-class UserForm(UserCreationForm):
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label=_('Username'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-general form-auth-input',
+                'placeholder': _('Username'),
+                'required': True,
+            }
+        )
+    )
+    password = forms.CharField(
+        label=_('Password'),
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-general form-auth-input',
+                'placeholder': _('Password'),
+                'required': True
+            }
+        )
+    )
+
+
+class UserRegistrationForm(UserCreationForm):
+    username = forms.RegexField(
+        label=_('Username'),
+        regex=r'^[\w.@+-]+$',
+        error_messages={
+            'invalid': _("This value may contain only letters, numbers and "
+                         "@/./+/-/_ characters.")
+        },
+        help_text=format_html(
+            '<ul><li>{}</li></ul>',
+            _('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.')
+        ),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-general form-auth-input',
+                'placeholder': _('Username'),
+                'required': True,
+            }
+        )
+    )
     password1 = forms.CharField(
         label=_('Password'),
         help_text=format_html(
@@ -22,7 +64,7 @@ class UserForm(UserCreationForm):
         ),
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-general form-input',
+                'class': 'form-general form-auth-input',
                 'placeholder': _('Enter password'),
                 'required': True
             }
@@ -30,10 +72,13 @@ class UserForm(UserCreationForm):
     )
     password2 = forms.CharField(
         label=_('Password confirmation'),
-        help_text=_('Enter the same password as before, for verification.'),
+        help_text=format_html(
+            '<ul><li>{}</li></ul>',
+            _('Enter the same password as before, for verification.')
+        ),
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-general form-input',
+                'class': 'form-general form-auth-input',
                 'placeholder': _('Confirm your password'),
                 'required': True
             }
@@ -42,12 +87,12 @@ class UserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['username', 'email', 'password1', 'password2']
         widgets = {
-            'username': forms.TextInput(
+            'email': forms.TextInput(
                 attrs={
-                    'class': 'form-general form-input',
-                    'placeholder': _('Enter username'),
+                    'class': 'form-general form-auth-input',
+                    'placeholder': _('example@dot.com'),
                     'required': True,
-                })
+                }),
         }

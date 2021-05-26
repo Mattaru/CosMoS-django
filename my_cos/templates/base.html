@@ -25,6 +25,7 @@
               <a class="acc-link acc-btn" href="{% url 'acc:logout' %}">{% trans 'logout' %}</a>
             {% else %}
               <a class="acc-link acc-btn" href="{% url 'acc:login' %}">{% trans 'login' %}</a>
+              <a class="acc-link acc-btn" href="{% url 'acc:registration' %}" style="border-left: none">{% trans 'registration' %}</a>
             {% endif %}
           </div>
         {% endblock %}

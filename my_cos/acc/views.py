@@ -6,30 +6,15 @@ from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
-from .forms import UserForm
+from .forms import UserRegistrationForm
 
 
 class RegistrationView(FormView):
     """New User creation view."""
-    form_class = UserForm
+    form_class = UserRegistrationForm
     template_name = 'accounts/registration.html'
     success_url = reverse_lazy('app:main_page')
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(RegistrationView, self).get_context_data(*args, **kwargs)
-    #     context['form'] = UserForm()
-    #
-    #     return context
-    #
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form_class(request.POST)
-    #
-    #     if form.is_valid():
-    #         username = form.cleaned_data.get('username')
-    #         password = form.cleaned_data.get('password1')
-    #         user = User(username=username, password=password)
-    #
-    #         return HttpResponseRedirect('/success/')
     def form_valid(self, form):
         form.save()
         username = form.cleaned_data.get('username')

@@ -17,11 +17,33 @@
 
 {% block content %}
 <div class="content-container login-block">
-	<form method="post">
-		{% csrf_token %}
-		{{ form }}
-		<button type="submit">log in</button>
-	</form>
-	<a href="{% url 'acc:registration' %}">registration</a>
+	<h2 class="page-name">{% trans 'login' %}</h2>
+
+	{% if form.errors %}
+		<small style="color: red">{% trans "Your username or password didn't match" %}.</small>
+		<small style="color: red">{% trans 'Please try again' %}.</small>
+	{% endif %}
+
+	<div class="auth-container">
+		<div></div>
+		<form class="login-form" method="post">
+			{% csrf_token %}
+
+			{% for field in form %}
+			<p>
+				{{ field }}
+				{% for error in field.errors %}
+					<p style="color: red">{{ error }}</p>
+				{% endfor %}
+			</p>
+			{% endfor %}
+			<div class="additional-options">
+				<a class="additional-options-link" href="{% url 'password_reset' %}"><small><strong>{% trans 'Lost password' %}</strong></small></a>
+				<a class="additional-options-link" href="{% url 'acc:registration' %}" style="border-left: none"><small><strong>{% trans 'Registration' %}</strong></small></a>
+			</div>
+			<button class="create-form-btn" type="submit">{% trans 'log in' %}</button>
+		</form>
+		<div></div>
+	</div>
 </div>
 {% endblock %}

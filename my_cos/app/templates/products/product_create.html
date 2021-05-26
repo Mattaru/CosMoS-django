@@ -3,85 +3,85 @@
 {% load i18n %}
 
 {% block additional_style %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
+{% load static %}
+<link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
 {% endblock %}
 
 {% block search %}
-  <form class="search-form" action="{% url 'app:product_list' %}">
+<form class="search-form" action="{% url 'app:product_list' %}">
     {{ search_form }}
     <button class="search-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
     </button>
-  </form>
+</form>
 {% endblock %}
 
 {% block left_nav %}
-	<div class="nav-panel">
-		<a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
-		<a class="nav-link nav-link-active" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
-		<a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
-	</div>
+<div class="nav-panel">
+    <a class="nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
+    <a class="nav-link nav-link-active" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+    <a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
+</div>
 {% endblock %}
 
 {% block content %}
-	<div class="content-container">
-		<div class="top-button-block">
-      <button class="back-btn" onclick="window.history.go(-1); return false;">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-        </svg>
-      </button>
+<div class="content-container">
+    <div class="top-button-block">
+        <button class="back-btn" onclick="window.history.go(-1); return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+        </button>
     </div>
 
-		<h2 class="page-name">{% trans 'Adding a product' %}</h2>
-		
-		<form class="create-form" enctype="multipart/form-data" method="post">
-			{% csrf_token %}
+    <h2 class="page-name">{% trans 'Adding a product' %}</h2>
 
-			<label class="create-form-field" for="{{ form.barand.id_for_lable }}">{% trans 'Brand' %}</label>
-			<div class="create-form-property-btn">{{ form.brand }}{{ form.brand.errors }}
-			</div>
+    <form class="create-form" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
 
-			<label class="create-form-field" for="{{ form.line.id_for_lable }}">{% trans 'Line' %}</label>
-			<div class="create-form-property">{{ form.line }}{{ form.line.errors }}</div>
+        <label class="create-form-field" for="{{ form.barand.id_for_lable }}">{% trans 'Brand' %}</label>
+        <div class="create-form-property-btn">{{ form.brand }}{{ form.brand.errors }}
+        </div>
 
-			<label class="create-form-field" for="{{ form.name.id_for_lable }}">{% trans 'Name' %}</label>
-			<div class="create-form-property">{{ form.name }}{{ form.name.errors }}
-				{% if form.non_field_errors %}
-				<div class="error-msg">{{ form.non_field_errors }}</div>
-				{% endif %}
-			</div>
+        <label class="create-form-field" for="{{ form.line.id_for_lable }}">{% trans 'Line' %}</label>
+        <div class="create-form-property">{{ form.line }}{{ form.line.errors }}</div>
 
-			<label class="create-form-field" for="{{ form.ingredients.id_for_lable }}">{% trans 'Ingredients' %}</label>
-			<div class="create-form-property">{{ form.ingredients }}{{ form.ingredients.errors }}</div>
+        <label class="create-form-field" for="{{ form.name.id_for_lable }}">{% trans 'Name' %}</label>
+        <div class="create-form-property">{{ form.name }}{{ form.name.errors }}
+            {% if form.non_field_errors %}
+            <div class="error-msg">{{ form.non_field_errors }}</div>
+            {% endif %}
+        </div>
 
-			<label class="create-form-field" for="{{ form.ph.id_for_lable }}">pH</label>
-			<div class="create-form-property">{{ form.ph }}{{ form.ph.errors }}</div>
+        <label class="create-form-field" for="{{ form.ingredients.id_for_lable }}">{% trans 'Ingredients' %}</label>
+        <div class="create-form-property">{{ form.ingredients }}{{ form.ingredients.errors }}</div>
 
-			<label class="create-form-field" for="{{ form.effect_type.id_for_lable }}">{% trans 'Effect type' %}</label>
-			<div class="create-form-property create-form-checkbox">{{ form.effect_type }}{{ form.effect_type.errors }}</div>
+        <label class="create-form-field" for="{{ form.ph.id_for_lable }}">pH</label>
+        <div class="create-form-property">{{ form.ph }}{{ form.ph.errors }}</div>
 
-			<label class="create-form-field" for="{{ form.skin_type.id_for_lable }}">{% trans 'Skin type' %}</label>
-			<div class="create-form-property create-form-checkbox">{{ form.skin_type }}{{ form.skin_type.errors }}</div>
+        <label class="create-form-field" for="{{ form.effect_type.id_for_lable }}">{% trans 'Effect type' %}</label>
+        <div class="create-form-property create-form-checkbox">{{ form.effect_type }}{{ form.effect_type.errors }}</div>
 
-			<label class="create-form-field" for="{{ form.for_what.id_for_lable }}">{% trans 'For what' %}</label>
-			<div class="create-form-property create-form-checkbox">{{ form.for_what }}{{ form.for_what.errors }}</div>
+        <label class="create-form-field" for="{{ form.skin_type.id_for_lable }}">{% trans 'Skin type' %}</label>
+        <div class="create-form-property create-form-checkbox">{{ form.skin_type }}{{ form.skin_type.errors }}</div>
 
-			<div></div>
-			<button class="create-form-btn" type="submit">{% trans 'Send' %}</button>
-		</form>
+        <label class="create-form-field" for="{{ form.for_what.id_for_lable }}">{% trans 'For what' %}</label>
+        <div class="create-form-property create-form-checkbox">{{ form.for_what }}{{ form.for_what.errors }}</div>
 
-		<div class="bottom-btn-block">
-			<div class="bottom-back-btn-wrapper">
-				<button class="back-btn" onclick="window.history.go(-1); return false;">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-          </svg>
-        </button>
-			</div>
-    </div>		
-	</div>
+        <div></div>
+        <button class="create-form-btn" type="submit">{% trans 'Send' %}</button>
+    </form>
+
+    <div class="bottom-btn-block">
+        <div class="bottom-back-btn-wrapper">
+            <button class="back-btn" onclick="window.history.go(-1); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
 {% endblock %}
