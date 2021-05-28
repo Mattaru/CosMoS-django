@@ -3,42 +3,60 @@
 {% load i18n %}
 
 {% block additional_style %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
+{% load static %}
+<link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
 {% endblock %}
 
 {% block left_nav %}
-	<div class="nav-panel">
-		<a class="nav-link nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
-		<a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
-		<a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
-	</div>
+<div class="nav-panel">
+    <a class="nav-link nav-link" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
+    <a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+    <a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="content-container login-block">
-	<h2 class="page-name">{% trans 'registration' %}</h2>
+    <div class="top-button-block">
+        <div class="top-back-btn-block">
+            <button class="back-btn" onclick="window.history.go(-1); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="country-block">
+        </div>
+    </div>
 
-	<div class="auth-container">
-		<div></div>
-		<form class="login-form" method="post">
-			{% csrf_token %}
-			{% for field in form %}
-				<p>
-					<strong>{{ field.label_tag }}</strong><br>
-					{{ field }}
-					{% if field.help_text %}
-						<small>{{ field.help_text }}</small>
-					{% endif %}
-					{% for error in field.errors %}
-						<p style="color: red">{{ error }}</p>
-					{% endfor %}
-				</p>
-			{% endfor %}
-			<button class="create-form-btn" type="submit">sign up</button>
-		</form>
-		<div></div>
-	</div>
+    <div class="auth-container">
+        <div></div>
+        <form class="login-form" method="post">
+            {% csrf_token %}
+
+            <fieldset class="login-form-fieldset">
+                <legend class="login-form-legend">{% trans 'registration' %}</legend>
+                {% for field in form %}
+                <p>
+                    {% for error in field.errors %}
+                <div class="error-block">
+                    <p class="error-block-msg">{{ error }}</p>
+                </div>
+                {% endfor %}
+                <strong>{{ field.label_tag }}</strong><br>
+                {{ field }}
+                {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+                {% endif %}
+                </p>
+                {% endfor %}
+                <div class="login-form-btn-block">
+                    <button class="login-form-btn" type="submit">sign up</button>
+                </div>
+            </fieldset>
+        </form>
+        <div></div>
+    </div>
 
 </div>
 {% endblock %}

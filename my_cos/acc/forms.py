@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
 
@@ -28,9 +28,27 @@ class LoginForm(AuthenticationForm):
     )
 
 
+class ResetPasswordForm(PasswordResetForm):
+    email = forms.EmailField(
+        max_length=255,
+        help_text=format_html(
+            '<ul><li>{}</li></ul>',
+            _('Required. Inform a valid email address.')
+        ),
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-general form-auth-input',
+                'placeholder': _('example@dot.com'),
+                'required': True,
+            }
+        )
+    )
+
+
 class UserRegistrationForm(UserCreationForm):
     username = forms.RegexField(
         label=_('Username'),
+        max_length=30,
         regex=r'^[\w.@+-]+$',
         error_messages={
             'invalid': _("This value may contain only letters, numbers and "
@@ -38,12 +56,26 @@ class UserRegistrationForm(UserCreationForm):
         },
         help_text=format_html(
             '<ul><li>{}</li></ul>',
-            _('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.')
+            _('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')
         ),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-general form-auth-input',
                 'placeholder': _('Username'),
+                'required': True,
+            }
+        )
+    )
+    email = forms.EmailField(
+        max_length=255,
+        help_text=format_html(
+            '<ul><li>{}</li></ul>',
+            _('Required. Inform a valid email address.')
+        ),
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-general form-auth-input',
+                'placeholder': _('example@dot.com'),
                 'required': True,
             }
         )
@@ -88,11 +120,3 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-        widgets = {
-            'email': forms.TextInput(
-                attrs={
-                    'class': 'form-general form-auth-input',
-                    'placeholder': _('example@dot.com'),
-                    'required': True,
-                }),
-        }

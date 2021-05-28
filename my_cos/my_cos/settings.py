@@ -156,6 +156,14 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale/')
 ]
 
+# MAIL SENDER
+
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = os.getenv('SG_KEY')
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+
+FROM_EMAIL = os.getenv('EMAIL_ADDRESS')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

@@ -1,5 +1,8 @@
 from django.apps import AppConfig
 
 
-class AuthConfig(AppConfig):
-    name = 'auth'
+class AccConfig(AppConfig):
+    name = 'acc'
+
+    def ready(self):
+        import acc.signals

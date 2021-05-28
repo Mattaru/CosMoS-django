@@ -29,36 +29,8 @@
         </div>
     </div>
 
-	{% if form.errors %}
-		<small style="color: red">{% trans "Your username or password didn't match" %}.</small>
-		<small style="color: red">{% trans 'Please try again' %}.</small>
-	{% endif %}
+	<p>{% trans 'Please confirm your email address to complete the registration' %}.</p>
 
-	<div class="auth-container">
-		<div></div>
-		<form class="login-form" method="post">
-			{% csrf_token %}
-
-			<fieldset class="login-form-fieldset">
-				<legend class="login-form-legend">{% trans 'login' %}</legend>
-				{% for field in form %}
-				<p>
-					{{ field }}
-					{% for error in field.errors %}
-						<p style="color: red">{{ error }}</p>
-					{% endfor %}
-				</p>
-				{% endfor %}
-				<div class="additional-options">
-					<a class="additional-options-link" href="{% url 'acc:password_reset' %}"><small><strong>{% trans 'Forgot password' %}</strong></small></a>
-					<a class="additional-options-link" href="{% url 'acc:registration' %}" style="border-left: none"><small><strong>{% trans 'Registration' %}</strong></small></a>
-				</div>
-				<div class="login-form-btn-block">
-					<button class="login-form-btn" type="submit">{% trans 'log in' %}</button>
-				</div>
-			</fieldset>
-		</form>
-		<div></div>
 	</div>
 </div>
 {% endblock %}
