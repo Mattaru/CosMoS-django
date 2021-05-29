@@ -39,15 +39,15 @@
                 {% for field in form %}
                 <p>
                     {% for error in field.errors %}
-                <div class="error-block">
-                    <p class="error-block-msg">{{ error }}</p>
-                </div>
-                {% endfor %}
-                <strong>{{ field.label_tag }}</strong><br>
-                {{ field }}
-                {% if field.help_text %}
-                <small>{{ field.help_text }}</small>
-                {% endif %}
+                    <div class="error-block">
+                        <p class="error-block-msg">{{ error }}</p>
+                    </div>
+                    {% endfor %}
+                    <strong>{{ field.label_tag }}</strong><br>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small>{{ field.help_text }}</small>
+                    {% endif %}
                 </p>
                 {% endfor %}
                 <div class="login-form-btn-block">
