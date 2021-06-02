@@ -16,12 +16,18 @@
 			</svg>
 		</button>
 	</form>
+	<div class="search-form-additional-block">
+		<div class="search-form-additional-right"></div>
+		<a class="search-form-link" href="{% url 'app:product_list' %}"><small>{% trans 'show all' %}</small></a>
+	</div>
 {% endblock %}
 
 {% block left_nav %}
 	<div class="nav-panel">
 		<a class="nav-link nav-link-active" href="{% url 'app:main_page' %}">{% trans 'Main' %}</a>
-		<a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+		{% if user.is_authenticated %}
+			<a class="nav-link" href="{% url 'app:product_create' %}">{% trans 'Add product' %}</a>
+		{% endif %}
 		<a class="nav-link" href="{% url 'app:about_us' %}">{% trans 'About us' %}</a>
 	</div>
 {% endblock %}

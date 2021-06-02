@@ -1,9 +1,14 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from app.models import Product
+
+from app.models import Product, Ingredient
 
 
 class ProductAdminForm(forms.ModelForm):
+    ingredients_list = forms.ModelMultipleChoiceField(
+                queryset=Ingredient.objects.all(),
+                widget=forms.SelectMultiple(attrs={'class': 'form-general form-input'})
+                )
 
     class Meta:
         model = Product
@@ -32,19 +37,19 @@ class ProductAdminForm(forms.ModelForm):
             'brand': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter brand line here'),
+                    'placeholder': _('Enter brand name'),
                     'required': True
                 }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter brand line here'),
+                    'placeholder': _('Enter brand line'),
                     'required': False
                 }),
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter product name here'),
+                    'placeholder': _('Enter product name'),
                     'required': True
                 }),
             'country': forms.Select(
@@ -55,7 +60,7 @@ class ProductAdminForm(forms.ModelForm):
             'ingredients': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
-                    'placeholder': _('Enter ingredients here...'),
+                    'placeholder': _('Enter ingredients...'),
                     'required': False
                 }),
             'ph': forms.Select(
@@ -66,43 +71,43 @@ class ProductAdminForm(forms.ModelForm):
             'ebay_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('ebay link here'),
+                    'placeholder': _('enter ebay link'),
                     'required': False
                 }),
             'amazon_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('amazon link here'),
+                    'placeholder': _('enter amazon link'),
                     'required': False
                 }),
             'blog_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('blog link here'),
+                    'placeholder': _('enter blog link'),
                     'required': False
                 }),
             'youtube_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('youtube link here'),
+                    'placeholder': _('enter youtube link'),
                     'required': False
                 }),
             'facebook_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('facebook link here'),
+                    'placeholder': _('enter facebook link'),
                     'required': False
                 }),
             'telegram_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('telegram link here'),
+                    'placeholder': _('enter telegram link'),
                     'required': False
                 }),
             'instagram_link': forms.TextInput(
                 attrs={
                     'class': 'form-general form-link',
-                    'placeholder': _('instagram link here'),
+                    'placeholder': _('enter instagram link'),
                     'required': False
                 }),
         }

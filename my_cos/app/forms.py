@@ -37,31 +37,31 @@ class ProductForm(forms.ModelForm):
             'brand': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter brand here'),
+                    'placeholder': _('Enter brand name'),
                     'required': True,
                 }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter brand line here'),
+                    'placeholder': _('Enter brand line'),
                     'required': False,
                 }),
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter product name here'),
+                    'placeholder': _('Enter product name'),
                     'required': True,
                 }),
             'ingredients': forms.Textarea(
                 attrs={
                     'class': 'form-general form-textarea',
-                    'placeholder': _('Enter ingredients here...'),
+                    'placeholder': _('Enter ingredients...'),
                     'required': False,
                 }),
             'ph': forms.Select(
                 attrs={
                     'class': 'form-general form-input',
-                    'placeholder': _('Enter product name here'),
+                    'placeholder': _('Enter product name'),
                     'required': False,
                 }),
         }

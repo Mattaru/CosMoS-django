@@ -80,7 +80,7 @@ class Ingredient(models.Model):
         verbose_name_plural = _('Ingredients')
 
     def __str__(self):
-        return f'{self.name} -- ({self.description})'
+        return f'{self.name}'
 
     def validate_unique(self, *args, **kwargs):
         check_unique_name(model=Ingredient,

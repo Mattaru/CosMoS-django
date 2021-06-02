@@ -13,11 +13,13 @@ class IngredientAdmin(TranslationAdmin):
         'approved'
     )
     prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name',)
 
 
 @admin.register(Country)
 class CountryAdmin(TranslationAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name',)
 
 
 @admin.register(Product)
@@ -29,3 +31,4 @@ class ProductAdmin(TranslationAdmin):
         'approved',
     )
     prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name', 'brand', 'line')

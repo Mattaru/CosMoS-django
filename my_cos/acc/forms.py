@@ -1,6 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    PasswordResetForm,
+    ReadOnlyPasswordHashField,
+    SetPasswordForm,
+    UserCreationForm
+)
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
 
@@ -38,7 +44,7 @@ class ResetPasswordForm(PasswordResetForm):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-general form-auth-input',
-                'placeholder': _('example@dot.com'),
+                'placeholder': _('Enter your e-mail'),
                 'required': True,
             }
         )
@@ -107,6 +113,9 @@ class UserRegistrationForm(UserCreationForm):
     )
     email = forms.EmailField(
         max_length=255,
+        error_messages={
+            'invalid': _("User 1 with this Email address already exists.")
+        },
         help_text=format_html(
             '<ul><li>{}</li></ul>',
             _('Required. Inform a valid email address.')
@@ -114,7 +123,7 @@ class UserRegistrationForm(UserCreationForm):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-general form-auth-input',
-                'placeholder': _('example@dot.com'),
+                'placeholder': _('Enter your e-mail'),
                 'required': True,
             }
         )

@@ -1034,12 +1034,6 @@ ul {
 		margin: 10px auto;
 	}
 
-	/* Login page */
-
-	.auth-container {
-		grid-template-columns: minmax(20px, 10%) minmax(400px, 80%) minmax(20px, 10%);
-	}
-
 	/* Main page */
 
 	.main-page-card {

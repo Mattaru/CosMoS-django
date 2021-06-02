@@ -15,6 +15,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 
+from app.forms import OneRowSearch
 from .forms import ResetPasswordForm, UserRegistrationForm
 from core.tokens import account_activation_token
 from my_cos.settings import FROM_EMAIL
@@ -58,43 +59,9 @@ class RegistrationView(FormView):
 class ActivationSent(TemplateView):
     """View with the activation sent message."""
     template_name = 'accounts/account_activation_sent.html'
-
-
-# class PasswordResetRequestView(PasswordResetView):
-#     """ """
-#     template_name = 'accounts/password_reset.html'
-#     form_class = ResetPasswordForm
-#     from_email = FROM_EMAIL
-#     success_url = reverse_lazy('acc:password_reset_done')
-#
-#     def form_valid(self, form):
-#         email = form.cleaned_data['email']
-#         current_site = get_current_site(self.request)
-#         user = User.objects.filter(email=email)
-#
-#         if user.exists():
-#             subject = 'Password Reset Requested'
-#             message = render_to_string('password_reset_email.html', context={
-#                 'user': user.first().username,
-#                 'domain': current_site.domain,
-#                 'uid': urlsafe_base64_encode(force_bytes(user.first().pk)),
-#                 'token': account_activation_token.make_token(user.first()),
-#                 'protokol': 'http',
-#             })
-#
-#             try:
-#                 send_mail(
-#                     subject,
-#                     message,
-#                     FROM_EMAIL,
-#                     [user.email],
-#                     fail_silently=False
-#                 )
-#             except:
-#                 e = sys.exc_info()
-#                 print(f'Sending error: {e}')
-#
-#         return super(PasswordResetRequestView, self).form_valid(form)
+    extra_context = {
+                        'search_form': OneRowSearch(),
+                    }
 
 
 def activate(request, uidb64, token):
