@@ -5,6 +5,7 @@ my_cos/media/product_images
 my_cos/media/MISHKI_files
 
 .git
+.idea
 
 my_cos/administration/__pycache__
 my_cos/app/__pycache__
