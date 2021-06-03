@@ -9,27 +9,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LOGIN_REDIRECT_URL = reverse_lazy('app:main_page')
 LOGOUT_REDIRECT_URL = reverse_lazy('app:main_page')
 
 ADMIN_NAME = os.getenv('ADMIN_NAME')
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = os.getenv('DEBUG')
-
-
-ALLOWED_HOSTS = ['127.0.0.1']
-
 
 # Application definition
 
@@ -42,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'debug_toolbar',
     'multiselectfield',
 
     'acc',
@@ -52,8 +36,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -85,21 +67,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'my_cos.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -170,14 +137,12 @@ FROM_EMAIL = os.getenv('EMAIL_ADDRESS')
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-STATICFIELDS_DIRS = [
-    os.path.join(BASE_DIR, 'static/')
-]
 
-# Django debug toolbar
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
+try:
+    from .local_settings import *
+except ImportError:
+    from .prod_settings import *
