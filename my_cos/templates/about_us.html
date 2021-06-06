@@ -7,20 +7,7 @@
   <link rel="stylesheet" href="{% static 'stylesheets/main.css' %}">
 {% endblock %}
 
-{% block search %}
-  <form class="search-form" action="{% url 'app:product_list' %}">
-    {{ search_form }}
-    <button class="search-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-      </svg>
-    </button>
-  </form>
-  <div class="search-form-additional-block">
-	<div class="search-form-additional-right"></div>
-	<a class="search-form-link" href="{% url 'app:product_list' %}"><small>{% trans 'show all' %}</small></a>
-  </div>
-{% endblock %}
+{% block search %}{% include 'include/search.html' %}{% endblock %}
 
 {% block left_nav %}
 	<div class="nav-panel">
@@ -66,20 +53,20 @@
 		<div class="about-us-wrapper-right">
 			<div class="wrapper-msg">
 				<h3>{% trans 'Partners' %}:</h3>
-				<p>{% trans 'Main base of the application take the materials from the' %}</p> <a href="https://beauty-granny.com">beauty-granny.com</a>,
-					<p>{% trans 'that garantie higth quality of the rewies, photo and general information' %}.</p>
+				<p>{% trans 'Main base of the application take the materials from the' %}</p> <a href="https://beauty-granny.com" target="_blank">beauty-granny.com</a>
+					<p>{% trans ', that garantie higth quality of the rewies, photo and general information' %}.</p>
 			   <p>{% trans 'There is you can find all information about' %} <strong>BeautyGrunny</strong>:</p>
 			   <div class="about-us-socil-block">
-				   <a class="about-us-social-link" href="{{ object.facebook_link }}" target="_blank">
+				   <a class="about-us-social-link" href="https://www.facebook.com/groups/327716810937246" target="_blank">
 					   <img class="about-us-social-icon" src="/media/social/facebook-ball.svg">
 				   </a>
-				   <a class="about-us-social-link" href="{{ object.instagram_link }}" target="_blank">
+				   <a class="about-us-social-link" href="https://www.instagram.com/kbeautygranny/" target="_blank">
 					   <img class="about-us-social-icon" src="/media/social/instagram.svg">
 				   </a>
-				   <a class="about-us-social-link" href="{{ object.telegram_link }}" target="_blank">
+				   <a class="about-us-social-link" href="" target="_blank">
 					   <img class="about-us-social-icon" src="/media/social/telegram-ball.svg">
 				   </a>
-				   <a class="about-us-social-link" href="{{ object.youtube_link }}" target="_blank">
+				   <a class="about-us-social-link" href="https://www.youtube.com/channel/UCewAVaQJSkHBjQa35pbOiKQ" target="_blank">
 					   <img class="about-us-social-icon" src="/media/social/youtube-ball.svg">
 				   </a>
 			   </div>

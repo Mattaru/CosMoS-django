@@ -30,7 +30,7 @@ class MainPageView(TemplateView):
         return context
 
 
-@method_decorator(cache_page(60*5), name='dispatch')
+# @method_decorator(cache_page(60*5), name='dispatch')
 class AboutUsView(TemplateView):
     """The resource description view."""
     template_name = 'about_us.html'

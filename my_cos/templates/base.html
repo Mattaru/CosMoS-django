@@ -5,7 +5,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>MISHKI</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/media/head-logo.svg">
+    <title>MisHCi</title>
     {% load static %}
     {% block additional_style %}{% endblock %}
   </head>
@@ -17,7 +18,7 @@
           <div class="account-container">
             {% if user.username %}
               {% if user.is_staff %}
-                <a class="acc-link acc-btn" href="{% url 'admin:index' %}">{{ user.username }}</a>
+                <a class="acc-link acc-btn" href="{% url 'admin:index' %}" style="font-weight: bold;">{{ user.username }}</a>
                 <a class="acc-link" style="border-right: 1px solid rgb(255, 255, 255);" href="{% url 'administration:admin_unapproved_list' %}">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="acc-link-icon bi bi-gear" viewBox="0 0 16 16">
                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -25,7 +26,7 @@
                   </svg>
                 </a>
               {% else %}
-                <a class="acc-link acc-btn" href="">{{ user.username }}</a>
+                <p class="acc-link acc-btn" style="margin: 0; font-weight: bold;">{{ user.username }}</p>
               {% endif %}
               <a class="acc-link acc-btn" style="border-left: none;" href="{% url 'acc:logout' %}">{% trans 'logout' %}</a>
             {% else %}
@@ -52,11 +53,8 @@
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
             <span class="language-row"><small>{% trans 'language' %}</small></span>
-            <span class="language-code">{{ LANGUAGE_CODE }}</span>
             <div class="language-block">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="language-icon bi bi-caret-down" viewBox="0 0 16 16">
-                <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
-              </svg>
+              <button class="language-code">{{ LANGUAGE_CODE }}</button>
               <div class="language-dropdown-block">
                 {% for language in languages %}
                   <form action="{% url 'set_language' %}" method="post">

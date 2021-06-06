@@ -6,8 +6,8 @@ from app.models import Product, Ingredient
 
 class ProductAdminForm(forms.ModelForm):
     ingredients_list = forms.ModelMultipleChoiceField(
-                queryset=Ingredient.objects.all(),
-                widget=forms.SelectMultiple(attrs={'class': 'form-general form-input'})
+                queryset=Ingredient.objects.all().order_by('name'),
+                widget=forms.SelectMultiple(attrs={'class': 'form-general form-choice'})
                 )
 
     class Meta:
@@ -65,7 +65,7 @@ class ProductAdminForm(forms.ModelForm):
                 }),
             'ph': forms.Select(
                 attrs={
-                    'class': 'form-general form-input',
+                    'class': 'form-general form-choice',
                     'required': False
                 }),
             'ebay_link': forms.TextInput(

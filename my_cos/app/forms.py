@@ -60,7 +60,7 @@ class ProductForm(forms.ModelForm):
                 }),
             'ph': forms.Select(
                 attrs={
-                    'class': 'form-general form-input',
+                    'class': 'form-general form-choice',
                     'placeholder': _('Enter product name'),
                     'required': False,
                 }),
