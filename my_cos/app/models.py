@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
@@ -8,6 +9,7 @@ from django.urls import reverse
 from multiselectfield import MultiSelectField
 
 from core.handlers import get_img_upload_path, check_unique_name
+from my_cos.settings import ADMIN_NAME
 
 
 class Country(models.Model):
@@ -47,8 +49,7 @@ class Country(models.Model):
 
     def validate_unique(self, *args, **kwargs):
         check_unique_name(model=Country,
-                          instance=self
-                          )
+                          instance=self)
         super(Country, self).validate_unique(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -84,8 +85,7 @@ class Ingredient(models.Model):
 
     def validate_unique(self, *args, **kwargs):
         check_unique_name(model=Ingredient,
-                          instance=self
-                          )
+                          instance=self)
         super(Ingredient, self).validate_unique(*args, **kwargs)
 
     def save(self, *args, **kwargs):
@@ -173,6 +173,8 @@ class Product(models.Model):
     facebook_link = models.CharField('facebook(link)', max_length=3000, blank=True, null=True)
     telegram_link = models.CharField('telegram(link)', max_length=3000, blank=True, null=True)
     instagram_link = models.CharField('instagram(link)', max_length=3000, blank=True, null=True)
+    created_by = models.ForeignKey(User, verbose_name=_('created by'), blank=True, null=True, on_delete=models.SET_NULL,
+                                   default=User.objects.get(username=ADMIN_NAME).pk)
     creation_date = models.DateTimeField(_('date'), auto_now_add=True)
     approved = models.BooleanField(_('approved'), default=False)
 
@@ -191,8 +193,7 @@ class Product(models.Model):
 
     def validate_unique(self, *args, **kwargs):
         check_unique_name(model=Product,
-                          instance=self
-                          )
+                          instance=self)
         super(Product, self).validate_unique(*args, **kwargs)
 
     def save(self, *args, **kwargs):

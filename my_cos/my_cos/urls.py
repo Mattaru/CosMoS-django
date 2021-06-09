@@ -6,16 +6,15 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('racoon_burrow/', admin.site.urls),
+    path('raccoon_burrow/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 urlpatterns += i18n_patterns(
-    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('acc.urls')),
     path('', include('administration.urls')),
     path('', include('app.urls')),
-
+    path('accounts/', include('django.contrib.auth.urls')),
 )
 
 if settings.DEBUG:

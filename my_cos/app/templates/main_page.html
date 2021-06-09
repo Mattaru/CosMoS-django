@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-    {% if last_four_added %}
+    {% if recently_added %}
 	<div class="content-container non-wrapper">
 		<div class="main-page-name-block">
             <div class="main-page-title">
@@ -28,7 +28,7 @@
             </div>	
 		</div>
 		<div class="main-page-content-block">
-		{% for product in last_four_added %}
+		{% for product in recently_added %}
 			<a class="main-page-card-link" href="{{ product.get_absolute_url }}" id={{ forloop.counter }}>
 				<div class="main-page-card">
 					<div class="main-page-card-name">

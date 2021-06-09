@@ -48,13 +48,17 @@ def make_list_from_searching_string(string: str) -> list[str]:
 def get_queryset_with_filtered_data_for_search(queryset, search_list: list[str]):
     """Get a queryset of products and has filtering him by the data from the search list."""
     for data in search_list:
+        data = data.strip('')
         qs = queryset.filter(
             Q(name__icontains=data)
             | Q(line__icontains=data)
             | Q(brand__icontains=data)
         ).order_by('name')
 
-        return qs
+        if qs:
+            return qs
+
+    return []
 
 
 def get_search_data(request) -> str:

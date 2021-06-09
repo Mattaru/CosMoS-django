@@ -28,6 +28,7 @@ class ProductAdmin(TranslationAdmin):
         'name',
         'brand',
         'line',
+        'created_by',
         'approved',
     )
     prepopulated_fields = {'slug': ('name',)}

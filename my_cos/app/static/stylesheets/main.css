@@ -257,7 +257,7 @@ ul {
 	border-bottom-left-radius: 5px;
 	text-align: center;
 	font-family: Garamond, Helvetica, Arial, sans-serif !important;
-	font-size: 10px;
+	font-size: 12px;
 	-webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;
 }
@@ -1172,11 +1172,11 @@ ul {
 	.search-form-input {
 		height: 150px;
 		width: 80%;
-		font-size: 30px;
 		border: 2px solid rgba(98, 129, 164, 1);
 		border-right: none;
 		border-top-left-radius: 5px;
 		border-bottom-left-radius: 5px;
+		font-size: 30px;
 	}
 	.search-form-input:focus {
 		width: 80%;

@@ -25,12 +25,12 @@ class MainPageView(TemplateView):
             'main_page_queryset',
             Product.objects.filter(approved=True).order_by('-creation_date')[:9]
         )
-        context['last_four_added'] = main_page_qs
+        context['recently_added'] = main_page_qs
 
         return context
 
 
-# @method_decorator(cache_page(60*5), name='dispatch')
+@method_decorator(cache_page(60*5), name='dispatch')
 class AboutUsView(TemplateView):
     """The resource description view."""
     template_name = 'about_us.html'
@@ -85,6 +85,14 @@ class ProductCreate(CreateView):
     extra_context = {
         'search_form': OneRowSearch()
     }
+
+    def form_valid(self, form):
+        product = form.save(commit=False)
+        product.created_by = self.request.user
+        product.save()
+
+        return super(ProductCreate, self).form_valid(form)
+
 
 
 class SuccessView(TemplateView):
