@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, DetailView, CreateView
@@ -76,7 +77,7 @@ class ProductDetail(DetailView):
     }
 
 
-class ProductCreate(CreateView):
+class ProductCreate(LoginRequiredMixin, CreateView):
     """A product creation view."""
     model = Product
     form_class = ProductForm

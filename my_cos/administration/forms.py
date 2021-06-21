@@ -5,10 +5,25 @@ from app.models import Product, Ingredient
 
 
 class ProductAdminForm(forms.ModelForm):
+    brand = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-general form-input',
+                'placeholder': _('Enter brand name')
+            }
+        )
+    )
     ingredients_list = forms.ModelMultipleChoiceField(
-                queryset=Ingredient.objects.all().order_by('name'),
-                widget=forms.SelectMultiple(attrs={'class': 'form-general form-choice'})
-                )
+        required=False,
+        queryset=Ingredient.objects.all().order_by('name'),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-general form-choice'
+            }
+        )
+    )
 
     class Meta:
         model = Product
@@ -34,12 +49,6 @@ class ProductAdminForm(forms.ModelForm):
             'approved',
         ]
         widgets = {
-            'brand': forms.TextInput(
-                attrs={
-                    'class': 'form-general form-input',
-                    'placeholder': _('Enter brand name'),
-                    'required': True
-                }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',

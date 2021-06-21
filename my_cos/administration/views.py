@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.db.models import ProtectedError
 from django.core.cache import cache
@@ -7,7 +9,6 @@ from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from app.models import Product
 from app.forms import OneRowSearch
@@ -93,6 +94,7 @@ class AdminProductDelete(LoginRequiredMixin, DeleteView):
     }
 
 
+@login_required
 def admin_unapproved_list_delete(request):
     """Delete all of the products, where the 'approved' field equal False."""
     queryset = Product.objects.filter(approved=False)

@@ -16,7 +16,7 @@ class Country(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('country name'), max_length=100, unique=True)
     slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
-    flag_img_name = models.CharField('flag image name', max_length=50,
+    flag_img_name = models.CharField('flag image name', max_length=125,
                                      blank=True, null=True)
 
     class Meta:
@@ -52,11 +52,6 @@ class Country(models.Model):
                           instance=self)
         super(Country, self).validate_unique(*args, **kwargs)
 
-    def get_absolute_url(self):
-        reverse('', kwargs={
-            'slug': self.slug
-        })
-
 
 class Ingredient(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -81,7 +76,7 @@ class Ingredient(models.Model):
         verbose_name_plural = _('Ingredients')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
     def validate_unique(self, *args, **kwargs):
         check_unique_name(model=Ingredient,

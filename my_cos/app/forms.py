@@ -20,6 +20,16 @@ class CountryForm(forms.ModelForm):
 
 
 class ProductForm(forms.ModelForm):
+    brand = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-general form-input',
+                'placeholder': _('Enter brand name')
+            }
+        )
+    )
 
     class Meta:
         model = Product
@@ -34,12 +44,6 @@ class ProductForm(forms.ModelForm):
             'for_what',
         ]
         widgets = {
-            'brand': forms.TextInput(
-                attrs={
-                    'class': 'form-general form-input',
-                    'placeholder': _('Enter brand name'),
-                    'required': True,
-                }),
             'line': forms.TextInput(
                 attrs={
                     'class': 'form-general form-input',

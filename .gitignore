@@ -7,8 +7,6 @@ my_cos/media/MISHKI_files
 .git
 .idea
 
-my_cos/db_testdata.json
-
 my_cos/administration/__pycache__
 my_cos/app/__pycache__
 my_cos/auth/__pycache__
@@ -17,3 +15,5 @@ my_cos/my_cos/__pycache__
 my_cos/my_cos/local_settings.py
 
 my_cos/config/cosmos.conf
+
+my_cos/.coverage
