@@ -95,7 +95,6 @@ class ProductCreate(LoginRequiredMixin, CreateView):
         return super(ProductCreate, self).form_valid(form)
 
 
-
 class SuccessView(TemplateView):
     """Creation success view."""
     template_name = 'success.html'
